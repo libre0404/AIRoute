@@ -1,0 +1,368 @@
+# ──────────────────────────────────────────────────────────────────────
+#  AIRoute — Alibaba Cloud ACK (Container Service for Kubernetes) Deployment
+# ──────────────────────────────────────────────────────────────────────
+#
+#  部署步骤:
+#    1. 确保 ACK 集群已创建 (Kubernetes 1.24+)
+#    2. 创建 ACR (Container Registry) 仓库并推送镜像
+#    3. 创建阿里云 KMS 密钥用于 STORAGE_ENCRYPTION_KEY
+#    4. kubectl apply -k deploy/ack/
+#
+#  前置条件:
+#    - 阿里云 CLI (aliyun) 已配置
+#    - kubectl 已连接 ACK 集群
+#    - ACR 镜像已推送
+#
+  # AIRROUTE_REGION=cn 时自动启用:
+  #    - 数据库加密强制
+  #    - PII 脱敏 (中国身份证/手机号/银行卡)
+  #    - 区域路由权重 (优先国内 Provider)
+  #    - 数据出境管控
+  #
+  #  多副本部署模式:
+  #    - 单副本: SQLite (默认, 零外部依赖)
+  #    - 多副本: PostgreSQL — 先部署 deploy/postgres/postgresql.yaml,
+  #              再设置 DB_TYPE=postgresql + DB_CONNECTION_STRING
+  #    - 企业合规: SQLCipher — 设置 DB_TYPE=sqlcipher + SQLCIPHER_KEY,
+  #              AIRROUTE_REGION=cn 时自动默认 sqlcipher
+  # ──────────────────────────────────────────────────────────────────────
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: airoute
+  labels:
+    app.kubernetes.io/name: airoute
+    app.kubernetes.io/part-of: airoute-gateway
+
+---
+# ── Secret: AIRoute 配置密钥 ──
+# 生产环境请使用阿里云 KMS (Key Management Service) 或 ACK Secret 加密
+# aliyun cs AttachEncryptDisk ...
+apiVersion: v1
+kind: Secret
+metadata:
+  name: airoute-secrets
+  namespace: airoute
+type: Opaque
+stringData:
+  JWT_SECRET: "CHANGE_ME_generate_with_openssl_rand_base64_48"
+  API_KEY_SECRET: "CHANGE_ME_generate_with_openssl_rand_hex_32"
+  STORAGE_ENCRYPTION_KEY: "CHANGE_ME_generate_with_openssl_rand_hex_32"
+  INITIAL_PASSWORD: "CHANGE_ME_set_strong_password"
+  # AIRROUTE_REGION=cn 时 STORAGE_ENCRYPTION_KEY 必填, 否则启动拒绝
+  AIRROUTE_REGION: "cn"
+  # ── PostgreSQL 连接 (多副本模式) ──
+  # 格式: postgresql://user:password@host:5432/airoute?sslmode=require
+  DB_CONNECTION_STRING: "postgresql://airoute:CHANGE_ME@postgresql.airoute.svc.cluster.local:5432/airoute?sslmode=disable"
+  # SQLCipher 密钥 (单副本加密模式, AIRROUTE_REGION=cn 时自动启用)
+  # SQLCIPHER_KEY: ""
+
+---
+# ── ConfigMap: AIRoute 非敏感配置 ──
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: airoute-config
+  namespace: airoute
+data:
+  NODE_ENV: "production"
+  PORT: "20128"
+  DATA_DIR: "/app/data"
+  AIRROUTE_REGION: "cn"
+  DATA_EXPORT_CONTROL_MODE: "warn"
+  DISABLE_SQLITE_AUTO_BACKUP: "false"
+  # 数据库类型: sqlite (默认) | sqlcipher | postgresql
+  # AIRROUTE_REGION=cn 且未设置时, 自动降级为 sqlcipher
+  DB_TYPE: "sqlite"
+  # Redis (使用阿里云 Redis 实例)
+  REDIS_URL: "redis://redis.airoute.svc.cluster.local:6379"
+
+---
+# ── PersistentVolumeClaim: 数据持久化 ──
+# 使用阿里云 SSD 云盘 (ecs.g7se / csi-disk)
+# 注意: 多副本 + PostgreSQL 模式下, 此 PVC 仅用于日志/缓存,
+#       数据库数据由 PostgreSQL StatefulSet 管理 (deploy/postgres/)
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: airoute-data
+  namespace: airoute
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: alicloud-disk-ssd          # 阿里云 SSD 云盘
+  resources:
+    requests:
+      storage: 20Gi
+
+---
+# ── Deployment: AIRoute 主服务 ──
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: airoute
+  namespace: airoute
+  labels:
+    app: airoute
+    version: v1
+spec:
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  selector:
+    matchLabels:
+      app: airoute
+  template:
+    metadata:
+      labels:
+        app: airoute
+        version: v1
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "20128"
+        prometheus.io/path: "/api/metrics"
+    spec:
+      # 阿里云 ACK 推荐的安全上下文
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000
+        fsGroup: 1000
+      containers:
+        - name: airoute
+          # 替换为您的 ACR 镜像地址
+          # 例如: registry.cn-hangzhou.aliyuncs.com/your-ns/airoute:latest
+          image: airoute:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 20128
+              name: http
+              protocol: TCP
+            - containerPort: 20129
+              name: api
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: airoute-config
+            - secretRef:
+                name: airoute-secrets
+          # 数据库连接覆盖: 当 DB_TYPE=postgresql 时必须设置 DB_CONNECTION_STRING
+          # 取消下方注释以启用 PostgreSQL 模式:
+          # env:
+          #   - name: DB_TYPE
+          #     value: "postgresql"
+          #   - name: DB_CONNECTION_STRING
+          #     valueFrom:
+          #       secretKeyRef:
+          #         name: airoute-secrets
+          #         key: DB_CONNECTION_STRING
+          volumeMounts:
+            - name: data
+              mountPath: /app/data
+            - name: tmp
+              mountPath: /tmp
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "512Mi"
+            limits:
+              cpu: "2000m"
+              memory: "2Gi"
+          livenessProbe:
+            httpGet:
+              path: /api/health
+              port: http
+            initialDelaySeconds: 30
+            periodSeconds: 30
+            timeoutSeconds: 5
+            failureThreshold: 3
+          readinessProbe:
+            httpGet:
+              path: /api/health
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 3
+          # AIRROUTE_REGION=cn 时加密必须, 不允许跳过
+          startupProbe:
+            httpGet:
+              path: /api/health
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 5
+            failureThreshold: 30
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: airoute-data
+        - name: tmp
+          emptyDir: {}
+      # 节点亲和: 部署到中国区域节点
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - weight: 100
+              preference:
+                matchExpressions:
+                  - key: topology.kubernetes.io/zone
+                    operator: In
+                    values:
+                      - cn-hangzhou-a
+                      - cn-hangzhou-b
+                      - cn-beijing-a
+                      - cn-beijing-b
+                      - cn-shanghai-a
+
+---
+# ── Service: ClusterIP ──
+apiVersion: v1
+kind: Service
+metadata:
+  name: airoute
+  namespace: airoute
+  labels:
+    app: airoute
+spec:
+  type: ClusterIP
+  ports:
+    - name: http
+      port: 20128
+      targetPort: http
+      protocol: TCP
+    - name: api
+      port: 20129
+      targetPort: api
+      protocol: TCP
+  selector:
+    app: airoute
+
+---
+# ── Ingress: 阿里云 ALB (Application Load Balancer) ──
+# 使用阿里云 ALB Ingress Controller
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: airoute-ingress
+  namespace: airoute
+  annotations:
+    # 阿里云 ALB Ingress 注解
+    kubernetes.io/ingress.class: "alb"
+    alb.ingress.kubernetes.io/scheme: "internet-facing"
+    alb.ingress.kubernetes.io/address-type: "internet"
+    # HTTPS 证书 (使用阿里云 SSL 证书服务)
+    alb.ingress.kubernetes.io/cert-ids: "CHANGE_ME_cert_id"
+    # WAF 防护 (推荐开启)
+    alb.ingress.kubernetes.io/waf-enabled: "true"
+spec:
+  ingressClassName: alb
+  rules:
+    - host: airoute.your-domain.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: airoute
+                port:
+                  number: 20128
+
+---
+# ── HorizontalPodAutoscaler ──
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: airoute-hpa
+  namespace: airoute
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: airoute
+  minReplicas: 2
+  maxReplicas: 8
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+    - type: Resource
+      resource:
+        name: memory
+        target:
+          type: Utilization
+          averageUtilization: 80
+
+---
+# ── PodDisruptionBudget ──
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: airoute-pdb
+  namespace: airoute
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+      app: airoute
+
+---
+# ── NetworkPolicy: 限制入站流量 ──
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: airoute-netpol
+  namespace: airoute
+spec:
+  podSelector:
+    matchLabels:
+      app: airoute
+  policyTypes:
+    - Ingress
+    - Egress
+  ingress:
+    - from:
+        - namespaceSelector:
+            matchLabels:
+              name: airoute
+        - podSelector:
+            matchLabels:
+              app: redis
+      ports:
+        - port: 20128
+          protocol: TCP
+        - port: 20129
+          protocol: TCP
+  # 允许出站到 PostgreSQL 和 Redis
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              app: postgresql
+      ports:
+        - port: 5432
+          protocol: TCP
+    - to:
+        - podSelector:
+            matchLabels:
+              app: redis
+      ports:
+        - port: 6379
+          protocol: TCP
+    # DNS 解析
+    - to:
+        - namespaceSelector: {}
+          podSelector:
+            matchLabels:
+              k8s-app: kube-dns
+      ports:
+        - port: 53
+          protocol: UDP
+        - port: 53
+          protocol: TCP

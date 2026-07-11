@@ -1,0 +1,16 @@
+﻿export const AIRoute_RESPONSE_HEADERS = {
+  cache: "X-AIRoute-Cache",
+  cacheHit: "X-AIRoute-Cache-Hit",
+  compression: "X-AIRoute-Compression",
+  costSaved: "X-AIRoute-Cost-Saved",
+  fallbackAttempts: "X-AIRoute-Fallback-Attempts",
+  latencyMs: "X-AIRoute-Latency-Ms",
+  model: "X-AIRoute-Model",
+  progress: "X-AIRoute-Progress",
+  provider: "X-AIRoute-Provider",
+  requestId: "X-AIRoute-Request-Id",
+  responseCost: "X-AIRoute-Response-Cost",
+  tokensIn: "X-AIRoute-Tokens-In",
+  tokensOut: "X-AIRoute-Tokens-Out",
+  version: "X-AIRoute-Version",
+} as const;

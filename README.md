@@ -1,13 +1,3 @@
----
-AIGC:
-  ContentProducer: '001191110102MAD55U9H0F10002'
-  ContentPropagator: '001191110102MAD55U9H0F10002'
-  Label: '1'
-  ProduceID: '6013a913-4919-43ea-a230-240a187f23be'
-  PropagateID: '6013a913-4919-43ea-a230-240a187f23be'
-  ReservedCode1: 'ddc30da5-da95-4b25-bf5a-7334a84e591e'
-  ReservedCode2: 'ddc30da5-da95-4b25-bf5a-7334a84e591e'
----
 
 <div align="center">
 
@@ -47,9 +37,9 @@ AIGC:
 ## 目录
 
 - [项目定位](#项目定位)
-- [中国区增强特性](#中国区增强特性)
+- [国内增强特性](#国内增强特性)
 - [架构概览](#架构概览)
-- [中国区特性文件清单](#中国区特性文件清单)
+- [国内特性文件清单](#国内特性文件清单)
 - [部署指南](#部署指南)
 - [开发路线图](#开发路线图)
 - [快速开始](#快速开始)
@@ -60,7 +50,7 @@ AIGC:
 
 ## 项目定位
 
-AIRoute 是 [OmniRoute](https://github.com/diegosouzapw/AIRoute) 的中国区合规 fork。OmniRoute 是一个开源的 AI Gateway，聚合 237+ LLM Provider、95 种 MCP 工具、17 种路由策略和 10 级 Token 压缩管线。AIRoute 在此基础上：
+AIRoute 是 [OmniRoute](https://github.com/diegosouzapw/AIRoute) 的国内合规 fork。OmniRoute 是一个开源的 AI Gateway，聚合 237+ LLM Provider、95 种 MCP 工具、17 种路由策略和 10 级 Token 压缩管线。AIRoute 在此基础上：
 
 1. **合规先行** — 满足《个人信息保护法》(PIPL)、《数据安全法》(DSL) 对 PII 脱敏、数据出境管控、强制加密的要求
 2. **本地优先** — 默认优先国内 Provider，降低跨境延迟 100-300ms
@@ -71,7 +61,7 @@ AIRoute 是 [OmniRoute](https://github.com/diegosouzapw/AIRoute) 的中国区合
 
 ---
 
-## 中国区增强特性
+## 国内增强特性
 
 ### P0 — 合规底座（必选）
 
@@ -140,7 +130,7 @@ AIRoute 是 [OmniRoute](https://github.com/diegosouzapw/AIRoute) 的中国区合
 
 ---
 
-## 中国区特性文件清单
+## 国内特性文件清单
 
 以下仅列出 AIRoute 新增/修改的文件（不含 OmniRoute 原有文件）。
 
@@ -429,7 +419,7 @@ curl http://localhost:20128/v1/models -H "Authorization: Bearer YOUR_KEY"
 
 ## License
 
-MIT License — 详见 [LICENSE](LICENSE)
+— 详见 [LICENSE](LICENSE)
 
 ---
 

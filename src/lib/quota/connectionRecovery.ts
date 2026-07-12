@@ -1,4 +1,4 @@
-﻿/**
+/**
  * connectionRecovery.ts — Proactive recovery of provider connections whose
  * transient cooldown has elapsed.
  *

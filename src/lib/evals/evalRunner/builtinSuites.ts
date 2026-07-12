@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Eval Runner — built-in golden-set suites (pure data).
  *
  * Static suite definitions extracted verbatim from evalRunner.ts. This module

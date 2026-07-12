@@ -1,4 +1,4 @@
-﻿/**
+/**
  * db/jsonMigration.ts — Shared helper to hydrate an SQLite database from a
  * legacy AIRoute JSON backup object.
  *

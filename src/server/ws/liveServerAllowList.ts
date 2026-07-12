@@ -1,4 +1,4 @@
-﻿/**
+/**
  * liveServerAllowList — extract of the host/origin allow-list logic from
  * `src/server/ws/liveServer.ts`.
  *

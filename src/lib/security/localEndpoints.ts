@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Guard for /api/local/* routes.
  *
  * These endpoints shell out to the user's local Podman/Docker to manage local

@@ -1,4 +1,4 @@
-﻿import { stopHeadroomProxy } from "@/lib/headroom/process";
+import { stopHeadroomProxy } from "@/lib/headroom/process";
 import { createErrorResponse } from "@/lib/api/errorResponse";
 import { sanitizeErrorMessage } from "@AIRoute/open-sse/utils/error";
 

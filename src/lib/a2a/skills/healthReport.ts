@@ -1,4 +1,4 @@
-﻿/**
+/**
  * A2A Skill: Health Report
  *
  * Produces a structured health summary for orchestrating agents.

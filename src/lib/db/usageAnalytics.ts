@@ -1,4 +1,4 @@
-﻿/**
+/**
  * db/usageAnalytics.ts — Read-only aggregation queries over `usage_history`
  * and `daily_usage_summary` extracted from route handlers.
  *

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * db/settings.js — Settings, pricing, and proxy config.
  */
 

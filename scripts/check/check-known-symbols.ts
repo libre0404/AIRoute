@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 // scripts/check/check-known-symbols.ts
 // Gate anti-alucinação: known-symbol allow-lists. Mata o padrão "símbolo inventado
 // que silenciosamente vira no-op" em seis superfícies de despacho por-string/por-chave:

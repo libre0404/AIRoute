@@ -1,4 +1,4 @@
-﻿/**
+/**
  * POST /api/tools/agent-bridge/repair
  *
  * Undo orphaned MITM system state (DNS spoof entries, root CA, system proxy)

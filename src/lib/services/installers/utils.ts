@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Installer utilities — safe execFile wrapper for npm operations.
  *
  * Hard rule #13: never string-interpolate runtime values into shell commands.

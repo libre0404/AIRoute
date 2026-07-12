@@ -1,4 +1,4 @@
-﻿// Web-cookie provider key validators (part B): muse-spark-web, adapta-web, claude-web, gemini-web,
+// Web-cookie provider key validators (part B): muse-spark-web, adapta-web, claude-web, gemini-web,
 // copilot-web, t3-web, jules, inner-ai. Extracted from validation.ts (god-file decomposition) —
 // top-level functions with no dispatcher-state captures; behavior is byte-identical to the inline defs.
 import { applyCustomUserAgent } from "./headers";

@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 
 /**
  * AIRoute — Co-locate the LLMLingua-2 optional dependency closure into the standalone bundle.

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * WebExecutorWrapper — Wraps any web executor with session pool support
  *
  * This is the integration bridge between the session pool and AIRoute's

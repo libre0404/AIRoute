@@ -1,4 +1,4 @@
-﻿/**
+/**
  * CC Bridge Transforms — config-driven request body normalization for the
  * Claude Code Compatible (`anthropic-compatible-cc-*`) bridge.
  *

@@ -1,4 +1,4 @@
-﻿import os from "os";
+import os from "os";
 import path from "path";
 
 const APP_NAME = "AIRoute";

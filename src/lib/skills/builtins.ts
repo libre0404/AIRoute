@@ -1,4 +1,4 @@
-﻿import { SkillHandler } from "./types";
+import { SkillHandler } from "./types";
 import { executeWebSearch } from "@/lib/search/executeWebSearch";
 import { resolveDataDir } from "@/lib/dataPaths";
 import { safeOutboundFetch } from "@/shared/network/safeOutboundFetch";

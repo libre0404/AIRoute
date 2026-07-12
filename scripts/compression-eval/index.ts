@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Compression evaluation harness CLI (D1). Runs the offline corpus eval (full-vs-compressed
  * + self-validating judge + gold grading + mechanical savings) and prints a markdown report.
  *

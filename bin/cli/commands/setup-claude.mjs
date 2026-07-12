@@ -1,4 +1,4 @@
-﻿/**
+/**
  * AIRoute setup-claude — Remote-aware Claude Code profile generator.
  *
  * Claude Code has no native profile files (unlike Codex). The idiomatic way to

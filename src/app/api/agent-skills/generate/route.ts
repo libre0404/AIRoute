@@ -1,4 +1,4 @@
-﻿/**
+/**
  * POST /api/agent-skills/generate
  *
  * Triggers the Agent Skills generator. Requires management auth.

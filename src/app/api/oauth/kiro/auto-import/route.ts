@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { homedir } from "os";
 import { join } from "path";
 import { isAuthRequired, isAuthenticated } from "@/shared/utils/apiAuth";

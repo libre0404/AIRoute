@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Browser-TLS-impersonating HTTP client for claude.ai.
  *
  * Why this exists: Claude's Cloudflare config pins `cf_clearance` to the

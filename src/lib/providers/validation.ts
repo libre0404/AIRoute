@@ -1,4 +1,4 @@
-﻿import { getEmbeddingProvider } from "@AIRoute/open-sse/config/embeddingRegistry.ts";
+import { getEmbeddingProvider } from "@AIRoute/open-sse/config/embeddingRegistry.ts";
 import { getRerankProvider } from "@AIRoute/open-sse/config/rerankRegistry.ts";
 import { getRegistryEntry } from "@AIRoute/open-sse/config/providerRegistry.ts";
 import {

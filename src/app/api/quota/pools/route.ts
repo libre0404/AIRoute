@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GET  /api/quota/pools  — list all quota pools with allocations
  * POST /api/quota/pools  — create a new quota pool
  *

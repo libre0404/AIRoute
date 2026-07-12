@@ -1,4 +1,4 @@
-﻿import { execFile, spawn } from "node:child_process";
+import { execFile, spawn } from "node:child_process";
 import { closeSync, mkdirSync, openSync, existsSync } from "node:fs";
 import { access } from "node:fs/promises";
 import path from "node:path";

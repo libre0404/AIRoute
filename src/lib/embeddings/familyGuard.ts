@@ -1,4 +1,4 @@
-﻿import { resolveComboTargets } from "@AIRoute/open-sse/services/combo.ts";
+import { resolveComboTargets } from "@AIRoute/open-sse/services/combo.ts";
 import { detectEmbeddingDimensionConflict } from "@AIRoute/open-sse/config/embeddingRegistry.ts";
 
 /**

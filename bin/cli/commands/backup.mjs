@@ -1,4 +1,4 @@
-﻿import {
+import {
   copyFileSync,
   createReadStream,
   createWriteStream,

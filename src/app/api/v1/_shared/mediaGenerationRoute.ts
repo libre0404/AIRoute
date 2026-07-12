@@ -1,4 +1,4 @@
-﻿import { errorResponse } from "@AIRoute/open-sse/utils/error.ts";
+import { errorResponse } from "@AIRoute/open-sse/utils/error.ts";
 import { HTTP_STATUS } from "@AIRoute/open-sse/config/constants.ts";
 
 import { attachAIRouteMetaHeaders } from "@/domain/AIRouteResponseMeta";

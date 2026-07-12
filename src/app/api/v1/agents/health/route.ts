@@ -1,4 +1,4 @@
-﻿import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { getAgent, getAvailableAgents } from "@/lib/cloudAgent/registry";
 import { getCloudAgentCredentialFromDb } from "@/lib/cloudAgent/credentials";
 import { getCloudAgentCorsHeaders, requireCloudAgentManagementAuth } from "@/lib/cloudAgent/api";

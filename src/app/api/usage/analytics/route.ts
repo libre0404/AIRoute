@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { requireManagementAuth } from "@/lib/api/requireManagementAuth";
 import { getApiKeys } from "@/lib/db/apiKeys";
 import { getUserDatabaseSettings } from "@/lib/db/databaseSettings";

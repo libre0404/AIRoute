@@ -1,4 +1,4 @@
-﻿/**
+/**
  * YuanbaoWebExecutor — Tencent Yuanbao (yuanbao.tencent.com) Web Provider
  *
  * Routes chat requests through the Tencent Yuanbao consumer web session.

@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 // Doc accuracy gate — catches fabricated API/endpoint/function/env-var claims in docs.
 //
 // Scans every `docs/{*,*/*}.md` and `AGENTS.md` for concrete code references and

@@ -1,4 +1,4 @@
-﻿import { handleOcr } from "@AIRoute/open-sse/handlers/ocr.ts";
+import { handleOcr } from "@AIRoute/open-sse/handlers/ocr.ts";
 import { getProviderCredentials, clearRecoveredProviderState } from "@/sse/services/auth";
 import { withInjectionGuard } from "@/middleware/promptInjectionGuard";
 import { parseOcrModel } from "@AIRoute/open-sse/config/ocrRegistry.ts";

@@ -1,4 +1,4 @@
-﻿import { randomBytes } from "crypto";
+import { randomBytes } from "crypto";
 import { requireManagementAuth } from "@/lib/api/requireManagementAuth";
 import { createErrorResponse, createErrorResponseFromUnknown } from "@/lib/api/errorResponse";
 import { isValidationFailure, validateBody } from "@/shared/validation/helpers";

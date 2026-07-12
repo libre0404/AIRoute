@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Credential Health Cache
  *
  * In-memory cache for provider credential health status.

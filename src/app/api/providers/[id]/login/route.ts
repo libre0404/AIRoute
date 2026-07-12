@@ -9,7 +9,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getProviderConnectionById, updateProviderConnection } from "@/lib/localDb";
 import { requireManagementAuth } from "@/lib/api/requireManagementAuth";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error.ts";
+import { sanitizeErrorMessage } from "@AIRoute/open-sse/utils/error.ts";
 
 // ─── POST: Start login flow ────────────────────────────────────────────────
 
@@ -32,7 +32,7 @@ export async function POST(
   try {
     // Dynamic import — InAppLoginService depends on Playwright (heavy)
     const { inAppLoginService } = await import(
-      "@omniroute/open-sse/services/inAppLoginService.ts"
+      "@AIRoute/open-sse/services/inAppLoginService.ts"
     );
 
     const result = await inAppLoginService.startLogin(id, { timeout });

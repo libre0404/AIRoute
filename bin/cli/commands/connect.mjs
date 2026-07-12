@@ -1,4 +1,4 @@
-﻿import { apiFetch } from "../api.mjs";
+import { apiFetch } from "../api.mjs";
 import { loadContexts, saveContexts } from "../contexts.mjs";
 import { createPrompt, printSuccess, printError, printInfo } from "../io.mjs";
 import { t } from "../i18n.mjs";

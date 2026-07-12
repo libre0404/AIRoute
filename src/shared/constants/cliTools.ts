@@ -1,4 +1,4 @@
-﻿// CLI Tools configuration
+// CLI Tools configuration
 import { getClaudeCodeDefaultModels } from "@AIRoute/open-sse/config/providerRegistry";
 import type { CliCatalogEntry } from "@/shared/schemas/cliCatalog";
 

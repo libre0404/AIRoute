@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { CursorService } from "@/lib/oauth/services/cursor";
 import { createProviderConnection, isCloudEnabled, resolveProxyForProvider } from "@/models";
 import { getConsistentMachineId } from "@/shared/utils/machineId";

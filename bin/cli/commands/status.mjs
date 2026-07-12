@@ -1,4 +1,4 @@
-﻿import { printHeading } from "../io.mjs";
+import { printHeading } from "../io.mjs";
 import { resolveDataDir, resolveStoragePath } from "../data-dir.mjs";
 import { t } from "../i18n.mjs";
 import path from "node:path";

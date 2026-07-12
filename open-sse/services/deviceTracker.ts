@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Per-API-Key Device Tracker
  *
  * Tracks unique client "devices" (IP + User-Agent fingerprint) that have used

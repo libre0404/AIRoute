@@ -1,4 +1,4 @@
-﻿import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { getDbInstance, SQLITE_FILE } from "@/lib/db/core";
 import { exportAllSummaryRows } from "@/lib/db/backup";
 import { CALL_LOGS_DIR } from "@/lib/usage/callLogArtifacts";

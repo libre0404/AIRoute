@@ -1,4 +1,4 @@
-﻿import { CORS_HEADERS } from "@/shared/utils/cors";
+import { CORS_HEADERS } from "@/shared/utils/cors";
 import { ollamaModels } from "@AIRoute/open-sse/config/ollamaModels.ts";
 
 export async function OPTIONS() {

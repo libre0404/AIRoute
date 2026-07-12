@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getProviderConnectionById, updateProviderConnection } from "@/lib/db/providers";
 import { getAccessToken, updateProviderCredentials } from "@/sse/services/tokenRefresh";
-import { rotationGroupFor } from "@omniroute/open-sse/services/refreshSerializer.ts";
+import { rotationGroupFor } from "@AIRoute/open-sse/services/refreshSerializer.ts";
 
 type RefreshResult = {
   accessToken?: string;

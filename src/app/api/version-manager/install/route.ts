@@ -1,4 +1,4 @@
-﻿"use server";
+"use server";
 
 import { NextResponse } from "next/server";
 import { install, InstallResult } from "@/lib/services/installers/cliproxy";

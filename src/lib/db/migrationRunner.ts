@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Migration Runner — Versioned SQL Migrations for SQLite
  *
  * Reads numbered `.sql` files from the migrations directory and applies

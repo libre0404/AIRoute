@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { REGISTRY } from "@AIRoute/open-sse/config/providerRegistry.ts";
 import { getAllCustomModels, getAllSyncedAvailableModels, getPricing } from "@/lib/localDb";
 

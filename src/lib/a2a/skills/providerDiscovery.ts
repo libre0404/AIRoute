@@ -1,4 +1,4 @@
-﻿/**
+/**
  * A2A Skill: Provider Discovery
  *
  * Answers provider capability, availability, and routing-fit questions for agents.

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * scripts/test/combo-live-vps.mjs
  *
  * Phase-3 VPS HTTP scenario driver for AIRoute combo routing.

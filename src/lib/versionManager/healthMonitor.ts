@@ -1,4 +1,4 @@
-﻿import { updateToolHealth } from "@/lib/db/versionManager";
+import { updateToolHealth } from "@/lib/db/versionManager";
 
 interface HealthResult {
   healthy: boolean;

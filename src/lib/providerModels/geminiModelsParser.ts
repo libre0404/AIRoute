@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Parses the Google Generative Language `v1beta/models` listing into discovery models.
  *
  * Each model's `supportedGenerationMethods` is mapped to AIRoute endpoints:

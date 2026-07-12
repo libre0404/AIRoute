@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Browser-TLS-impersonating HTTP client for www.perplexity.ai.
  *
  * Why this exists: Perplexity sits behind the same Cloudflare Enterprise

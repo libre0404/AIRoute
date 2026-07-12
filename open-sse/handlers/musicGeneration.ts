@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Music Generation Handler
  *
  * Handles POST /v1/music/generations requests.

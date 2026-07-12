@@ -1,4 +1,4 @@
-﻿import { printHeading } from "../io.mjs";
+import { printHeading } from "../io.mjs";
 import {
   ensureProviderSchema,
   getProviderApiKey,

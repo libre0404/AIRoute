@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Vision Bridge Auto-Router
  * Automatically selects the fastest vision-capable model from available models.
  */

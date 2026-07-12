@@ -1,4 +1,4 @@
-﻿/**
+/**
  * AIRoute MCP Session Pool Tools — Manage and monitor anonymous web session pools.
  *
  * Tools:

@@ -1,4 +1,4 @@
-﻿// Anthropic/Claude-format provider key validators (anthropic-like, claude-oauth-inline, anthropic-compatible, claude-code-compatible).
+// Anthropic/Claude-format provider key validators (anthropic-like, claude-oauth-inline, anthropic-compatible, claude-code-compatible).
 // Extracted from validation.ts (god-file decomposition) — top-level functions; behavior is
 // byte-identical to the original inline defs.
 import {

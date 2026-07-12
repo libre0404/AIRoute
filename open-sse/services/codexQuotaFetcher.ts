@@ -1,4 +1,4 @@
-﻿/**
+/**
  * codexQuotaFetcher.ts — Codex Dual-Window Quota Fetcher
  *
  * Implements QuotaFetcher for the Codex provider (quotaPreflight.ts + quotaMonitor.ts).

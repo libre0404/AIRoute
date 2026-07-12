@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 /**
  * Generates scaffold locale files for all languages listed in config/i18n.json
  * that don't yet have a corresponding file in bin/cli/locales/.

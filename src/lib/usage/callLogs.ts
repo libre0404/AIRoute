@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Structured call log management.
  *
  * SQLite stores only summary metadata. Detailed request/response payloads live in

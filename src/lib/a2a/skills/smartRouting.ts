@@ -1,4 +1,4 @@
-﻿/**
+/**
  * A2A Skill: Smart Routing
  *
  * Receives a prompt + metadata → routes via AIRoute pipeline →

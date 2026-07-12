@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Hermes Agent — Rich multi-role config generator & saver
  *
  * This is the implementation for the advanced "Hermes Agent" (Nous Research terminal agent).

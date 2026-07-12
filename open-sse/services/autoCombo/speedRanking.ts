@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Speed-optimized Provider×Model Ranking
  *
  * Pure, framework-free scoring function that ranks provider×model candidates by

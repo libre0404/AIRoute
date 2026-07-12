@@ -1,4 +1,4 @@
-﻿/**
+/**
  * AIRoute setup-opencode — Remote-aware OpenCode provider generator
  * (openai-compatible). Distinct from `AIRoute setup opencode` (which wires the
  * @AIRoute/opencode-plugin). This writes the `AIRoute` provider into

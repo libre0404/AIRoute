@@ -1,4 +1,4 @@
-﻿import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { isAuthenticated } from "@/shared/utils/apiAuth";
 import { cleanupSemanticMemoryPoints } from "@/lib/memory/qdrant";
 import { getMemorySettings } from "@/lib/memory/settings";

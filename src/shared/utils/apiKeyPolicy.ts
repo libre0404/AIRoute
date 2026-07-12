@@ -1,4 +1,4 @@
-﻿/**
+/**
  * API Key Policy Enforcement — Shared middleware for all /v1/* endpoints.
  *
  * Enforces API key policies: model restrictions and budget limits.

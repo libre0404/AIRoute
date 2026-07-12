@@ -1,4 +1,4 @@
-﻿{
+{
   "common": {
     "error": "Грешка: {message}",
     "serverOffline": "Сървърът AIRoute е офлайн. Стартирайте с: AIRoute serve",

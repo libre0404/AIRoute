@@ -1,4 +1,4 @@
-﻿const COPILOT_REASONING_SUMMARY_MARKER = "_AIRouteCopilotReasoningSummary";
+const COPILOT_REASONING_SUMMARY_MARKER = "_AIRouteCopilotReasoningSummary";
 
 export function applyClaudeCodeCompatibleThinkingDisplay(
   thinking: Record<string, unknown>,

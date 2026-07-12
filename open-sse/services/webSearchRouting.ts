@@ -1,4 +1,4 @@
-﻿/**
+/**
  * #4481 layer 2 — per-tool web-search model routing (CCR-style `Router.webSearch`).
  *
  * Some providers expose an Anthropic-compatible (Claude-format) endpoint but do NOT

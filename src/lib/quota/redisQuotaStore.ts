@@ -1,4 +1,4 @@
-﻿/**
+/**
  * redisQuotaStore.ts — Optional Redis-backed QuotaStore implementation.
  *
  * Counter keys follow the pattern:

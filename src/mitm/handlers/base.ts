@@ -1,4 +1,4 @@
-﻿/**
+/**
  * MitmHandlerBase — abstract base class for all AgentBridge MITM handlers.
  *
  * Contract: `_tasks/features-v3.8.6/refactorpages/_orchestration/master-plan-group-A.md` §3.5.

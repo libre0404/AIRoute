@@ -1,4 +1,4 @@
-﻿/**
+/**
  * WebSocket reverse proxy for embedded service UIs.
  *
  * Runs a lightweight HTTP server (port EMBED_WS_PROXY_PORT, default 20131)

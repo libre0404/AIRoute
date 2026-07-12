@@ -1,4 +1,4 @@
-﻿import { PROVIDER_MODELS, PROVIDER_ID_TO_ALIAS } from "@/shared/constants/models";
+import { PROVIDER_MODELS, PROVIDER_ID_TO_ALIAS } from "@/shared/constants/models";
 import { sanitizeErrorMessage } from "@AIRoute/open-sse/utils/error";
 import {
   getAllCustomModels,

@@ -1,4 +1,4 @@
-﻿import { BaseGuardrail, type GuardrailContext, type GuardrailExecutionResult } from "./base";
+import { BaseGuardrail, type GuardrailContext, type GuardrailExecutionResult } from "./base";
 import { PIIMaskerGuardrail } from "./piiMasker";
 import { PromptInjectionGuardrail } from "./promptInjection";
 import { VisionBridgeGuardrail } from "./visionBridge";

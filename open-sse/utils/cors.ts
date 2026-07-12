@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Static CORS headers for open-sse handlers.
  *
  * `Access-Control-Allow-Origin` is set by the Next.js middleware

@@ -1,4 +1,4 @@
-﻿import { getDbInstance } from "@/lib/db/core";
+import { getDbInstance } from "@/lib/db/core";
 import type { ProviderLimitsCacheEntry } from "@/lib/db/providerLimits";
 import { getProviderQuotaWindowStartIso } from "@/lib/db/quotaResetEvents";
 import { calculateCost } from "./costCalculator";

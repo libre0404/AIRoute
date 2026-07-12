@@ -1,4 +1,4 @@
-﻿import { jwtVerify, SignJWT } from "jose";
+import { jwtVerify, SignJWT } from "jose";
 import { NextResponse, type NextRequest } from "next/server";
 import { getCachedSettings } from "../../lib/db/readCache";
 import { isDraining } from "../../lib/gracefulShutdown";

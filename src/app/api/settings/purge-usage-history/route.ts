@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { z } from "zod";
 import { buildErrorBody } from "@AIRoute/open-sse/utils/error";
 import { RESET_USAGE_HISTORY_PERIODS, resetUsageHistory } from "@/lib/db/cleanup";

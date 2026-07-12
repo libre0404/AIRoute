@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Video Generation Handler
  *
  * Handles POST /v1/videos/generations requests.

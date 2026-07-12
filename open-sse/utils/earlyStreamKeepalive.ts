@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Early SSE keepalive wrapper for streaming route handlers.
  *
  * Strict HTTP clients (notably Codex CLI's `reqwest`, which has a ~5s idle-read

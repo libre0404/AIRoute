@@ -1,4 +1,4 @@
-﻿import { printHeading, printInfo, printSuccess, printError } from "../io.mjs";
+import { printHeading, printInfo, printSuccess, printError } from "../io.mjs";
 import { t } from "../i18n.mjs";
 import path from "node:path";
 import fs from "node:fs";

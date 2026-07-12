@@ -1,4 +1,4 @@
-﻿/**
+/**
  * combos/autoPromote.ts — pure reorder helper for the "auto-promote successful
  * combo model" feature.
  *

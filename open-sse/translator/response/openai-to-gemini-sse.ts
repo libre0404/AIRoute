@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Convert an OpenAI Chat Completions stream/response into the Gemini
  * `:streamGenerateContent` / `:generateContent` shape used by the
  * `@google/genai` SDK.

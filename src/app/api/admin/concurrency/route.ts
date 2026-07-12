@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { getAllRateLimitStatus } from "@AIRoute/open-sse/services/rateLimitManager.ts";
 import {
   getStats as getSemaphoreStats,

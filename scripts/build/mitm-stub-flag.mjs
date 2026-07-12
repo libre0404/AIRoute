@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Decide whether the Turbopack build should alias @/mitm/manager to the
  * feature-degraded stub (src/mitm/manager.stub.ts).
  *

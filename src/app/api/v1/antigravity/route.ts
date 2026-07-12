@@ -1,4 +1,4 @@
-﻿import { handleChat } from "@/sse/handlers/chat";
+import { handleChat } from "@/sse/handlers/chat";
 import { initTranslators } from "@AIRoute/open-sse/translator/index.ts";
 
 let initialized = false;

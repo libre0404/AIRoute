@@ -1,4 +1,4 @@
-﻿import { existsSync, readFileSync, writeFileSync, mkdirSync, chmodSync } from "node:fs";
+import { existsSync, readFileSync, writeFileSync, mkdirSync, chmodSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { resolveDataDir } from "./data-dir.mjs";
 

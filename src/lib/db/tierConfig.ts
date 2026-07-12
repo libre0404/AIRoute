@@ -1,4 +1,4 @@
-﻿import { getDbInstance } from "./core";
+import { getDbInstance } from "./core";
 import type { TierConfig } from "../../../open-sse/services/tierTypes";
 import { validateTierConfig, DEFAULT_TIER_CONFIG } from "../../../open-sse/services/tierConfig";
 import { defaultLogger as log } from "@AIRoute/open-sse/utils/logger";

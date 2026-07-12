@@ -1,4 +1,4 @@
-﻿/**
+/**
  * comboAgentMiddleware.ts — Combo Agent Features
  *
  * Implements the "combo as agent" features from issues #399 and #401:

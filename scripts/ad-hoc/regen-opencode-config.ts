@@ -1,4 +1,4 @@
-﻿/**
+/**
  * One-shot regen of ~/.config/opencode/opencode.json from the live
  * AIRoute /v1/models catalog. Run after a catalog change to refresh
  * the opencode client.

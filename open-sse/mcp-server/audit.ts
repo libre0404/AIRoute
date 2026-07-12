@@ -1,4 +1,4 @@
-﻿/**
+/**
  * MCP Audit Logger — Records all MCP tool invocations for security and observability.
  *
  * Logs are written to the `mcp_tool_audit` SQLite table.

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Global Type Declarations for AIRoute
  *
  * Ambient declarations for modules and globals that don't ship their own types.

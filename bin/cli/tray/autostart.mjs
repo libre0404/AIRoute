@@ -1,4 +1,4 @@
-﻿import { existsSync, writeFileSync, unlinkSync, mkdirSync, realpathSync } from "node:fs";
+import { existsSync, writeFileSync, unlinkSync, mkdirSync, realpathSync } from "node:fs";
 import { execFileSync, execSync } from "node:child_process";
 import { homedir } from "node:os";
 import { join, dirname } from "node:path";

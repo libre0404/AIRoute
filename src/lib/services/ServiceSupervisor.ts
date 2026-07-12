@@ -1,4 +1,4 @@
-﻿/** Generic supervisor for embedded services (9router, CLIProxyAPI, future). */
+/** Generic supervisor for embedded services (9router, CLIProxyAPI, future). */
 
 import { EventEmitter } from "node:events";
 import { spawn } from "node:child_process";

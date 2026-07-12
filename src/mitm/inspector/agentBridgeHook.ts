@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Inspector hook called from `MitmHandlerBase` (F3) on every intercepted
  * AgentBridge request. Centralises buffer push/update so handlers do not need
  * to know the inspector internals.

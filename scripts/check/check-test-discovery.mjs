@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 // scripts/check/check-test-discovery.mjs
 // Gate 6A.1 — test discovery: todo arquivo *.test.ts|tsx / *.spec.ts|tsx do repo deve
 // ser COLETADO por pelo menos um runner que efetivamente RODA via npm script ou CI.

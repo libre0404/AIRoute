@@ -1,4 +1,4 @@
-﻿import { batchSaveCostEntries } from "@/lib/db/domainState";
+import { batchSaveCostEntries } from "@/lib/db/domainState";
 
 export interface BufferedCostEntry {
   apiKeyId: string;

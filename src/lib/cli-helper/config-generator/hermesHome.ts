@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Shared Hermes home-directory resolver (#3628).
  *
  * The Hermes PowerShell installer (Windows) writes its default config under

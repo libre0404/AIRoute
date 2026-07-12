@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Zed IDE OAuth Token Extractor
  *
  * Extracts OAuth credentials from OS keychain where Zed IDE stores them.

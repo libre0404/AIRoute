@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Local Provider Health Check
  *
  * Background polling of local provider_nodes (localhost) to detect

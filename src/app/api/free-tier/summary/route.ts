@@ -1,4 +1,4 @@
-﻿import { computeFreeModelTotals } from "@AIRoute/open-sse/config/freeModelCatalog.ts";
+import { computeFreeModelTotals } from "@AIRoute/open-sse/config/freeModelCatalog.ts";
 import { sumUsageTokensThisMonth } from "@/lib/db/usageSummary";
 
 const CORS = {

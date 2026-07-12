@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { getDiversityReport } from "../../../../../open-sse/services/autoCombo/providerDiversity";
 import { sanitizeErrorMessage } from "@AIRoute/open-sse/utils/error";
 

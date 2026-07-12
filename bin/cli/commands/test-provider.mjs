@@ -1,4 +1,4 @@
-﻿import { writeFileSync } from "node:fs";
+import { writeFileSync } from "node:fs";
 import { apiFetch, isServerUp } from "../api.mjs";
 import { t } from "../i18n.mjs";
 

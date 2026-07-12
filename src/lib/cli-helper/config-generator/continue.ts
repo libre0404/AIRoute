@@ -1,4 +1,4 @@
-﻿import path from "node:path";
+import path from "node:path";
 import os from "node:os";
 
 let yaml: typeof import("js-yaml") | null = null;

@@ -1,4 +1,4 @@
-﻿import { getCodexRequestDefaults } from "@/lib/providers/requestDefaults";
+import { getCodexRequestDefaults } from "@/lib/providers/requestDefaults";
 import {
   getCodexModelScope,
   getCodexRateLimitKey,

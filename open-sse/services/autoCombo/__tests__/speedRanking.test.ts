@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Unit tests for the speed-optimized provider×model ranking engine.
  *
  * Covers the pure `rankBySpeed` function used by:

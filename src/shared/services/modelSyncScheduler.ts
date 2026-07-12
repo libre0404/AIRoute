@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Model Auto-Sync Scheduler (#488)
  *
  * Automatically refreshes model lists for provider connections that have

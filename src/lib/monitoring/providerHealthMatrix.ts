@@ -1,4 +1,4 @@
-﻿import { getSyncedAvailableModelsByConnection } from "@/lib/db/models";
+import { getSyncedAvailableModelsByConnection } from "@/lib/db/models";
 import { getProviderConnections } from "@/lib/db/providers";
 import { getDbInstance } from "@/lib/db/core";
 import { getAllCircuitBreakerStatuses } from "@/shared/utils/circuitBreaker";

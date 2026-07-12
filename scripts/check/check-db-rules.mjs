@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 // scripts/check/check-db-rules.mjs
 // Gate de convenções de banco (CLAUDE.md Hard Rules #2 e #5). Três verificações:
 //  (a) Todo módulo de domínio em src/lib/db/*.ts deve ser re-exportado por

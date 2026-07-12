@@ -1,4 +1,4 @@
-﻿import {
+import {
   handleImageEdit,
   handleOpenAIImageEdit,
 } from "@AIRoute/open-sse/handlers/imageGeneration.ts";

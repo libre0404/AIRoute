@@ -1,4 +1,4 @@
-﻿interface CooldownEntry {
+interface CooldownEntry {
   until: number;
   reason: string;
 }

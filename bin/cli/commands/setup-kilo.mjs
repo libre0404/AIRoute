@@ -1,4 +1,4 @@
-﻿/**
+/**
  * AIRoute setup-kilo — configure Kilo Code to use AIRoute.
  *
  * Kilo Code (kilocode.kilo-code, a Cline/Roo descendant) has two surfaces:

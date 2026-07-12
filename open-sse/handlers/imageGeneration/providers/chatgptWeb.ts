@@ -1,4 +1,4 @@
-﻿// Auto-extracted from open-sse/handlers/imageGeneration.ts in PR-#4582-batch
+// Auto-extracted from open-sse/handlers/imageGeneration.ts in PR-#4582-batch
 // Family: chatgpt-web | Module: chatgptWeb | Lines: 1102-1282 (181 LOC)
 // Ref: see open-sse/handlers/imageGeneration.ts top-of-file comment for split rationale
 

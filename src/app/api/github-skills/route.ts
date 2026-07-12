@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GET/POST /api/github-skills
  *
  * GitHub agent skill discovery and import.

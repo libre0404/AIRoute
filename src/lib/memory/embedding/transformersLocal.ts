@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Transformers.js local embedding (D8) — Xenova/all-MiniLM-L6-v2.
  *
  * IMPORTANT: @huggingface/transformers is imported lazily (await import())

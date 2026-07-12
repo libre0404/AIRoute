@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Console Log Interceptor — captures console output to a log file.
  *
  * Monkey-patches console.log, console.info, console.warn, console.error,

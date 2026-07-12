@@ -1,4 +1,4 @@
-﻿/**
+/**
  * APIKEY provider catalog — frontier-labs family (first-party frontier model labs).
  * Pure data; merged by apikey/index.ts via spread (god-file decomposition; semantic split).
  */

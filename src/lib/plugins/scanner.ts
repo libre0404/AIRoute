@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Plugin scanner — discovers plugins from the filesystem.
  *
  * Scans ~/.AIRoute/plugins/ for subdirectories containing plugin.json manifests.

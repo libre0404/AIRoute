@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Semantic Cache — Phase 9.1
  *
  * Caches LLM responses (temperature=0) to reduce cost and latency.

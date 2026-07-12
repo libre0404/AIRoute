@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ACP (Agent Client Protocol) — Process Spawner & Manager
  *
  * Spawns CLI agents as child processes and manages their lifecycle.

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * AIRoute setup-cline — configure the Cline AI coding agent to use AIRoute.
  *
  * Cline's VS Code extension keeps its config in VS Code's opaque globalStorage

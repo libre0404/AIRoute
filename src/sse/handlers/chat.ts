@@ -1,4 +1,4 @@
-﻿import { randomUUID } from "crypto";
+import { randomUUID } from "crypto";
 import { resolveChatRequestBody } from "./requestBody";
 import { normalizeReasoningRequest } from "@/shared/reasoning/effortStandardization";
 import { resolveRoutingModel } from "./resolveRoutingModel";

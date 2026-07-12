@@ -1,4 +1,4 @@
-﻿const DEFAULT_AIRoute_BASE_URL = "http://localhost:20128";
+const DEFAULT_AIRoute_BASE_URL = "http://localhost:20128";
 
 type AIRouteBaseUrlEnv = {
   AIRoute_BASE_URL?: string;

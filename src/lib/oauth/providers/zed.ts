@@ -1,4 +1,4 @@
-﻿import { ZED_CONFIG } from "../constants/oauth";
+import { ZED_CONFIG } from "../constants/oauth";
 
 /**
  * Zed IDE credential bridge — import_token flow only.

@@ -1,4 +1,4 @@
-﻿// Audio/speech + miscellaneous API-key provider validators: deepgram, assemblyai, elevenlabs,
+// Audio/speech + miscellaneous API-key provider validators: deepgram, assemblyai, elevenlabs,
 // inworld, kie, aws-polly, bailian-coding-plan, reka, maritalk, nlpcloud, runwayml, nous-research,
 // poe. Extracted from validation.ts (god-file decomposition) — top-level functions with no
 // dispatcher-state captures; behavior is byte-identical to the original inline defs.

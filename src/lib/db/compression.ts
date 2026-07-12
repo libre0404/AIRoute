@@ -1,4 +1,4 @@
-﻿import { backupDbFile } from "./backup";
+import { backupDbFile } from "./backup";
 import { getDefaultCompressionCombo } from "./compressionCombos";
 import { getDbInstance } from "./core";
 import { invalidateDbCache } from "./readCache";

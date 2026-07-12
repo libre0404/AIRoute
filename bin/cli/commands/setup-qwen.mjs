@@ -1,4 +1,4 @@
-﻿/**
+/**
  * AIRoute setup-qwen — configure Qwen Code (QwenLM/qwen-code) for AIRoute.
  *
  * Qwen Code is a terminal AI agent with a file-based config at

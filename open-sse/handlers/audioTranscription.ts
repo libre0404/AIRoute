@@ -1,4 +1,4 @@
-﻿import { CORS_HEADERS } from "../utils/cors.ts";
+import { CORS_HEADERS } from "../utils/cors.ts";
 import { Buffer } from "node:buffer";
 /**
  * Audio Transcription Handler

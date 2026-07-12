@@ -1,4 +1,4 @@
-﻿/**
+/**
  * CLI Tool State Persistence
  *
  * Stores last-configured timestamps and initial config snapshots

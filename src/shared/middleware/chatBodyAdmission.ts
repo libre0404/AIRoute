@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Heap-pressure-aware admission guard for POST /v1/chat/completions.
  *
  * Root cause (homelab 3.8.40 OOM crash-loop): a forced-GC heap inspection of the live

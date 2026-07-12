@@ -1,4 +1,4 @@
-﻿/**
+/**
  * POST /api/tools/agent-bridge/cert/regenerate
  * Regenerates the MITM self-signed certificate. Overwrites the existing one.
  * LOCAL_ONLY: registered in routeGuard.ts

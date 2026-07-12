@@ -1,4 +1,4 @@
-﻿/**
+/**
  * DevinCliExecutor — routes completions through the official Devin CLI binary
  * via the Agent Client Protocol (ACP) JSON-RPC 2.0 over stdio.
  *

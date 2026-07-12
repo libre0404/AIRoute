@@ -1,4 +1,4 @@
-﻿/**
+/**
  * API Route: /api/intelligence/sync
  *
  * POST — Trigger a manual Arena ELO intelligence sync.

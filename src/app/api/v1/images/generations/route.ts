@@ -1,4 +1,4 @@
-﻿import { handleImageGeneration } from "@AIRoute/open-sse/handlers/imageGeneration.ts";
+import { handleImageGeneration } from "@AIRoute/open-sse/handlers/imageGeneration.ts";
 import { withInjectionGuard } from "@/middleware/promptInjectionGuard";
 import {
   getProviderCredentials,

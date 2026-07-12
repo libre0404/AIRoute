@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { getCacheStats } from "@AIRoute/open-sse/services/searchCache.ts";
 import { SEARCH_PROVIDERS } from "@AIRoute/open-sse/config/searchRegistry.ts";
 import { isAuthenticated } from "@/shared/utils/apiAuth";

@@ -1,4 +1,4 @@
-﻿import { DEFAULT_DISPLAY_BASE_URL } from "@/shared/hooks";
+import { DEFAULT_DISPLAY_BASE_URL } from "@/shared/hooks";
 
 export interface CustomCliAliasMapping {
   alias: string;

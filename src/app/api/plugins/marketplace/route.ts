@@ -1,4 +1,4 @@
-﻿import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { CORS_HEADERS, handleCorsOptions } from "@/shared/utils/cors";
 import { buildErrorBody } from "@AIRoute/open-sse/utils/error";
 import { listMarketplacePlugins } from "@/lib/plugins/marketplace";

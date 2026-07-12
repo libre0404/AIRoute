@@ -1,6 +1,6 @@
 import { getUnifiedModelsResponse } from "@/app/api/v1/models/catalog";
 import { getServiceModels } from "@/lib/db/serviceModels";
-import { getRegistryEntry } from "@omniroute/open-sse/config/providerRegistry.ts";
+import { getRegistryEntry } from "@AIRoute/open-sse/config/providerRegistry.ts";
 
 /**
  * Handle CORS preflight

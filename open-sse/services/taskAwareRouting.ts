@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Task-aware routing layer for combo routing.
  *
  * Derives request difficulty (light / standard / heavy / critical) from cheap,

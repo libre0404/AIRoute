@@ -3,7 +3,7 @@ import { requireManagementAuth } from "@/lib/api/requireManagementAuth";
 import { deleteMemory, getMemory, updateMemory } from "@/lib/memory/store";
 import { validateBody, isValidationFailure } from "@/shared/validation/helpers";
 import { MemoryUpdatePutSchema } from "@/shared/schemas/memory";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error.ts";
+import { sanitizeErrorMessage } from "@AIRoute/open-sse/utils/error.ts";
 
 export async function DELETE(request: Request, props: { params: Promise<{ id: string }> }) {
   const authError = await requireManagementAuth(request);

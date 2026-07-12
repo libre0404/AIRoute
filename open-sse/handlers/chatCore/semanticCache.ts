@@ -1,4 +1,4 @@
-﻿import {
+import {
   generateSignature,
   getCachedResponse,
   isCacheableForRead,

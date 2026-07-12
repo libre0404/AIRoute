@@ -1,4 +1,4 @@
-﻿/**
+/**
  * POST /api/v1/relay/chat/completions
  *
  * Serverless Relay Proxy endpoint.

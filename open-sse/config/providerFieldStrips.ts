@@ -1,4 +1,4 @@
-﻿// Fields that, when literally named in an upstream 400 body, are safe to strip and
+// Fields that, when literally named in an upstream 400 body, are safe to strip and
 // retry once (FCC NIM-style recovery). Mirrors the existing context_management 400
 // fallback in base.ts, generalized to these OpenAI-compat / NIM reasoning fields.
 // `context_management` (9router#1468): Claude Code sends it top-level; strict

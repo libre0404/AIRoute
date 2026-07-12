@@ -1,4 +1,4 @@
-﻿// Re-export service kinds from leaf module (avoids circular dep with providerSchema)
+// Re-export service kinds from leaf module (avoids circular dep with providerSchema)
 export type { ServiceKind } from "./serviceKinds";
 export { SERVICE_KIND_VALUES } from "./serviceKinds";
 

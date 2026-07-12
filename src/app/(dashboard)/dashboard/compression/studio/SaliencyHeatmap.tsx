@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import type { CompressionHeatmap } from "@AIRoute/open-sse/services/compression/diffHelper";
 
 /**

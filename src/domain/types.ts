@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Domain Types — FASE-03 Architecture Refactoring
  *
  * Centralized type definitions for the AIRoute domain layer.

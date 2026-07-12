@@ -1,4 +1,4 @@
-﻿import { MCP_ACCESSIBILITY_DEFAULTS } from "./constants.ts";
+import { MCP_ACCESSIBILITY_DEFAULTS } from "./constants.ts";
 
 const SIBLING_PATTERN = /^(\s*)-\s*([a-zA-Z]+)\b/;
 

@@ -1,5 +1,5 @@
 import { CORS_HEADERS, handleCorsOptions } from "@/shared/utils/cors";
-import { getChatGptImage } from "@omniroute/open-sse/services/chatgptImageCache.ts";
+import { getChatGptImage } from "@AIRoute/open-sse/services/chatgptImageCache.ts";
 
 export async function OPTIONS() {
   return handleCorsOptions();

@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 
 /**
  * write-build-sha.mjs — HEAD sentinel guard for AIRoute release builds.

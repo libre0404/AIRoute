@@ -1,4 +1,4 @@
-﻿import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { isAuthenticated } from "@/shared/utils/apiAuth";
 import { validateBody, isValidationFailure } from "@/shared/validation/helpers";
 import { QdrantSettingsUpdateSchema } from "@/shared/schemas/qdrant";

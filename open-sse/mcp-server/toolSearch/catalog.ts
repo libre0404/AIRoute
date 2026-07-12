@@ -1,4 +1,4 @@
-﻿/**
+/**
  * getAllToolDefinitions — unified catalog of all MCP tool definitions.
  *
  * Aggregates the same collections referenced by TOTAL_MCP_TOOL_COUNT in server.ts:

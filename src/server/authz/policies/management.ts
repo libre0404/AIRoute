@@ -1,4 +1,4 @@
-﻿import { createHash, timingSafeEqual } from "node:crypto";
+import { createHash, timingSafeEqual } from "node:crypto";
 import { isModelSyncInternalRequest } from "../../../shared/services/modelSyncScheduler";
 import { isAuthRequired, isDashboardSessionAuthenticated } from "../../../shared/utils/apiAuth";
 import { getLegacyCliTokenSync, getMachineTokenSync } from "../../../lib/machineToken";

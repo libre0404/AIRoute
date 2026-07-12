@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Webhook Dispatcher
  * Dispatches events to registered webhooks with HMAC-SHA256 signing and retries.
  * Slack/Telegram/Discord use per-kind payload transformers (no HMAC wrapping).

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Plugin Worker Thread — runs plugins in isolated Worker threads.
  *
  * Receives messages from the main thread:

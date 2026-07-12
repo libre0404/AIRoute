@@ -1,4 +1,4 @@
-﻿// Re-export from open-sse with localDb integration
+// Re-export from open-sse with localDb integration
 import {
   getModelAliases,
   getComboByName,

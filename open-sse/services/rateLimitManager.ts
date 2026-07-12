@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Rate Limit Manager — Adaptive rate limiting using Bottleneck
  *
  * Creates per-provider+connection limiters that auto-learn rate limits

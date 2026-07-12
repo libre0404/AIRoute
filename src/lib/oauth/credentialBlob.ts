@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Paste-safe credential blob codec for the remote OAuth login helper.
  *
  * Why this exists: Google's `firstparty/nativeapp` consent for embedded desktop

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Decide whether a CLI invocation should provision (generate + persist) the
  * STORAGE_ENCRYPTION_KEY into DATA_DIR/.env.
  *

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Antigravity 429 classification and retry decision engine.
  *
  * CLIProxyAPI classifies 429 responses into 4 categories and makes nuanced

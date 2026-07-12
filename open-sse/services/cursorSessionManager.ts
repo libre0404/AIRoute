@@ -1,4 +1,4 @@
-﻿/**
+/**
  * CursorSessionManager — keeps cursor's h2 streams alive across OpenAI calls
  * so a tool-using turn can complete inline.
  *

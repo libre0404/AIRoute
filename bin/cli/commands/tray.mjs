@@ -1,4 +1,4 @@
-﻿import { t } from "../i18n.mjs";
+import { t } from "../i18n.mjs";
 
 export function registerTray(program) {
   const cmd = program

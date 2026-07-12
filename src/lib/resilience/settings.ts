@@ -1,4 +1,4 @@
-﻿import { DEFAULT_API_LIMITS, PROVIDER_PROFILES } from "@AIRoute/open-sse/config/constants";
+import { DEFAULT_API_LIMITS, PROVIDER_PROFILES } from "@AIRoute/open-sse/config/constants";
 
 import type { JsonRecord, ResilienceSettings, ResilienceSettingsPatch } from "./settings/types";
 import {

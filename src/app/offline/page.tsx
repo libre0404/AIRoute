@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useSyncExternalStore } from "react";
 import Link from "next/link";

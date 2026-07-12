@@ -1,4 +1,4 @@
-﻿/**
+/**
  * CopilotWebExecutor — Microsoft Copilot Web Session Provider
  *
  * Routes requests through copilot.microsoft.com's WebSocket API using

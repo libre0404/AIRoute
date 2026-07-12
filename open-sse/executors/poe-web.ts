@@ -1,4 +1,4 @@
-﻿/**
+/**
  * PoeWebExecutor — Multi-Model Chat via poe.com subscription
  *
  * Routes requests through Poe's GraphQL API.

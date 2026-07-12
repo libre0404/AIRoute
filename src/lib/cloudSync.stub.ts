@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Stub for `src/lib/cloudSync.ts` activated by
  * `AIRoute_BUILD_PROFILE=minimal`. All Cloud Sync code paths
  * (signature verification, remote-credential merge, fetch with timeout) are

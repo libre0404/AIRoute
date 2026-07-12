@@ -1,4 +1,4 @@
-﻿/**
+/**
  * #3571 — `/v1/completions` is the legacy OpenAI Completions API. AIRoute routes
  * it internally through the chat pipeline, which emits chat-shaped payloads
  * (`chat.completion` / `chat.completion.chunk` with `choices[].message|delta.content`).

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Extract a human-readable message from a failed `fetch` Response body.
  *
  * Handles both response shapes AIRoute routes emit:

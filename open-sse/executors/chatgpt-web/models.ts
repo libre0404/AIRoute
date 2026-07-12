@@ -1,4 +1,4 @@
-﻿// Pure model-mapping / thinking-effort resolution for the ChatGPT-web executor.
+// Pure model-mapping / thinking-effort resolution for the ChatGPT-web executor.
 // Extracted verbatim from chatgpt-web.ts (static maps + pure resolvers, no state).
 
 export const MODEL_MAP: Record<string, string> = {

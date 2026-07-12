@@ -1,4 +1,4 @@
-﻿/**
+/**
  * LLMLingua model store — thin path/config resolver.
  *
  * transformers.js owns the actual model download (from the HuggingFace Hub into

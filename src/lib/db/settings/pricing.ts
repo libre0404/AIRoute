@@ -1,4 +1,4 @@
-﻿/**
+/**
  * db/settings/pricing.ts — Pricing data CRUD (user overrides, LiteLLM sync, models.dev sync).
  */
 

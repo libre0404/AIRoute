@@ -1,4 +1,4 @@
-﻿/**
+/**
  * APIKEY provider catalog — gateways family (aggregators, multi-model routers & API marketplaces).
  * Pure data; merged by apikey/index.ts via spread (god-file decomposition; semantic split).
  */

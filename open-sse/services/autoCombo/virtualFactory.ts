@@ -1,4 +1,4 @@
-﻿import { AutoComboConfig } from "./engine";
+import { AutoComboConfig } from "./engine";
 import { MODE_PACKS } from "./modePacks";
 import { DEFAULT_WEIGHTS, resolveRegionWeights, ScoringWeights } from "./scoring";
 import { AutoVariant } from "./autoPrefix";

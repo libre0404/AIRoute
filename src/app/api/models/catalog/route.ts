@@ -1,4 +1,4 @@
-﻿import { AI_PROVIDERS } from "@/shared/constants/providers";
+import { AI_PROVIDERS } from "@/shared/constants/providers";
 import { getUnifiedModelsResponse } from "@/app/api/v1/models/catalog";
 import { INTERNAL_PROXY_ERROR, getCatalogDiagnosticsHeaders } from "@/lib/modelMetadataRegistry";
 import { sanitizeErrorMessage } from "@AIRoute/open-sse/utils/error";

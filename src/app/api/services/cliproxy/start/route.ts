@@ -1,4 +1,4 @@
-﻿import { getServiceRow } from "@/lib/db/versionManager";
+import { getServiceRow } from "@/lib/db/versionManager";
 import { getOrInitSupervisor } from "../_lib";
 import { createErrorResponse } from "@/lib/api/errorResponse";
 import { sanitizeErrorMessage } from "@AIRoute/open-sse/utils/error";

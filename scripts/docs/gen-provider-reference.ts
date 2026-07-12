@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 // Generates docs/reference/PROVIDER_REFERENCE.md from src/shared/constants/providers.ts.
 // Run: node --import tsx scripts/docs/gen-provider-reference.ts
 

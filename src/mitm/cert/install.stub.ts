@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Stub for `src/mitm/cert/install.ts` activated by
  * `AIRoute_BUILD_PROFILE=minimal`. Every function throws
  * `FeatureDisabledError("mitm-cert-install")` at runtime so the privileged

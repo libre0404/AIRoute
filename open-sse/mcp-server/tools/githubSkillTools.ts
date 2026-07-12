@@ -1,4 +1,4 @@
-﻿/**
+/**
  * githubSkillTools.ts — MCP tools for GitHub agent skill discovery and import.
  *
  * Provides tools to:

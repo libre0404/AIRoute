@@ -1,4 +1,4 @@
-﻿import { normalizeCliCompatProviderId } from "../utils/cliCompat";
+import { normalizeCliCompatProviderId } from "../utils/cliCompat";
 
 export { normalizeCliCompatProviderId };
 

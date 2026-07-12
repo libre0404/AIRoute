@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { getAuditStats, queryAuditEntries } from "@AIRoute/open-sse/mcp-server/audit";
 import {
   isMcpHeartbeatOnline,

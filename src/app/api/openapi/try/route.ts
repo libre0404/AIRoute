@@ -1,4 +1,4 @@
-﻿/**
+/**
  * API: OpenAPI "Try It" Proxy
  * POST — forwards a request to a local endpoint and returns the result
  */

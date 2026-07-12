@@ -1,4 +1,4 @@
-﻿/**
+/**
  * freeProviderRankings.ts — Compute rankings for free providers based on model ELO scores.
  *
  * Joins free providers (no-auth, OAuth, API key) with their models from the registry

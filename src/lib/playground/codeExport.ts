@@ -1,4 +1,4 @@
-﻿// src/lib/playground/codeExport.ts
+// src/lib/playground/codeExport.ts
 import { z } from "zod";
 
 /**

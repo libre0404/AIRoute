@@ -1,4 +1,4 @@
-﻿import { handleModeration } from "@AIRoute/open-sse/handlers/moderations.ts";
+import { handleModeration } from "@AIRoute/open-sse/handlers/moderations.ts";
 import { getProviderCredentials, clearRecoveredProviderState } from "@/sse/services/auth";
 import { withInjectionGuard } from "@/middleware/promptInjectionGuard";
 import { parseModerationModel } from "@AIRoute/open-sse/config/moderationRegistry.ts";

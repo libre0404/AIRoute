@@ -1,4 +1,4 @@
-﻿// Auto-extracted from open-sse/handlers/imageGeneration.ts in PR-#4582-batch
+// Auto-extracted from open-sse/handlers/imageGeneration.ts in PR-#4582-batch
 // Family: comfyui | Module: comfyUI | Lines: 3213-3314 (102 LOC)
 // Ref: see open-sse/handlers/imageGeneration.ts top-of-file comment for split rationale
 

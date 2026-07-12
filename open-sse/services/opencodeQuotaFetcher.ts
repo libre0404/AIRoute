@@ -1,4 +1,4 @@
-﻿/**
+/**
  * opencodeQuotaFetcher.ts — OpenCode Go / OpenCode / OpenCode Zen Quota Fetcher
  *
  * Implements QuotaFetcher for the opencode-go, opencode, and opencode-zen providers

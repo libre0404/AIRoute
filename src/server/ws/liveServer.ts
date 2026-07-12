@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Live Dashboard WebSocket Server
  *
  * Separate process (runs alongside Next.js on port 20129).

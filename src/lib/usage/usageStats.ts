@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Usage Stats — extracted from usageDb.js (T-15)
  *
  * Aggregates usage data into stats for the dashboard:

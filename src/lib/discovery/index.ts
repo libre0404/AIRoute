@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Plugin Discovery Tool — Automated provider scanning.
  *
  * Scans LLM providers for free/unlimited access methods and reports findings.

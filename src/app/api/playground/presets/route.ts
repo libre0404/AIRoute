@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GET  /api/playground/presets  — list presets
  * POST /api/playground/presets  — create a preset
  *

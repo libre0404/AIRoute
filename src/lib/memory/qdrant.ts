@@ -1,4 +1,4 @@
-﻿import { getSettings } from "@/lib/db/settings";
+import { getSettings } from "@/lib/db/settings";
 import { createEmbeddingResponse } from "@/lib/embeddings/service";
 
 type JsonRecord = Record<string, unknown>;

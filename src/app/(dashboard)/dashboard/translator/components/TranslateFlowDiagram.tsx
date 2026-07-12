@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useCallback, type ReactNode } from "react";
 import { useTranslations } from "next-intl";

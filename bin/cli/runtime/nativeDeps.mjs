@@ -1,4 +1,4 @@
-﻿import {
+import {
   existsSync,
   readFileSync,
   writeFileSync,

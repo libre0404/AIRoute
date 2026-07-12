@@ -1,4 +1,4 @@
-﻿// Enterprise-cloud provider key validators: heroku, databricks, datarobot, snowflake, gigachat,
+// Enterprise-cloud provider key validators: heroku, databricks, datarobot, snowflake, gigachat,
 // azure-openai, azure-ai, watsonx, oci, sap. Extracted from validation.ts (god-file decomposition) —
 // top-level functions with no dispatcher-state captures; behavior is byte-identical to the inline defs.
 import {

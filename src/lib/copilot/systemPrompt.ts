@@ -1,4 +1,4 @@
-﻿/**
+/**
  * AIRoute Copilot — System Prompt / Knowledge Base
  *
  * Comprehensive documentation about AIRoute's architecture, features,

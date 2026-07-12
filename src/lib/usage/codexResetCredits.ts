@@ -1,4 +1,4 @@
-﻿import { getProviderConnectionById, resolveProxyForConnection } from "@/lib/localDb";
+import { getProviderConnectionById, resolveProxyForConnection } from "@/lib/localDb";
 import {
   fetchAndPersistProviderLimits,
   refreshAndUpdateCredentials,

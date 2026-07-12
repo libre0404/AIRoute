@@ -1,4 +1,4 @@
-﻿/**
+/**
  * AIRoute Copilot — Chat Engine
  *
  * Processes user messages, classifies intent, executes tools,

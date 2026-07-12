@@ -1,4 +1,4 @@
-﻿// Node.js-only route: uses child_process, fs, path via mitm/manager
+// Node.js-only route: uses child_process, fs, path via mitm/manager
 // Dynamic imports prevent Turbopack from statically resolving native modules
 export const runtime = "nodejs";
 

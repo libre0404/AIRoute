@@ -1,4 +1,4 @@
-﻿/**
+/**
  * A2A Routing Decision Logger
  *
  * Records every routing decision to the `routing_decisions` SQLite table.

@@ -1,4 +1,4 @@
-﻿import { formatRetryAfter } from "@AIRoute/open-sse/services/accountFallback.ts";
+import { formatRetryAfter } from "@AIRoute/open-sse/services/accountFallback.ts";
 import { resolveResilienceSettings } from "@/lib/resilience/settings";
 
 const MAX_REQUEST_RETRY = 10;

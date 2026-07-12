@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Structured console logger utility for AIRoute.
  *
  * Provides consistent, machine-parseable log output across the codebase.

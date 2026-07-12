@@ -1,4 +1,4 @@
-﻿import {
+import {
   addProxyToScopePool,
   removeProxyFromScopePool,
   getScopeProxyPool,

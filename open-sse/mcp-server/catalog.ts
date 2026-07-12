@@ -1,4 +1,4 @@
-﻿import { getCodexRequestDefaults } from "../../src/lib/providers/requestDefaults.ts";
+import { getCodexRequestDefaults } from "../../src/lib/providers/requestDefaults.ts";
 import { getProviderConnections } from "../../src/lib/db/providers.ts";
 import { AI_PROVIDERS, NOAUTH_PROVIDERS } from "../../src/shared/constants/providers.ts";
 

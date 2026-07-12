@@ -1,4 +1,4 @@
-﻿/**
+/**
  * WebDAV file server handler for AIRoute.
  *
  * Serves the Obsidian vault directory at /api/v1/webdav, enabling

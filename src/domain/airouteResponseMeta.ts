@@ -1,4 +1,4 @@
-﻿import { getProviderAlias } from "@/shared/constants/providers";
+import { getProviderAlias } from "@/shared/constants/providers";
 import { AIRoute_RESPONSE_HEADERS } from "@/shared/constants/headers";
 import { APP_CONFIG } from "@/shared/constants/appConfig";
 

@@ -1,4 +1,4 @@
-﻿declare const EdgeRuntime: string | undefined;
+declare const EdgeRuntime: string | undefined;
 /**
  * CursorExecutor — talks to Cursor's agent.v1.AgentService/Run endpoint.
  *

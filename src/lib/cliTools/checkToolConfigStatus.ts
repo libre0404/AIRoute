@@ -1,4 +1,4 @@
-﻿// DRY: shared between /api/cli-tools/status and /api/cli-tools/all-statuses (plan 14 F2)
+// DRY: shared between /api/cli-tools/status and /api/cli-tools/all-statuses (plan 14 F2)
 
 import fs from "fs/promises";
 import { getCliPrimaryConfigPath } from "@/shared/services/cliRuntime";

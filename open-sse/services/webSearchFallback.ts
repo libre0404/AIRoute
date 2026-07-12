@@ -1,4 +1,4 @@
-﻿import { FORMATS } from "../translator/formats.ts";
+import { FORMATS } from "../translator/formats.ts";
 
 export const AIRoute_WEB_SEARCH_FALLBACK_TOOL_NAME = "AIRoute_web_search";
 const WEB_SEARCH_TOOL_TYPES = new Set(["web_search", "web_search_preview"]);

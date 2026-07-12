@@ -1,4 +1,4 @@
-﻿/**
+/**
  * AIRoute MCP Advanced Tools — 13 intelligence tools that differentiate
  * AIRoute from all other AI gateways.
  *

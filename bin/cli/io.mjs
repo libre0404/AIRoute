@@ -1,4 +1,4 @@
-﻿import readline from "node:readline";
+import readline from "node:readline";
 
 export function createPrompt() {
   const rl = readline.createInterface({

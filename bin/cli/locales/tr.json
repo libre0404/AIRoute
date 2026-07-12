@@ -1,4 +1,4 @@
-﻿{
+{
   "common": {
     "error": "Hata: {message}",
     "serverOffline": "AIRoute sunucusu çevrimdışı. Başlatın: AIRoute serve",

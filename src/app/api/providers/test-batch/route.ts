@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { getProviderConnections } from "@/models";
 import {
   AI_PROVIDERS,

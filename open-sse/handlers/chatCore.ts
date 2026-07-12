@@ -1,4 +1,4 @@
-﻿import { injectMemoryAndSkills } from "./chatCore/memorySkillsInjection.ts";
+import { injectMemoryAndSkills } from "./chatCore/memorySkillsInjection.ts";
 import { resolveChatCoreRequestSetup } from "./chatCore/requestSetup.ts";
 import { buildFailureUsageRecord } from "./chatCore/failureUsage.ts";
 import { extractSystemRoleMessages } from "./chatCore/claudeSystemRole.ts";

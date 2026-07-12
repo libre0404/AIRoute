@@ -1,4 +1,4 @@
-﻿import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { isAuthenticated } from "@/shared/utils/apiAuth";
 import { checkQdrantHealth } from "@/lib/memory/qdrant";
 import { sanitizeErrorMessage } from "@AIRoute/open-sse/utils/error.ts";

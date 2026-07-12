@@ -1,4 +1,4 @@
-﻿import { classifyHostLocality } from "@/server/authz/routeGuard";
+import { classifyHostLocality } from "@/server/authz/routeGuard";
 import { PEER_IP_HEADER } from "@/server/authz/headers";
 import { resolveStampedPeer } from "@/server/authz/peerStamp";
 

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * #1311: echo the client-requested model/alias name back in the response.
  *
  * When a request uses an alias or combo (e.g. `claude-sonnet-cx` → `cx/gpt-5.5`),

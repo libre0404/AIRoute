@@ -1,4 +1,4 @@
-﻿/**
+/**
  * #3089 — Convert a complete OpenAI-style chat-completion JSON body into an
  * equivalent OpenAI SSE (`chat.completion.chunk`) stream.
  *

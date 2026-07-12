@@ -1,4 +1,4 @@
-﻿import { ANTIGRAVITY_CONFIG } from "../constants/oauth";
+import { ANTIGRAVITY_CONFIG } from "../constants/oauth";
 import {
   antigravityNativeOAuthUserAgent,
   getAntigravityHeaders,

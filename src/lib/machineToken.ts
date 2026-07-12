@@ -1,4 +1,4 @@
-﻿import { createHash, createHmac } from "node:crypto";
+import { createHash, createHmac } from "node:crypto";
 
 let machineIdSync: (original?: boolean) => string;
 try {

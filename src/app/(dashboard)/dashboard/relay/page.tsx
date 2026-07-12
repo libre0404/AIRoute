@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import RelayProxyClient from "./RelayProxyClient";
 
 export const metadata: Metadata = {

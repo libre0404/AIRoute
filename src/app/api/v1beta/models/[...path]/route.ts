@@ -1,10 +1,10 @@
 import { buildClientRawRequest, handleChat } from "@/sse/handlers/chat";
-import { initTranslators } from "@omniroute/open-sse/translator/index.ts";
+import { initTranslators } from "@AIRoute/open-sse/translator/index.ts";
 import {
   convertOpenAIResponseToGemini,
   transformOpenAISSEToGeminiSSE,
-} from "@omniroute/open-sse/translator/response/openai-to-gemini-sse";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
+} from "@AIRoute/open-sse/translator/response/openai-to-gemini-sse";
+import { sanitizeErrorMessage } from "@AIRoute/open-sse/utils/error";
 import { v1betaGeminiGenerateSchema } from "@/shared/validation/schemas";
 import { isValidationFailure, validateBody } from "@/shared/validation/helpers";
 import { convertGeminiToInternal } from "./convertGeminiToInternal";

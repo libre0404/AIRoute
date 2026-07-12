@@ -1,4 +1,4 @@
-﻿import {
+import {
   cleanupExpiredHandoffs,
   getHandoff,
   hasActiveHandoff,

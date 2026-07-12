@@ -1,4 +1,4 @@
-﻿import { CORS_HEADERS } from "@/shared/utils/cors";
+import { CORS_HEADERS } from "@/shared/utils/cors";
 import { v1CountTokensSchema } from "@/shared/validation/schemas";
 import { isValidationFailure, validateBody } from "@/shared/validation/helpers";
 import { countTextTokens } from "@/shared/utils/tiktokenCounter";

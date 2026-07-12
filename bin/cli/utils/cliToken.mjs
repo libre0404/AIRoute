@@ -1,4 +1,4 @@
-﻿import crypto from "node:crypto";
+import crypto from "node:crypto";
 
 const SALT = "AIRoute-cli-auth-v1";
 export const CLI_TOKEN_HEADER = "x-AIRoute-cli-token";

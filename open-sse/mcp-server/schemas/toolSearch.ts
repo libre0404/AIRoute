@@ -1,4 +1,4 @@
-﻿import { z } from "zod";
+import { z } from "zod";
 import type { McpToolDefinition } from "./toolDefinition.ts";
 
 export const toolSearchInput = z

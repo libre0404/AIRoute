@@ -1,4 +1,4 @@
-﻿import { WINDSURF_CONFIG } from "../constants/oauth";
+import { WINDSURF_CONFIG } from "../constants/oauth";
 
 /**
  * Windsurf / Devin CLI OAuth Provider — import-token only (Phase 1 hotfix, 2026-05-29).

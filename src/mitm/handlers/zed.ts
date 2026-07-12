@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Zed editor handler.
  *
  * Host: `api.zed.dev`.

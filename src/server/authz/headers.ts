@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Header constants used by the authz pipeline.
  *
  * Middleware adds these headers to the upstream request after a successful

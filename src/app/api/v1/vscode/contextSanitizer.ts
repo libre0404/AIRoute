@@ -1,4 +1,4 @@
-﻿type JsonObject = Record<string, unknown>;
+type JsonObject = Record<string, unknown>;
 
 const IMPLICIT_CONTEXT_KEYS = new Set([
   "activedocument",

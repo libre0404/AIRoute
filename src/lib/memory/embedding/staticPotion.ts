@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Static Potion embedding (D7) — potion-base-8M via lookup + WordPiece minimal.
  *
  * Downloads model files once to <DATA_DIR>/embeddings/potion-base-8M/.

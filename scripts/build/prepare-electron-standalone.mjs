@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 
 import { cpSync, existsSync, lstatSync, readFileSync, readdirSync, rmSync } from "node:fs";
 import { basename, dirname, join, relative } from "node:path";

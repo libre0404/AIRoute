@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Cursor IDE — MITM target descriptor.
  *
  * Hosts: `api2.cursor.sh` (chat backend).

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ChatGptWebExecutor — ChatGPT Web Session Provider
  *
  * Routes requests through chatgpt.com's internal SSE API using a Plus/Pro

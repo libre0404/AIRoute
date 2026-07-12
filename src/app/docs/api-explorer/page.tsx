@@ -1,4 +1,4 @@
-﻿import { Metadata } from "next";
+import { Metadata } from "next";
 import { ApiExplorerClient } from "../components/ApiExplorerClient";
 
 export const metadata: Metadata = {

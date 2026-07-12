@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { getAllModelLockouts } from "@AIRoute/open-sse/services/accountFallback.ts";
 import { getCacheStats } from "@AIRoute/open-sse/services/signatureCache.ts";
 import { getProviderConnections, updateProviderConnection } from "@/lib/localDb";

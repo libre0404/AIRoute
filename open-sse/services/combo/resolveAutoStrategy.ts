@@ -1,4 +1,4 @@
-﻿import { unavailableResponse } from "../../utils/error.ts";
+import { unavailableResponse } from "../../utils/error.ts";
 import { selectProvider as selectAutoProvider } from "../autoCombo/engine.ts";
 import {
   resolveRequestModePack,

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * API endpoint for the first leg of the 2-step Zed credential import flow.
  *
  * POST /api/providers/zed/discover

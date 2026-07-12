@@ -1,9 +1,9 @@
 import { z } from "zod";
 import { buildClientRawRequest, handleChat } from "@/sse/handlers/chat";
-import { initTranslators } from "@omniroute/open-sse/translator/index.ts";
-import { errorResponse } from "@omniroute/open-sse/utils/error.ts";
-import { HTTP_STATUS } from "@omniroute/open-sse/config/constants.ts";
-import { getRegistryEntry } from "@omniroute/open-sse/config/providerRegistry.ts";
+import { initTranslators } from "@AIRoute/open-sse/translator/index.ts";
+import { errorResponse } from "@AIRoute/open-sse/utils/error.ts";
+import { HTTP_STATUS } from "@AIRoute/open-sse/config/constants.ts";
+import { getRegistryEntry } from "@AIRoute/open-sse/config/providerRegistry.ts";
 
 let initialized = false;
 

@@ -1,4 +1,4 @@
-﻿{
+{
   "common": {
     "error": "错误：{message}",
     "serverOffline": "AIRoute 服务器已离线。请启动：AIRoute serve",

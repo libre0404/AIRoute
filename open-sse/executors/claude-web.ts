@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ClaudeWebExecutor — Claude Web Session Provider
  *
  * Routes requests through Claude's web interface using session credentials,

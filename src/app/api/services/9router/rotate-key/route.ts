@@ -1,4 +1,4 @@
-﻿import { getSupervisor, unregisterSupervisor } from "@/lib/services/registry";
+import { getSupervisor, unregisterSupervisor } from "@/lib/services/registry";
 import { getOrInitSupervisor } from "../_lib";
 import { generateServiceApiKey } from "@/lib/services/apiKey";
 import { updateServiceField } from "@/lib/db/versionManager";

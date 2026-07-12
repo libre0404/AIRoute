@@ -16,7 +16,7 @@ import { autoSyncCodexProfilesFromLiveCatalog } from "@/lib/cli-helper/codexProf
 import { autoSyncClaudeProfilesFromLiveCatalog } from "@/lib/cli-helper/claudeProfileAutoSync";
 import { GET as getProviderModels } from "../models/route";
 import { isDegradedLocalCatalog } from "./degradedLocalCatalog";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
+import { sanitizeErrorMessage } from "@AIRoute/open-sse/utils/error";
 
 type JsonRecord = Record<string, unknown>;
 

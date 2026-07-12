@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Model Deprecation Auto-Forward — Feature 2
  *
  * Maps deprecated model IDs to their replacements so user configs

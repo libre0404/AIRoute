@@ -1,4 +1,4 @@
-﻿/**
+/**
  * saturationSignals.ts — Read the current global saturation signal (0..1)
  * for a provider/connection/dimension combination.
  *

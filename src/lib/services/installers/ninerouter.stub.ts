@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Stub for `src/lib/services/installers/ninerouter.ts` activated by
  * `AIRoute_BUILD_PROFILE=minimal`. The 9router install / spawn helpers are
  * removed from the built bundle. See SECURITY.md and

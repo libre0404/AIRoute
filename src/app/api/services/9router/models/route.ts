@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GET /api/services/9router/models
  *
  * Returns the model list for the 9router embedded service.

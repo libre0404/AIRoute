@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Fase 3 / Epic A — dynamic per-SNI certificate authority for the TPROXY capture
  * mode.
  *

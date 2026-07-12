@@ -16,7 +16,7 @@ import type { RegistryEntry } from "../../shared.ts";
  * generated endpoint URL. The baseUrl here is the default cn-north-4.
  * Users can override via connection settings for other regions.
  */
-export const huaweiCnProvider: RegistryEntry = {
+export const huawei_cnProvider: RegistryEntry = {
   id: "huawei-cn",
   alias: "huawei-cn",
   format: "openai",

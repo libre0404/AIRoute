@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Vision Bridge Guardrail.
  * Intercepts image-bearing requests to non-vision models,
  * extracts descriptions via vision model, and replaces images with text.

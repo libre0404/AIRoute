@@ -1,4 +1,4 @@
-﻿import { CURSOR_CONFIG } from "../constants/oauth";
+import { CURSOR_CONFIG } from "../constants/oauth";
 import { getCursorUserAgent } from "@AIRoute/open-sse/config/providerHeaderProfiles.ts";
 
 /**

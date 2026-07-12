@@ -1,4 +1,4 @@
-﻿import { describe, test, expect, beforeEach, afterEach } from "vitest";
+import { describe, test, expect, beforeEach, afterEach } from "vitest";
 import Database from "better-sqlite3";
 import { retrieveMemories, estimateTokens } from "../retrieval";
 

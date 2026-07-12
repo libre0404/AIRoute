@@ -1,4 +1,4 @@
-﻿/**
+/**
  * db/backup.js — Database backup/restore operations.
  */
 

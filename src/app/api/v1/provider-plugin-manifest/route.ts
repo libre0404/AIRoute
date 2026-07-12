@@ -1,4 +1,4 @@
-﻿import { CORS_HEADERS } from "@/shared/utils/cors";
+import { CORS_HEADERS } from "@/shared/utils/cors";
 import { generateProviderPluginManifest } from "@AIRoute/open-sse/config/providerPluginManifestRegistry.ts";
 
 const JSON_HEADERS = {

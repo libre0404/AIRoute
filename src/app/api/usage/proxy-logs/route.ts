@@ -1,4 +1,4 @@
-﻿import { getProxyLogs, clearProxyLogs } from "@/lib/proxyLogger";
+import { getProxyLogs, clearProxyLogs } from "@/lib/proxyLogger";
 import { sanitizeErrorMessage } from "@AIRoute/open-sse/utils/error";
 
 function serverErrorResponse(error: unknown): Response {

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * chatCore non-streaming success response headers (Quality Gate v2 / Fase 9 — chatCore god-file
  * decomposition, #3501).
  *

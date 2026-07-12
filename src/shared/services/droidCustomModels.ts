@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Build the AIRoute `customModels` entries for Factory Droid's `settings.json`.
  *
  * Ported from upstream PR decolua/9router#618 (author Anurag Saxena) — multi-model

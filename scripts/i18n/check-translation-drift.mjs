@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 /**
  * AIRoute — i18n translation drift checker (CI gate).
  *

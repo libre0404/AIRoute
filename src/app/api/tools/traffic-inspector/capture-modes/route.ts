@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GET /api/tools/traffic-inspector/capture-modes
  *
  * Returns the current status of all 4 capture modes:

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * pricingSync.ts — External pricing sync engine.
  *
  * Fetches pricing data from external sources (LiteLLM) and stores it

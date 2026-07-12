@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { requireManagementAuth } from "@/lib/api/requireManagementAuth";
 import { extractBearer, ACCESS_TOKEN_PREFIX } from "@/server/authz/accessTokenAuth";
 import { verifyAccessToken, getAccessToken } from "@/lib/db/accessTokens";

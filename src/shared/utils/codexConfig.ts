@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Helpers for generating/maintaining the Codex CLI `config.toml`.
  */
 

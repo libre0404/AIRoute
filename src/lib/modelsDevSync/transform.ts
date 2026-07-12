@@ -1,4 +1,4 @@
-﻿/**
+/**
  * modelsDevSync/transform — pure data model + transform layer.
  *
  * Extracted verbatim from modelsDevSync.ts. Holds the models.dev data-model

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Graceful Shutdown — E-2 Critical Fix
  *
  * Handles SIGTERM / SIGINT to drain in-flight requests before exit.

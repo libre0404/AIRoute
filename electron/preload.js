@@ -1,4 +1,4 @@
-﻿/**
+/**
  * AIRoute Electron Desktop App - Preload Script
  *
  * Secure bridge between renderer (Next.js) and main process (Electron).

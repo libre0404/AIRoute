@@ -1,4 +1,4 @@
-﻿import { createHash, randomUUID } from "node:crypto";
+import { createHash, randomUUID } from "node:crypto";
 import { STATUS_CODES } from "node:http";
 
 export const WS_PUBLIC_PATHS = new Set(["/v1/ws", "/api/v1/ws"]);

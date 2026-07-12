@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { requireManagementAuth } from "@/lib/api/requireManagementAuth";
 import { getCavemanRuleMetadata } from "@AIRoute/open-sse/services/compression/cavemanRules";
 

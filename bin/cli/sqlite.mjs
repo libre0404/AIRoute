@@ -1,4 +1,4 @@
-﻿import fs from "node:fs";
+import fs from "node:fs";
 import { resolveDataDir, resolveStoragePath } from "./data-dir.mjs";
 import { ensureProviderSchema } from "./provider-store.mjs";
 import { ensureSettingsSchema, hashManagementPassword, updateSettings } from "./settings-store.mjs";

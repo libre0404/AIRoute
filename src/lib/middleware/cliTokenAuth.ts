@@ -1,4 +1,4 @@
-﻿import crypto from "node:crypto";
+import crypto from "node:crypto";
 import { headers } from "next/headers";
 
 import { getLegacyCliTokenSync, getMachineTokenSync } from "@/lib/machineToken";

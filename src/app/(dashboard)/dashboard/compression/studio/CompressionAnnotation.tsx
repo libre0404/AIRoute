@@ -1,4 +1,4 @@
-﻿import type { CompressionStats } from "@AIRoute/open-sse/services/compression/types";
+import type { CompressionStats } from "@AIRoute/open-sse/services/compression/types";
 
 export interface CompressionAnnotationProps {
   stats: CompressionStats;

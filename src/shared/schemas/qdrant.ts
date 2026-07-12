@@ -1,4 +1,4 @@
-﻿import { z } from "zod";
+import { z } from "zod";
 
 export const QdrantQuantizationSchema = z.enum(["none", "int8", "binary"]);
 

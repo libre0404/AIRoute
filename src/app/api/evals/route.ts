@@ -1,4 +1,4 @@
-﻿import { randomUUID } from "node:crypto";
+import { randomUUID } from "node:crypto";
 import { NextResponse } from "next/server";
 import { getEvalScorecard, listEvalRuns, getApiKeys } from "@/lib/localDb";
 import { listSuites, runSuite, createScorecard } from "@/lib/evals/evalRunner";

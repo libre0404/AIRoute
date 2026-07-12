@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Provider-specific error rules.
  *
  * Different providers expose different quota signals:

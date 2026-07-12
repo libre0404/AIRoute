@@ -9,7 +9,7 @@ import {
 } from "@/lib/oauth/deviceFlowTickets";
 import { validateBody, isValidationFailure } from "@/shared/validation/helpers";
 import { oauthDeviceCompleteSchema } from "@/shared/validation/schemas";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
+import { sanitizeErrorMessage } from "@AIRoute/open-sse/utils/error";
 
 /**
  * Public Codex device-flow completion endpoint (NOT behind dashboard auth).

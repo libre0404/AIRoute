@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 /**
  * Render every Mermaid source in docs/diagrams/*.mmd into docs/diagrams/exported/*.svg
  *

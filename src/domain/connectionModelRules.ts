@@ -1,4 +1,4 @@
-﻿import { wildcardMatch } from "@AIRoute/open-sse/services/wildcardRouter.ts";
+import { wildcardMatch } from "@AIRoute/open-sse/services/wildcardRouter.ts";
 
 type JsonRecord = Record<string, unknown>;
 

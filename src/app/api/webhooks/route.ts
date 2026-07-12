@@ -1,4 +1,4 @@
-﻿/**
+/**
  * API: Webhooks
  * GET  — List all webhooks
  * POST — Create a new webhook

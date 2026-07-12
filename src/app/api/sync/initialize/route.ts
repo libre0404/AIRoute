@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import initializeCloudSync from "@/shared/services/initializeCloudSync";
 import { startModelSyncScheduler } from "@/shared/services/modelSyncScheduler";
 import { resolveAIRouteBaseUrl } from "@/shared/utils/resolveAIRouteBaseUrl";

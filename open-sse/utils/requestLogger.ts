@@ -1,4 +1,4 @@
-﻿import { getPendingById } from "@/lib/usage/usageHistory";
+import { getPendingById } from "@/lib/usage/usageHistory";
 import { sanitizeErrorMessage } from "./error.ts";
 
 type JsonRecord = Record<string, unknown>;

@@ -1,4 +1,4 @@
-﻿import { z } from "zod";
+import { z } from "zod";
 
 /**
  * Standardization layer for the canonical `effort` + `thinking` request params (#6241).

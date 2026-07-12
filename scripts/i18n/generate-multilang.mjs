@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 
 /**
  * DEPRECATED 2026-05-13. Use `npm run i18n:run`

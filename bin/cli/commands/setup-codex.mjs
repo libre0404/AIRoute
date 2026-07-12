@@ -1,4 +1,4 @@
-﻿/**
+/**
  * AIRoute setup-codex — Remote-aware Codex CLI profile generator.
  *
  * Connects to a running AIRoute instance (local or remote VPS), fetches the

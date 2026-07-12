@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Agent Card Endpoint — /.well-known/agent.json
  *
  * Serves the AIRoute A2A Agent Card for discovery by other agents.

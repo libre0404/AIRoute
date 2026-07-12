@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GET  /api/quota/groups  — list all quota groups
  * POST /api/quota/groups  — create a new quota group
  *

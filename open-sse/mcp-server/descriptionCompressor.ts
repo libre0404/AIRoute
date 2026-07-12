@@ -1,4 +1,4 @@
-﻿import { applyRulesToText } from "../services/compression/caveman.ts";
+import { applyRulesToText } from "../services/compression/caveman.ts";
 import { getRulesForContext } from "../services/compression/cavemanRules.ts";
 import {
   extractPreservedBlocks,

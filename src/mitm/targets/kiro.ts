@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Kiro IDE target descriptor (#336).
  *
  * Kiro removed its Base URL / API Key UI; we intercept its Anthropic-style

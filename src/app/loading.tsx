@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { PageLoading } from "@/shared/components/Loading";
 

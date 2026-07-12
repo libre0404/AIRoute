@@ -1,4 +1,4 @@
-﻿/**
+/**
  * proxyAutoSelector.ts — Validation-layer proxy auto-selection service
  *
  * Wraps the low-level proxy fallback engine for use in the provider validation

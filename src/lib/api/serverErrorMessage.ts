@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Extract a human-readable message from a parsed API error body.
  *
  * AIRoute API error bodies follow the shape produced by

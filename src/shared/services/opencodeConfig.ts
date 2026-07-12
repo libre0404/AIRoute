@@ -1,4 +1,4 @@
-﻿import { applyEdits, modify, parse } from "jsonc-parser";
+import { applyEdits, modify, parse } from "jsonc-parser";
 
 type OpenCodeConfigInput = {
   baseUrl?: string;

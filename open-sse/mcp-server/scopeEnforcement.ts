@@ -1,4 +1,4 @@
-﻿import { MCP_TOOL_MAP } from "./schemas/tools.ts";
+import { MCP_TOOL_MAP } from "./schemas/tools.ts";
 
 type AuthInfoLike = {
   clientId?: string;

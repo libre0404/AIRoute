@@ -1,4 +1,4 @@
-﻿/**
+/**
  * chatCore cache-usage log meta helpers (Quality Gate v2 / Fase 9 — chatCore god-file decomposition,
  * #3501).
  *

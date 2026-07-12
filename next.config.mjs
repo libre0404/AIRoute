@@ -1,4 +1,4 @@
-﻿import createNextIntlPlugin from "next-intl/plugin";
+import createNextIntlPlugin from "next-intl/plugin";
 import { createMDX } from "fumadocs-mdx/next";
 import { dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -115,6 +115,11 @@ const nextConfig = {
       // start for all non-Docker users (#6344). See scripts/build/mitm-stub-flag.mjs.
       ...mitmManagerAliasFor(process.env),
       ...minimalBuildAliases,
+      // @aspect-build/sqlcipher is an optional native binary for encrypted SQLite.
+      // When not installed, Turbopack's static analysis would fail on
+      // sqlcipherAdapter.ts's _require("@aspect-build/sqlcipher").  The stub
+      // throws at runtime, and the adapter's try/catch falls back to better-sqlite3.
+      "@aspect-build/sqlcipher": "./src/lib/db/adapters/sqlcipher.stub.ts",
     },
   },
   output: "standalone",
@@ -333,6 +338,15 @@ const nextConfig = {
         );
       }
     }
+
+    // Replace @aspect-build/sqlcipher with stub for webpack too (not just
+    // minimal builds — the native binary is optional in all configurations).
+    config.plugins.push(
+      new webpack.NormalModuleReplacementPlugin(
+        /^@aspect-build\/sqlcipher$/,
+        "./src/lib/db/adapters/sqlcipher.stub.ts"
+      )
+    );
 
     return config;
   },

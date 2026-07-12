@@ -1,4 +1,4 @@
-﻿{
+{
   "common": {
     "error": "Lỗi: {message}",
     "serverOffline": "Máy chủ AIRoute đang offline. Khởi động với: AIRoute serve",

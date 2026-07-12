@@ -1,4 +1,4 @@
-﻿import { getDbInstance } from "./core";
+import { getDbInstance } from "./core";
 import { sanitizeErrorMessage } from "@AIRoute/open-sse/utils/error";
 
 export interface WebhookDelivery {

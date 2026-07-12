@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Cache Control Settings
  *
  * Provides cached access to cache control settings for performance.

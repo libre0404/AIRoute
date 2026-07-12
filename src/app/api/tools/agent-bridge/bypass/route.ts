@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GET    /api/tools/agent-bridge/bypass           — list all patterns (default + user)
  * POST   /api/tools/agent-bridge/bypass           — replace user patterns
  * DELETE /api/tools/agent-bridge/bypass?pattern=X — remove a single user pattern

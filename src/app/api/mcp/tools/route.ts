@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { MCP_TOOLS, MCP_TOOL_MAP } from "@AIRoute/open-sse/mcp-server/schemas/tools";
 import { requireManagementAuth } from "@/lib/api/requireManagementAuth";
 

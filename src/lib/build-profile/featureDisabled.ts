@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Helper used by the `AIRoute_BUILD_PROFILE=minimal` stubs to surface a
  * consistent "this feature was compiled out" error. Routes that depend on a
  * stubbed module should catch the error and return HTTP 503 with a clear

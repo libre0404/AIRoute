@@ -1,4 +1,4 @@
-﻿/**
+/**
  * MCP Authorization Scopes — Defines permission scopes for each MCP tool.
  *
  * Each tool requires specific scopes to execute. API keys can be configured

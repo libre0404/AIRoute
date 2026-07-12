@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 // scripts/check/check-provider-consistency.ts
 // Gate anti-alucinação nº1: toda entrada em REGISTRY (open-sse/config/providerRegistry.ts)
 // deve corresponder a um provider canônico em src/shared/constants/providers.ts.

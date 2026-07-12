@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useMemo, useState, useCallback } from "react";
 import { Card, Button } from "@/shared/components";

@@ -1,4 +1,4 @@
-﻿import type { RegistryEntry } from "../../shared.ts";
+import type { RegistryEntry } from "../../shared.ts";
 import { getAnthropicCompatHeaders, ANTHROPIC_VERSION_HEADER } from "../../shared.ts";
 
 export const zaiProvider: RegistryEntry = {

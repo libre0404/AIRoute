@@ -1,4 +1,4 @@
-﻿/**
+/**
  * System Transforms — generic, per-provider, config-driven body normalization.
  *
  * Generalises the CC-bridge-only transforms (`ccBridgeTransforms.ts`) into

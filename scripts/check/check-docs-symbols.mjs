@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 // scripts/check/check-docs-symbols.mjs
 // Gate anti-alucinação (docs → código): toda referência a uma rota `/api/...` dentro de
 // docs/**/*.md deve resolver para um `route.ts` real em src/app/api/. Pega endpoint

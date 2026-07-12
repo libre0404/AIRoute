@@ -1,4 +1,4 @@
-﻿import {
+import {
   isUserCallableAntigravityModelId,
   toClientAntigravityModelId,
 } from "@AIRoute/open-sse/config/antigravityModelAliases.ts";

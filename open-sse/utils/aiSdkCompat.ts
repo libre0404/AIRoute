@@ -1,4 +1,4 @@
-﻿/**
+/**
  * AI SDK compatibility helpers (T26).
  */
 

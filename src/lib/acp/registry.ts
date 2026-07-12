@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ACP (Agent Client Protocol) — CLI Agent Registry
  *
  * Discovers installed CLI tools on the system by checking standard paths

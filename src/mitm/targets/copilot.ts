@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GitHub Copilot — MITM target descriptor.
  */
 import type { MitmTarget } from "../types";

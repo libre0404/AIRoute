@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Model resolution for the Codex Responses-over-WebSocket bridge.
  *
  * The bridge is codex-only, but the OpenAI Codex CLI rejects provider-prefixed

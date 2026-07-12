@@ -1,4 +1,4 @@
-﻿export type WebhookEvent =
+export type WebhookEvent =
   | "request.completed"
   | "request.failed"
   | "provider.error"

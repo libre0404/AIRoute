@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Stub for `src/lib/zed-oauth/keychain-reader.ts` activated by
  * `AIRoute_BUILD_PROFILE=minimal`. The keychain-read code path is removed
  * from the built bundle. See SECURITY.md and

@@ -1,4 +1,4 @@
-﻿import { syncAllBudgetSchedules } from "@/domain/costRules";
+import { syncAllBudgetSchedules } from "@/domain/costRules";
 
 const DEFAULT_INTERVAL_MS = 10 * 60 * 1000;
 

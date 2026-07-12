@@ -1,4 +1,4 @@
-﻿/**
+/**
  * scripts/test/_vpsClient.mjs
  *
  * Reusable Phase-3 VPS HTTP client for AIRoute combo live-smoke tests.

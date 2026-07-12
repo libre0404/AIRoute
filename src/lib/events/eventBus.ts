@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Event Bus
  *
  * Singleton typed EventEmitter for dashboard real-time events.

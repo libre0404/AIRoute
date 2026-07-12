@@ -1,4 +1,4 @@
-﻿import { supportsXHighEffort } from "@AIRoute/open-sse/config/providerModels";
+import { supportsXHighEffort } from "@AIRoute/open-sse/config/providerModels";
 import { parseModel } from "@AIRoute/open-sse/services/model";
 import { stripVscodeServiceTierVariantModelId } from "@/lib/vscode/serviceTierVariants";
 

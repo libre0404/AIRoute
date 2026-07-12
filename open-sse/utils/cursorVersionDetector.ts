@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Auto-detect the installed Cursor IDE version from its local SQLite database.
  * Falls back to the hardcoded default when the DB is unavailable.
  * The detected version is cached in-memory for 1 hour to avoid repeated DB reads.

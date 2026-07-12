@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GET /api/tools/agent-bridge/cert/download
  * Streams the PEM certificate file.
  * LOCAL_ONLY: registered in routeGuard.ts

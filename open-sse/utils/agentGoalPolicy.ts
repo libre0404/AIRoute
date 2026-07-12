@@ -1,4 +1,4 @@
-﻿type EnvSource = Record<string, string | undefined>;
+type EnvSource = Record<string, string | undefined>;
 type HeaderLike = Headers | Record<string, string | string[] | undefined> | null | undefined;
 
 export type AgentGoalPolicy = {

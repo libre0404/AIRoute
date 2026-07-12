@@ -1,4 +1,4 @@
-﻿// Web-cookie provider key validators (part A): deepseek-web, qwen-web, grok-web, chatgpt-web,
+// Web-cookie provider key validators (part A): deepseek-web, qwen-web, grok-web, chatgpt-web,
 // perplexity-web, blackbox-web. Extracted from validation.ts (god-file decomposition) — top-level
 // functions with no dispatcher-state captures; behavior is byte-identical to the original inline defs.
 import { addModelsSuffix } from "./urlHelpers";

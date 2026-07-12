@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Console Log API — GET /api/logs/console
  *
  * Reads the application log file and returns entries from the last 1 hour.

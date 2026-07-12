@@ -1,4 +1,4 @@
-﻿import { getSettings } from "@/lib/db/settings";
+import { getSettings } from "@/lib/db/settings";
 import type { MemoryConfig } from "./types";
 
 export interface MemorySettings {

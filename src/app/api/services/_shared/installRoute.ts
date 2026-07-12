@@ -1,4 +1,4 @@
-﻿import { z } from "zod";
+import { z } from "zod";
 
 import { createErrorResponse } from "@/lib/api/errorResponse";
 import { InstallError, SERVICE_VERSION_PATTERN } from "@/lib/services/installers/utils";

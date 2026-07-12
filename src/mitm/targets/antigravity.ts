@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Antigravity IDE target descriptor.
  *
  * Provides:

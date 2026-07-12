@@ -1,4 +1,4 @@
-﻿"use strict";
+"use strict";
 
 // Cross-platform "kill the whole process tree" helper (#3347).
 //

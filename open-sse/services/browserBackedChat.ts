@@ -1,4 +1,4 @@
-﻿/**
+/**
  * browserBackedChat.ts — Provider-agnostic browser-backed chat helper.
  *
  * Opens a page on a shared browser context, navigates to the provider's

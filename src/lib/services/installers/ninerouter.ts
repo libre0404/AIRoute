@@ -1,4 +1,4 @@
-﻿import fs from "node:fs";
+import fs from "node:fs";
 import path from "node:path";
 import { DATA_DIR } from "@/lib/db/core";
 import { upsertVersionManagerTool } from "@/lib/db/versionManager";

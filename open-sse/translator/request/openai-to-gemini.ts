@@ -1,4 +1,4 @@
-﻿import { register } from "../registry.ts";
+import { register } from "../registry.ts";
 import { FORMATS } from "../formats.ts";
 import { ANTIGRAVITY_DEFAULT_SYSTEM } from "../../config/constants.ts";
 import {

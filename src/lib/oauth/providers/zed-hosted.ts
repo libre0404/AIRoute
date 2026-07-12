@@ -1,4 +1,4 @@
-﻿import { ZED_HOSTED_CONFIG } from "../constants/oauth";
+import { ZED_HOSTED_CONFIG } from "../constants/oauth";
 import {
   createZedNativeAuthData,
   parseZedCallbackPayload,

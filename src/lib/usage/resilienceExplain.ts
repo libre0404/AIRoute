@@ -1,4 +1,4 @@
-﻿import pino from "pino";
+import pino from "pino";
 
 import { isModelExcludedByConnection } from "@/domain/connectionModelRules";
 import { getProviderConnections } from "@/lib/db/providers";

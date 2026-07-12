@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Leaf module for the shared MCP tool-definition types.
  *
  * Extracted out of `tools.ts` to break a dependency cycle: `tools.ts` imports the

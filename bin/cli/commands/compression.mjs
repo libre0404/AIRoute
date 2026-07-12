@@ -1,4 +1,4 @@
-﻿import { readFileSync } from "node:fs";
+import { readFileSync } from "node:fs";
 import { apiFetch } from "../api.mjs";
 import { emit } from "../output.mjs";
 import { t } from "../i18n.mjs";

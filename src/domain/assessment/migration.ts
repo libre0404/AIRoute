@@ -1,4 +1,4 @@
-﻿import { mkdirSync, existsSync } from "node:fs";
+import { mkdirSync, existsSync } from "node:fs";
 import { dirname } from "node:path";
 
 const MIGRATION_SQL = `

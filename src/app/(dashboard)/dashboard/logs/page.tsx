@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useRef, useEffect } from "react";
 import { ConfirmModal, RequestLoggerV2 } from "@/shared/components";

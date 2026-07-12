@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { isAuthenticated } from "@/shared/utils/apiAuth";
 import { listEmbeddingProviders } from "@/lib/memory/embedding";
 import { sanitizeErrorMessage } from "@AIRoute/open-sse/utils/error.ts";

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * CCR (Content-Compression-Retrieve) engine (H4)
  *
  * Replaces large contiguous blocks of text with a content-addressed

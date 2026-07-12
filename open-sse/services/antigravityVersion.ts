@@ -1,4 +1,4 @@
-﻿const ANTIGRAVITY_RELEASE_FEED_URL =
+const ANTIGRAVITY_RELEASE_FEED_URL =
   "https://antigravity-auto-updater-974169037036.us-central1.run.app/releases";
 const ANTIGRAVITY_GITHUB_RELEASE_URL =
   "https://api.github.com/repos/antigravityide/antigravity/releases/latest";

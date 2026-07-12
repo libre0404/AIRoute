@@ -1,4 +1,4 @@
-﻿// API-key model-permission matching: Claude-Code alias/prefix resolution + wildcard/glob pattern
+// API-key model-permission matching: Claude-Code alias/prefix resolution + wildcard/glob pattern
 // matching used to decide whether a model is permitted for a key. Pure logic (no DB) extracted from
 // db/apiKeys.ts (god-file decomposition); behavior is byte-identical to the original inline defs.
 

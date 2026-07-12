@@ -1,4 +1,4 @@
-﻿import { handleRerank } from "@AIRoute/open-sse/handlers/rerank.ts";
+import { handleRerank } from "@AIRoute/open-sse/handlers/rerank.ts";
 import { getProviderCredentials, clearRecoveredProviderState } from "@/sse/services/auth";
 import { withInjectionGuard } from "@/middleware/promptInjectionGuard";
 import { parseRerankModel, getRerankProvider } from "@AIRoute/open-sse/config/rerankRegistry.ts";

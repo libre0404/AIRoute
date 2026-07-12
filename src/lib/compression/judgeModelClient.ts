@@ -1,4 +1,4 @@
-﻿import { getExecutor } from "@AIRoute/open-sse/executors/index";
+import { getExecutor } from "@AIRoute/open-sse/executors/index";
 import type { ExecuteInput, ProviderCredentials } from "@AIRoute/open-sse/executors/base";
 import type {
   ChatTurn,

@@ -1,4 +1,4 @@
-﻿import { trackPendingRequest } from "@/lib/usageDb";
+import { trackPendingRequest } from "@/lib/usageDb";
 import { STREAM_IDLE_TIMEOUT_MS } from "../config/constants.ts";
 import { FORMATS } from "../translator/formats.ts";
 import { PENDING_REQUEST_CLEARED_MARKER } from "./stream.ts";

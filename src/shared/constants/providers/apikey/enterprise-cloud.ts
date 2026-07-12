@@ -1,4 +1,4 @@
-﻿/**
+/**
  * APIKEY provider catalog — enterprise-cloud family (hyperscaler & enterprise cloud platforms).
  * Pure data; merged by apikey/index.ts via spread (god-file decomposition; semantic split).
  */

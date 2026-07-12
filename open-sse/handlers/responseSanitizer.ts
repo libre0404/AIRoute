@@ -1,4 +1,4 @@
-﻿import {
+import {
   copyOpenAICompatibleReasoningFields,
   getReadableReasoningValue,
 } from "../utils/reasoningFields.ts";

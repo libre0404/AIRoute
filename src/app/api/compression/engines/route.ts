@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { requireManagementAuth } from "@/lib/api/requireManagementAuth";
 import { buildErrorBody } from "@AIRoute/open-sse/utils/error";
 import { registerBuiltinCompressionEngines } from "@AIRoute/open-sse/services/compression/engines/index.ts";

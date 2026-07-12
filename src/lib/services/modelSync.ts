@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Model sync job for embedded services.
  *
  * Fetches /v1/models from a running service instance and persists the list

@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { updateSettings } from "@/lib/localDb";
 import {
   getPayloadRulesConfig,

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Open Code handler.
  *
  * Host: `opencode.ai` (Zen endpoint family).

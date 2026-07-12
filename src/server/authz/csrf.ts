@@ -1,4 +1,4 @@
-﻿import { createHash, createHmac, timingSafeEqual } from "node:crypto";
+import { createHash, createHmac, timingSafeEqual } from "node:crypto";
 
 import { DASHBOARD_CSRF_HEADER } from "@/shared/constants/dashboardCsrf";
 

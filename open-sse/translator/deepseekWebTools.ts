@@ -1,4 +1,4 @@
-﻿// DeepSeek-web-specific tool-call translation.
+// DeepSeek-web-specific tool-call translation.
 //
 // chat.deepseek.com has no native function calling, so AIRoute serializes the OpenAI
 // `tools[]` into a prompt contract and parses the model's text reply back into OpenAI

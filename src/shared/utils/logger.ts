@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Structured Logger — Pino-based logger for AIRoute
  *
  * Usage:

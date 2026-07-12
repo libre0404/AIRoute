@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { buildErrorBody } from "@AIRoute/open-sse/utils/error";
 import { purgeCallLogs } from "@/lib/db/cleanup";
 import { isAuthenticated } from "@/shared/utils/apiAuth";

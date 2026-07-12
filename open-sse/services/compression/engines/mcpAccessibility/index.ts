@@ -1,4 +1,4 @@
-﻿import { collapseRepeated } from "./collapseRepeated.ts";
+import { collapseRepeated } from "./collapseRepeated.ts";
 import { MCP_ACCESSIBILITY_TAIL_RESERVE, type McpAccessibilityConfig } from "./constants.ts";
 
 // Per-line (non-global, anchored) noise matchers. Used to DELETE whole noise lines rather than

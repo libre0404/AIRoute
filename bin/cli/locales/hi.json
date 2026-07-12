@@ -1,4 +1,4 @@
-﻿{
+{
   "common": {
     "error": "त्रुटि: {message}",
     "serverOffline": "AIRoute सर्वर ऑफलाइन है। शुरू करें: AIRoute serve",

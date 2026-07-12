@@ -1,4 +1,4 @@
-﻿/**
+/**
  * POST /api/playground/improve-prompt
  *
  * Improves a user-supplied system prompt and/or user prompt by calling

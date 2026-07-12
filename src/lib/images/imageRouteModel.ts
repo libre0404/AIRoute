@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Shared model resolution for the image routes (#3214 / #3215).
  *
  * `/v1/images/generations` and `/v1/images/edits` must resolve a requested model the

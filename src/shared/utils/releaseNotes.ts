@@ -1,4 +1,4 @@
-﻿import { z } from "zod";
+import { z } from "zod";
 
 export const NEWS_JSON_URL =
   "https://raw.githubusercontent.com/diegosouzapw/AIRoute/main/news.json";

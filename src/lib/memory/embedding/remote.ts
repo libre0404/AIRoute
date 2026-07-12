@@ -1,4 +1,4 @@
-﻿import { sanitizeErrorMessage } from "@AIRoute/open-sse/utils/error.ts";
+import { sanitizeErrorMessage } from "@AIRoute/open-sse/utils/error.ts";
 import { createEmbeddingResponse } from "@/lib/embeddings/service";
 import type { EmbeddingResult, EmbeddingError } from "./types";
 

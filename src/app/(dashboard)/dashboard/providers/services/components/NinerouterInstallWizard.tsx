@@ -1,4 +1,4 @@
-﻿/**
+/**
  * G-09 — Install Wizard for 9Router.
  * Shown only when service state === "not_installed".
  * Calls POST /api/services/9router/install and triggers a status mutate on success.

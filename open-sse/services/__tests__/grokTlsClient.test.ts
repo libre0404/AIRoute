@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Regression tests for the proxy-leak fix in grokTlsClient.
  *
  * Bug context (#3180): tlsFetchGrok() built its native tls-client-node

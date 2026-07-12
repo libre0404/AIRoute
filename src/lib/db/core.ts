@@ -1,4 +1,4 @@
-﻿/**
+/**
  * db/core.js — Database infrastructure: schema, singleton, utils, migration.
  *
  * All domain modules import `getDbInstance` and helpers from here.

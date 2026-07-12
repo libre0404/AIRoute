@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Session Fingerprinting — Phase 5
  *
  * Generates stable session IDs for sticky routing,

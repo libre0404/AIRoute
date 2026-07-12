@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Generic reverse-proxy helper for embedded service UIs.
  *
  * Forwards HTTP traffic to a locally-running embedded service so its web UI

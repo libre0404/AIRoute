@@ -1,4 +1,4 @@
-﻿/**
+/**
  * API: Proxy Fallback Test
  * POST /api/proxy-fallback/test
  *

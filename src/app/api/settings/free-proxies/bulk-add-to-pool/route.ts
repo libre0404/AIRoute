@@ -1,4 +1,4 @@
-﻿import { request as undiciRequest } from "undici";
+import { request as undiciRequest } from "undici";
 import { requireManagementAuth } from "@/lib/api/requireManagementAuth";
 import { createErrorResponse, createErrorResponseFromUnknown } from "@/lib/api/errorResponse";
 import { isValidationFailure, validateBody } from "@/shared/validation/helpers";

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * POST /api/tools/traffic-inspector/capture-modes/tls-intercept
  *
  * Toggle TLS body decryption in the MITM proxy. When enabled, the MITM

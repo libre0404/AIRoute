@@ -1,4 +1,4 @@
-﻿import { spawn } from "node:child_process";
+import { spawn } from "node:child_process";
 import { dirname } from "node:path";
 import { writePidFile, cleanupPidFile, killAllSubprocesses } from "../utils/pid.mjs";
 import {

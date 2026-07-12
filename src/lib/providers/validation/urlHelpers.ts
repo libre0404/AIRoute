@@ -1,4 +1,4 @@
-﻿// URL/format normalizers for provider key validation. Pure string helpers extracted from
+// URL/format normalizers for provider key validation. Pure string helpers extracted from
 // validation.ts (god-file decomposition): no I/O, no side effects — they only shape base URLs
 // and chat endpoints per provider format. Behavior is byte-identical to the original inline defs.
 import {

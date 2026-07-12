@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Latest-version discovery + comparison for the dashboard "Update Available" banner.
  *
  * #4100: the banner is gated on `isNewer(latest, current)`. Previously `latest` came

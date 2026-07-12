@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Fase 3 / Epic A — OS trust-store install for the TPROXY dynamic CA (decrypt 4b/N).
  *
  * The decrypt capture mode issues per-SNI leaves from a dynamic CA (#4173); the

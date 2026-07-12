@@ -1,4 +1,4 @@
-﻿{
+{
   "common": {
     "error": "Fel: {message}",
     "serverOffline": "AIRoute-servern är offline. Starta med: AIRoute serve",

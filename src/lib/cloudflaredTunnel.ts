@@ -1,4 +1,4 @@
-﻿import { spawn, execFile } from "child_process";
+import { spawn, execFile } from "child_process";
 import { createHash } from "crypto";
 import { promisify } from "util";
 import fs from "fs/promises";

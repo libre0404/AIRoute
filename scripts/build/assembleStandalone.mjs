@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 
 /**
  * assembleStandalone.mjs - Shared standalone bundle assembler for AIRoute.

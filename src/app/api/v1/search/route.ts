@@ -1,4 +1,4 @@
-﻿import { handleSearch } from "@AIRoute/open-sse/handlers/search.ts";
+import { handleSearch } from "@AIRoute/open-sse/handlers/search.ts";
 import { getProviderCredentials, extractApiKey, isValidApiKey } from "@/sse/services/auth";
 import {
   getAllSearchProviders,

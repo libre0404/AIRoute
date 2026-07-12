@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Antigravity header scrubbing.
  *
  * Real Antigravity is a Node.js app. Its outbound HTTP requests never include

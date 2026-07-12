@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import ComboPlaygroundClient from "./ComboPlaygroundClient";
 
 export const metadata: Metadata = {

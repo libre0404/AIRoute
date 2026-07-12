@@ -1,4 +1,4 @@
-﻿export const SHOW_CONFIGURED_ONLY_STORAGE_KEY = "AIRoute-providers-show-configured-only";
+export const SHOW_CONFIGURED_ONLY_STORAGE_KEY = "AIRoute-providers-show-configured-only";
 export const PROVIDER_DISPLAY_MODE_STORAGE_KEY = "AIRoute-providers-display-mode";
 
 export type ProviderDisplayMode = "all" | "configured" | "compact";

@@ -1,4 +1,4 @@
-﻿import { t } from "../i18n.mjs";
+import { t } from "../i18n.mjs";
 
 const AIRoute_ENV_VARS = [
   "PORT",

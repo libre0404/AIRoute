@@ -1,4 +1,4 @@
-﻿/**
+/**
  * A2A Skill: Cost Analysis
  *
  * Summarizes usage cost, provider/model spend distribution, and savings opportunities.

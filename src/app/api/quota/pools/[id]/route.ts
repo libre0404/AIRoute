@@ -12,7 +12,7 @@
  */
 
 import { NextResponse } from "next/server";
-import { buildErrorBody } from "@omniroute/open-sse/utils/error";
+import { buildErrorBody } from "@AIRoute/open-sse/utils/error";
 import { requireManagementAuth } from "@/lib/api/requireManagementAuth";
 import { PoolUpdateSchema } from "@/shared/schemas/quota";
 import { getPool, updatePool, deletePool } from "@/lib/localDb";

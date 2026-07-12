@@ -1,4 +1,4 @@
-﻿import { register } from "../registry.ts";
+import { register } from "../registry.ts";
 import { FORMATS } from "../formats.ts";
 // CLAUDE_SYSTEM_PROMPT import removed — no longer injected unconditionally (#1966/#2130)
 import { supportsClaudeMaxEffort, supportsXHighEffort } from "../../config/providerModels.ts";

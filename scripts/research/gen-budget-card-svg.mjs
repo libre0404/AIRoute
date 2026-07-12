@@ -1,4 +1,4 @@
-﻿// Generates docs/screenshots/free-tier-budget-card.svg from the per-model catalog.
+// Generates docs/screenshots/free-tier-budget-card.svg from the per-model catalog.
 // Run: node scripts/research/gen-budget-card-svg.mjs
 import fs from "node:fs";
 

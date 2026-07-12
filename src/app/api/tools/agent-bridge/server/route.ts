@@ -1,4 +1,4 @@
-﻿/**
+/**
  * POST /api/tools/agent-bridge/server
  * Start / stop / restart MITM server; trust cert; regenerate cert.
  * LOCAL_ONLY + SPAWN_CAPABLE: registered in routeGuard.ts

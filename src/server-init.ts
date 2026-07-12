@@ -1,4 +1,4 @@
-﻿// Server startup script
+// Server startup script
 import initializeCloudSync from "./shared/services/initializeCloudSync";
 import { enforceWebRuntimeEnv } from "./lib/env/runtimeEnv";
 import { enforceSecrets } from "./shared/utils/secretsValidator";

@@ -1,4 +1,4 @@
-﻿import { skillExecutor } from "./executor";
+import { skillExecutor } from "./executor";
 import { skillRegistry } from "./registry";
 import { builtinSkills } from "./builtins";
 import { detectProvider } from "./injection";

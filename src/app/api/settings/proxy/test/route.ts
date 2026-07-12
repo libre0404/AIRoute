@@ -1,4 +1,4 @@
-﻿import { request as undiciRequest } from "undici";
+import { request as undiciRequest } from "undici";
 import {
   createProxyDispatcher,
   isRelayType,

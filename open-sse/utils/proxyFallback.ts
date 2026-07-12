@@ -1,4 +1,4 @@
-﻿/**
+/**
  * proxyFallback.ts — Smart Proxy Fallback for Provider Validation
  *
  * When a direct fetch to a provider fails and no explicit proxy was configured,

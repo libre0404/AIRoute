@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Zed IDE — MITM target descriptor.
  *
  * Hosts: `api.zed.dev`.

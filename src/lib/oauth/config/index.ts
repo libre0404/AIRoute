@@ -1,4 +1,4 @@
-﻿/**
+/**
  * OAuth CLI Configuration
  *
  * Provides server credentials for OAuth CLI services to communicate

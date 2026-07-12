@@ -1,4 +1,4 @@
-﻿import { isIP } from "node:net";
+import { isIP } from "node:net";
 import { resolveFeatureFlag } from "@/shared/utils/featureFlags";
 
 const TRUE_ENV_VALUES = new Set(["1", "true", "yes", "on"]);

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * openrouterCatalog.ts — Feature 09
  * Catálogo OpenRouter com cache persistente em arquivo JSON local.
  *

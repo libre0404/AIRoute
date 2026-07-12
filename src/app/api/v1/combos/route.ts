@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GET /v1/combos — API-key safe read of combo metadata.
  *
  * Issue #2300: `/api/combos` is management-gated, which blocks integrations

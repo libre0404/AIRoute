@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Thinking Budget Control — Phase 2
  *
  * Provides proxy-level control over AI thinking/reasoning budgets.

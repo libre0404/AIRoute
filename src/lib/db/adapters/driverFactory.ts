@@ -1,4 +1,4 @@
-﻿import { createRequire } from "node:module";
+import { createRequire } from "node:module";
 import { createBetterSqliteAdapter } from "./betterSqliteAdapter";
 import {
   createNodeSqliteAdapterFromDatabase,

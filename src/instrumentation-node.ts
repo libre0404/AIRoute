@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Node.js-only instrumentation logic.
  *
  * Separated from instrumentation.ts so that Turbopack's Edge bundler

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Browser-TLS-impersonating HTTP client for chatgpt.com.
  *
  * Why this exists: ChatGPT's Cloudflare config pins `cf_clearance` to the

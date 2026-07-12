@@ -1,4 +1,4 @@
-﻿// Agent Skills metadata — single source of truth for /dashboard/agent-skills.
+// Agent Skills metadata — single source of truth for /dashboard/agent-skills.
 // Each curated entry drives the catalog; endpoints/cliCommands are resolved
 // at runtime by src/lib/agentSkills/catalog.ts (via OpenAPI + CLI parsers).
 

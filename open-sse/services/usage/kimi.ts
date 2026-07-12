@@ -1,4 +1,4 @@
-﻿/**
+/**
  * usage/kimi.ts — Kimi Coding (kimi-coding / kimi-coding-apikey) usage fetcher + helpers.
  *
  * Extracted from services/usage.ts (god-file decomposition): the Kimi family — the coding

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * POST /api/v1/relay/chat/completions/bifrost
  *
  * Sidecar proxy route: when BIFROST_BASE_URL is configured, relay traffic

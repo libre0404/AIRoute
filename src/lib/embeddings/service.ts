@@ -1,4 +1,4 @@
-﻿import { handleEmbedding } from "@AIRoute/open-sse/handlers/embeddings.ts";
+import { handleEmbedding } from "@AIRoute/open-sse/handlers/embeddings.ts";
 import {
   parseEmbeddingModel,
   getEmbeddingProvider,

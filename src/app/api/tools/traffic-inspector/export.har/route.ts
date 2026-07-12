@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GET /api/tools/traffic-inspector/export.har
  *
  * Exports the entire (optionally filtered) traffic buffer as a HAR v1.2 file.

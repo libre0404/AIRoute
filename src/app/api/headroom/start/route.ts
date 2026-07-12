@@ -1,4 +1,4 @@
-﻿import { getSettings } from "@/lib/db/settings";
+import { getSettings } from "@/lib/db/settings";
 import {
   DEFAULT_HEADROOM_URL,
   isLoopbackHeadroomUrl,

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Stream-recovery primitives — opt-in transparent retry of truncated upstream streams.
  *
  * Ported from free-claude-code's always-on recovery (`core/anthropic/stream_recovery.py`).

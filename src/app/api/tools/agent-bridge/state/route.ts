@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GET /api/tools/agent-bridge/state
  * Returns global MITM server status + per-agent detection/status.
  * LOCAL_ONLY: registered in routeGuard.ts

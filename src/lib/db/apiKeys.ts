@@ -1,4 +1,4 @@
-﻿/**
+/**
  * db/apiKeys.js — API key management.
  */
 

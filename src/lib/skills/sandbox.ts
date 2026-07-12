@@ -1,4 +1,4 @@
-﻿import { createRequire } from "module";
+import { createRequire } from "module";
 import type { ChildProcess } from "child_process";
 import { randomUUID } from "crypto";
 

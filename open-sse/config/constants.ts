@@ -1,4 +1,4 @@
-﻿import { getUpstreamTimeoutConfig } from "@/shared/utils/runtimeTimeouts";
+import { getUpstreamTimeoutConfig } from "@/shared/utils/runtimeTimeouts";
 import { loadProviderCredentials } from "./credentialLoader.ts";
 import { generateLegacyProviders } from "./providerRegistry.ts";
 

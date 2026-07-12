@@ -1,4 +1,4 @@
-﻿/**
+/**
  * AIRoute setup-aider — configure Aider (aider.chat) for AIRoute.
  *
  * Aider (LiteLLM under the hood) talks to an OpenAI-compatible endpoint via env

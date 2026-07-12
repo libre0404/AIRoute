@@ -1,4 +1,4 @@
-﻿/**
+/**
  * MCP Tool Schemas — Contracts for all 23 core and advanced AIRoute MCP tools.
  *
  * Defines input/output Zod schemas, descriptions, scopes, and audit levels

@@ -1,4 +1,4 @@
-﻿import { apiFetch, isServerUp } from "../api.mjs";
+import { apiFetch, isServerUp } from "../api.mjs";
 import { emit } from "../output.mjs";
 import { printHeading } from "../io.mjs";
 import { getAvailableProviderCategories, loadAvailableProviders } from "../provider-catalog.mjs";

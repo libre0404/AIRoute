@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { KiroService } from "@/lib/oauth/services/kiro";
 import { createProviderConnection, isCloudEnabled, resolveProxyForProvider } from "@/models";
 import { getConsistentMachineId } from "@/shared/utils/machineId";

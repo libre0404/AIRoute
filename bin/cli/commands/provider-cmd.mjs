@@ -1,4 +1,4 @@
-﻿export function registerProvider(program) {
+export function registerProvider(program) {
   program
     .command("provider [subcommand]")
     .description("Manage provider connections (use 'providers' for the full interface)")

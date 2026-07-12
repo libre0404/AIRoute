@@ -1,4 +1,4 @@
-﻿// Provider-aware reasoning_effort sanitation (xhigh/max normalization + reject strip).
+// Provider-aware reasoning_effort sanitation (xhigh/max normalization + reject strip).
 // Extracted verbatim from base.ts. Deps are config/services only (no host import → no cycle).
 import { PROVIDER_CLAUDE } from "../../services/systemTransforms.ts";
 import { isClaudeCodeCompatible } from "../../services/provider.ts";

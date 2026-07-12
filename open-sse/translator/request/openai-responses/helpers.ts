@@ -1,4 +1,4 @@
-﻿// Pure shared primitives for the OpenAI Responses <-> Chat Completions request
+// Pure shared primitives for the OpenAI Responses <-> Chat Completions request
 // translators. Extracted verbatim from openai-responses.ts (no host imports).
 
 export type JsonRecord = Record<string, unknown>;

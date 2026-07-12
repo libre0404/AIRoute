@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 // scripts/check/check-licenses.mjs
 // Gate de license compliance — PLANO-QUALITY-GATES-FASE7.md, Task 20.
 //

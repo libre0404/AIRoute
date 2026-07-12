@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 import { isLocalRequestAllowed } from "@/lib/security/localEndpoints";
 import { sanitizeErrorMessage } from "@AIRoute/open-sse/utils/error";

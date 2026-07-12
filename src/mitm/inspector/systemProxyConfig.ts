@@ -1,4 +1,4 @@
-﻿/**
+/**
  * System-wide proxy configuration toggles.
  *
  * macOS:    `networksetup -setwebproxy / -setsecurewebproxy`

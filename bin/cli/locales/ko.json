@@ -1,4 +1,4 @@
-﻿{
+{
   "common": {
     "error": "오류: {message}",
     "serverOffline": "AIRoute 서버가 오프라인입니다. 시작: AIRoute serve",

@@ -1,4 +1,4 @@
-﻿import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 import { Assessor } from "@/domain/assessment/assessor";
 import { Categorizer } from "@/domain/assessment/categorizer";

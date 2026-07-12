@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Fusion combo strategy — parallel panel + judge synthesis.
  *
  * A fusion combo fans the prompt out to every panel model in parallel, then a

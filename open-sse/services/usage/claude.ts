@@ -1,4 +1,4 @@
-﻿/**
+/**
  * usage/claude.ts — Claude (Anthropic OAuth + legacy org) usage fetcher + plan-label helper.
  *
  * Extracted from services/usage.ts (god-file decomposition): the Claude family — the API

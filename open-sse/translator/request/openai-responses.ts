@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Translator: OpenAI Responses API -> OpenAI Chat Completions
  *
  * Responses API uses: { input: [...], instructions: "..." }

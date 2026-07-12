@@ -1,4 +1,4 @@
-﻿import { handleMusicGeneration } from "@AIRoute/open-sse/handlers/musicGeneration.ts";
+import { handleMusicGeneration } from "@AIRoute/open-sse/handlers/musicGeneration.ts";
 import { withInjectionGuard } from "@/middleware/promptInjectionGuard";
 import { getProviderCredentials, clearRecoveredProviderState } from "@/sse/services/auth";
 import { parseMusicModel, getMusicProvider } from "@AIRoute/open-sse/config/musicRegistry.ts";

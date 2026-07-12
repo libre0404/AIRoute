@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GET / POST / DELETE /api/tools/agent-bridge/tproxy
  *
  * Drive the decrypt-capable TPROXY capture mode (Epic A, decrypt 4b/N):

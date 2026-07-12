@@ -1,4 +1,4 @@
-﻿/**
+/**
  * APIKEY provider catalog — specialty-media family (image / video / audio / embeddings / rerank / reader / coding tools).
  * Pure data; merged by apikey/index.ts via spread (god-file decomposition; semantic split).
  */

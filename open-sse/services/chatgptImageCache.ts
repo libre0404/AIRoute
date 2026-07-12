@@ -1,4 +1,4 @@
-﻿/**
+/**
  * In-memory cache for ChatGPT-generated images so we can serve them via a
  * regular HTTP URL instead of inlining megabytes of base64 into SSE deltas.
  *

@@ -1,4 +1,4 @@
-﻿import { RootProvider } from "fumadocs-ui/provider/next";
+import { RootProvider } from "fumadocs-ui/provider/next";
 import { DocsLayout } from "fumadocs-ui/layouts/docs";
 import { source } from "@/lib/source";
 import type { ReactNode } from "react";

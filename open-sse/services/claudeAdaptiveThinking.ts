@@ -1,4 +1,4 @@
-﻿import { isAdaptiveThinkingOnly } from "@/shared/constants/modelSpecs.ts";
+import { isAdaptiveThinkingOnly } from "@/shared/constants/modelSpecs.ts";
 
 type JsonRecord = Record<string, unknown>;
 

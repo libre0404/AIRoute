@@ -1,4 +1,4 @@
-﻿import { createInterface } from "node:readline";
+import { createInterface } from "node:readline";
 import { Argument } from "commander";
 import { apiFetch } from "../api.mjs";
 import { emit } from "../output.mjs";

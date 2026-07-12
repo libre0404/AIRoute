@@ -1,4 +1,4 @@
-﻿import { spawn } from "node:child_process";
+import { spawn } from "node:child_process";
 import { join } from "node:path";
 import os from "node:os";
 import { t } from "../i18n.mjs";

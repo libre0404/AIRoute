@@ -1,4 +1,4 @@
-﻿/**
+/**
  * T14: Proxy Fast-Fail — TCP health check with in-memory cache.
  *
  * When a configured HTTP/SOCKS5 proxy is unreachable, every request

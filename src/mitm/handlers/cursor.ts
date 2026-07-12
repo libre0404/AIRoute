@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Cursor IDE handler.
  *
  * Host: `api2.cursor.sh`.

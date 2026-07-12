@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Fase 3 / Epic A — TLS-terminating capture for the TPROXY mode (decrypt 2/N).
  *
  * The transparent listener (#4169 `captureMode.ts`) intercepts LOCAL outbound

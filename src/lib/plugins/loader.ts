@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Plugin loader — loads plugins in isolated child processes.
  *
  * Uses a child Node.js process with IPC for process-level isolation. Each plugin

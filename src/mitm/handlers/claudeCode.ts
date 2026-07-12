@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Claude Code (Anthropic CLI) handler.
  *
  * Host: `api.anthropic.com` (opt-in — typical Anthropic API requests originate

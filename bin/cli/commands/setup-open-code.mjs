@@ -1,4 +1,4 @@
-﻿/**
+/**
  * AIRoute setup opencode — Wire the bundled @AIRoute/opencode-plugin
  * into a local OpenCode install.
  *

@@ -1,4 +1,4 @@
-﻿import { parseResponseBody, getErrorMessage } from "@/shared/utils/api";
+import { parseResponseBody, getErrorMessage } from "@/shared/utils/api";
 import { CREDENTIAL_BLOB_PREFIX } from "@/lib/oauth/credentialBlob";
 
 /**

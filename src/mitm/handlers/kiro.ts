@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Kiro IDE handler.
  *
  * Kiro uses the Anthropic Messages API (POST /v1/messages with `x-api-key`).

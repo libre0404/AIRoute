@@ -1,4 +1,4 @@
-﻿/**
+/**
  * POST /api/tools/traffic-inspector/capture-modes/system-proxy
  *
  * Apply or revert the OS-level system proxy.

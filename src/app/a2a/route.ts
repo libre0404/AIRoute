@@ -1,4 +1,4 @@
-﻿/**
+/**
  * A2A JSON-RPC 2.0 Router — `/a2a` endpoint
  *
  * Methods:

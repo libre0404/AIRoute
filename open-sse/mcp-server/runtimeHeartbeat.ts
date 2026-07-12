@@ -1,4 +1,4 @@
-﻿/**
+/**
  * MCP Runtime Heartbeat
  *
  * Persists MCP stdio process liveness into DATA_DIR/runtime/mcp-heartbeat.json

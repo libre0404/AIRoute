@@ -1,4 +1,4 @@
-﻿import { getSupervisor } from "@/lib/services/registry";
+import { getSupervisor } from "@/lib/services/registry";
 import { getServiceRow } from "@/lib/db/versionManager";
 import {
   getInstalledVersion,

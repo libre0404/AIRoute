@@ -1,4 +1,4 @@
-﻿/**
+/**
  * CLI access-token scopes — the 3-level hierarchy used by remote mode.
  *
  * These tokens authorize the `AIRoute` CLI (and dashboard) to run *management*

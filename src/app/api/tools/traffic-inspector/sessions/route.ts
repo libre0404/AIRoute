@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GET  /api/tools/traffic-inspector/sessions — list all sessions
  * POST /api/tools/traffic-inspector/sessions — start a new recording session
  *

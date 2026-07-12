@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Bypass / passthrough routing primitives used by `src/mitm/server.cjs`.
  *
  * This file exists because:

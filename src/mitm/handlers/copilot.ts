@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GitHub Copilot handler.
  *
  * Hosts: `api.githubcopilot.com`, `copilot-proxy.githubusercontent.com`.

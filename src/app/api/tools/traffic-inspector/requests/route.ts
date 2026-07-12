@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GET  /api/tools/traffic-inspector/requests — list buffer with optional filters
  * DELETE /api/tools/traffic-inspector/requests — clear the entire buffer
  *

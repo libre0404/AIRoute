@@ -1,4 +1,4 @@
-﻿import { TrafficInspectorPageClient } from "./TrafficInspectorPageClient";
+import { TrafficInspectorPageClient } from "./TrafficInspectorPageClient";
 
 export const metadata = {
   title: "Traffic Inspector — AIRoute",

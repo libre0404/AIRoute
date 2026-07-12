@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ZenmuxFreeExecutor — ZenMux Free (web-cookie) provider
  *
  * Accesses ZenMux's free-tier LLM gateway via session cookies exported from

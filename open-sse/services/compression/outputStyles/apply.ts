@@ -1,4 +1,4 @@
-﻿import { SHARED_BOUNDARIES, shouldBypassCavemanOutputMode } from "../outputMode.ts";
+import { SHARED_BOUNDARIES, shouldBypassCavemanOutputMode } from "../outputMode.ts";
 import { OUTPUT_STYLE_IDS, outputStyleMeta } from "./catalog.ts";
 
 export type OutputStyleLevel = "lite" | "full" | "ultra";

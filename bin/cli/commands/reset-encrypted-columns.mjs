@@ -1,4 +1,4 @@
-﻿import { existsSync } from "node:fs";
+import { existsSync } from "node:fs";
 import { resolveDataDir } from "../data-dir.mjs";
 import { join } from "node:path";
 

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GET  /api/tools/agent-bridge/upstream-ca   — returns current upstream CA path
  * POST /api/tools/agent-bridge/upstream-ca   — validates + persists a new path
  * LOCAL_ONLY: registered in routeGuard.ts

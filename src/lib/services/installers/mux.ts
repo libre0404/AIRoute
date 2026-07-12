@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Mux (coder/mux) installer adapter for the ServiceSupervisor framework.
  *
  * Mux (https://github.com/coder/mux) is a local agent-orchestration daemon

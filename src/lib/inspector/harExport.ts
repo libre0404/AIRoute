@@ -1,4 +1,4 @@
-﻿/**
+/**
  * HAR (HTTP Archive) v1.2 export for the Traffic Inspector.
  *
  * HAR is the standard format consumed by Chrome DevTools, Charles, Fiddler,

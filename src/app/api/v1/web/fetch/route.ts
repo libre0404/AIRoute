@@ -1,4 +1,4 @@
-﻿/**
+/**
  * POST /v1/web/fetch
  *
  * Extract content from a URL using a configured web-fetch provider.

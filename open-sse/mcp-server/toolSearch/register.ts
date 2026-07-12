@@ -1,4 +1,4 @@
-﻿import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { toolSearchInput } from "../schemas/toolSearch.ts";
 import type { McpToolExtraLike } from "../scopeEnforcement.ts";
 import { handleToolSearch } from "./handler.ts";

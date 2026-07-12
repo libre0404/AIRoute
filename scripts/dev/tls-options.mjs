@@ -1,4 +1,4 @@
-﻿// scripts/dev/tls-options.mjs
+// scripts/dev/tls-options.mjs
 //
 // Pure, dependency-light helpers for AIRoute's opt-in native HTTPS/TLS serving
 // (#5242, Bug 1C). Kept side-effect-free and free of heavy imports so it can be

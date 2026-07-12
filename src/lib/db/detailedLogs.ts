@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Detailed Request Logs DB Layer (#378)
  *
  * Legacy compatibility layer for detailed request logs.

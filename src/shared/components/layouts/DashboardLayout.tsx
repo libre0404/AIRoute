@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { Suspense, useEffect, useInsertionEffect, useState } from "react";
 import Sidebar from "../Sidebar";

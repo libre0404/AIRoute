@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Cache Control Policy
  *
  * Determines when to preserve client-side prompt caching headers (cache_control)

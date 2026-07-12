@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { getProviderCallStats, getModelCallStats } from "@/lib/db/providerStats";
 import { AI_PROVIDERS } from "@/shared/constants/providers";
 

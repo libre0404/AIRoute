@@ -1,4 +1,4 @@
-﻿import { clearHealthCheckLogCache } from "@/lib/tokenHealthCheck";
+import { clearHealthCheckLogCache } from "@/lib/tokenHealthCheck";
 import { setCustomBannedSignals } from "@AIRoute/open-sse/services/accountFallback.ts";
 
 type JsonRecord = Record<string, unknown>;

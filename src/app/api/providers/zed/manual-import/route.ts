@@ -1,4 +1,4 @@
-﻿/**
+/**
  * POST /api/providers/zed/manual-import
  *
  * Accepts a manually-pasted Zed API token for a specific provider.

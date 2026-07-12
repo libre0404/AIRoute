@@ -1,4 +1,4 @@
-﻿/**
+/**
  * AuggieExecutor — routes completions through the local Augment CLI ("auggie")
  * binary via a one-shot stdin/stdout text pipe (no JSON-RPC / ACP protocol).
  *

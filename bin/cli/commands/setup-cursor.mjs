@@ -1,4 +1,4 @@
-﻿/**
+/**
  * AIRoute setup-cursor — guide Cursor to use AIRoute.
  *
  * Cursor stores its OpenAI key + "Override OpenAI Base URL" in an opaque SQLite

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GET /api/agent-skills
  *
  * Returns the full Agent Skills catalog with optional filtering by category or area.

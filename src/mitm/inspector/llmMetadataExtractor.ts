@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Extract LLM-specific metadata from intercepted requests so the UI can
  * render summary chips (provider, model, tokens, cost). Provider/api inference
  * is host- and path-based; token counts come from the upstream `usage` block.

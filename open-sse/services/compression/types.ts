@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Compression Pipeline Types — Lite, Caveman, Aggressive, Ultra, RTK, and Stacked modes.
  *
  * Shared type definitions for the compression pipeline.

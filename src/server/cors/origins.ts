@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Centralized CORS origin allowlist.
  *
  * Source of truth for which browser origins may call AIRoute over CORS.

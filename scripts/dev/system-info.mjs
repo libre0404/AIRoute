@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 /**
  * system-info.mjs — AIRoute System Information Reporter (#280)
  *

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Pure browser-language detector used to pick an initial locale on first
  * visit, before the user has made an explicit selection (no cookie set).
  *

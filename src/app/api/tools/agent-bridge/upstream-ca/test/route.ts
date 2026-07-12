@@ -1,4 +1,4 @@
-﻿/**
+/**
  * POST /api/tools/agent-bridge/upstream-ca/test
  *
  * Validate-only (dry-run) counterpart of POST /api/tools/agent-bridge/upstream-ca:

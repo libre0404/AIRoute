@@ -1,4 +1,4 @@
-﻿import { getSupervisor } from "@/lib/services/registry";
+import { getSupervisor } from "@/lib/services/registry";
 import { createErrorResponse } from "@/lib/api/errorResponse";
 import { sanitizeErrorMessage } from "@AIRoute/open-sse/utils/error";
 

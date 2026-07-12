@@ -1,4 +1,4 @@
-﻿/**
+/**
  * chatCore upstream body preparation (Quality Gate v2 / Fase 9 — chatCore god-file decomposition,
  * #3501 — first internal sub-slice of executeProviderRequest).
  *

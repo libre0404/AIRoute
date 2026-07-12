@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GET /api/settings/quota-store — read current quota store driver config
  * PUT /api/settings/quota-store — update quota store driver config
  *

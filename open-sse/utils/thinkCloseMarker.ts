@@ -1,4 +1,4 @@
-﻿/**
+/**
  * `</think>` close-marker client policy.
  *
  * When AIRoute translates a Claude-native streamed response to OpenAI Chat

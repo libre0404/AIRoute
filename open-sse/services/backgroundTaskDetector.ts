@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Background Task Detector — Feature 3
  *
  * Detects when CLI tools send "background" requests (title generation,

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * AIRoute MCP Compression Tools — Manage and monitor prompt compression.
  *
  * Tools:

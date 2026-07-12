@@ -1,4 +1,4 @@
-﻿export interface FeatureFlagDefinition {
+export interface FeatureFlagDefinition {
   key: string;
   label: string;
   description: string;

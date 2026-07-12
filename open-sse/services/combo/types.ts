@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Shared combo (model combo) types extracted from combo.ts.
  *
  * Pure type aliases / interfaces and the RESET_WINDOW_NAMES runtime constant.

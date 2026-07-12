@@ -1,4 +1,4 @@
-﻿import type { CompressionConfig, CompressionPipelineStep, CompressionStats } from "./types.ts";
+import type { CompressionConfig, CompressionPipelineStep, CompressionStats } from "./types.ts";
 import { resolveCompressionPlan } from "./resolveCompressionPlan.ts";
 import {
   deriveDefaultPlan,

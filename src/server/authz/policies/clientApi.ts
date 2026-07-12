@@ -1,4 +1,4 @@
-﻿import { isDashboardSessionAuthenticated } from "@/shared/utils/apiAuth.ts";
+import { isDashboardSessionAuthenticated } from "@/shared/utils/apiAuth.ts";
 import { isRequireApiKeyEnabled } from "@/shared/utils/featureFlags";
 import { extractApiKey } from "@/sse/services/auth.ts";
 import type { AuthOutcome, PolicyContext, RoutePolicy } from "../context";

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * #5649 — resolve the MCP caller's API-key **principal id** for content stores
  * (CCR) that are keyed by principal.
  *

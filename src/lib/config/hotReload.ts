@@ -1,4 +1,4 @@
-﻿import fs from "node:fs";
+import fs from "node:fs";
 import path from "node:path";
 import { SQLITE_FILE } from "@/lib/db/core";
 import { getSettings } from "@/lib/db/settings";

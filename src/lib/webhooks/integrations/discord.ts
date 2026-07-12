@@ -1,4 +1,4 @@
-﻿import type { WebhookEvent } from "../eventDescriptions";
+import type { WebhookEvent } from "../eventDescriptions";
 import { EVENT_DESCRIPTIONS } from "../eventDescriptions";
 
 export interface DiscordEmbed {

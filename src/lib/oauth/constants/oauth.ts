@@ -1,4 +1,4 @@
-﻿import {
+import {
   ANTIGRAVITY_BASE_URLS,
   getAntigravityFetchAvailableModelsUrls,
 } from "@AIRoute/open-sse/config/antigravityUpstream.ts";

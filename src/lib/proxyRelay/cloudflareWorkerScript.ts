@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Cloudflare Worker source emitter for the AIRoute proxy relay.
  *
  * Port of upstream decolua/9router PR #1360. The Worker plays the same role

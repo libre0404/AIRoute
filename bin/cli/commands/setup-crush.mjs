@@ -1,4 +1,4 @@
-﻿/**
+/**
  * AIRoute setup-crush — configure Crush (charmbracelet/crush) for AIRoute.
  *
  * Crush is a terminal AI agent with a file-based config: ~/.config/crush/crush.json

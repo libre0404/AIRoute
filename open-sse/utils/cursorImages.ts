@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Image resolution + security for Cursor vision input.
  *
  * Turns OpenAI `image_url` parts (base64 `data:` URIs or remote `http(s)`

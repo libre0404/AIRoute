@@ -1,4 +1,4 @@
-﻿import os from "node:os";
+import os from "node:os";
 import path from "node:path";
 import { existsSync, mkdirSync, writeFileSync, copyFileSync } from "node:fs";
 import { apiFetch } from "../api.mjs";

@@ -1,4 +1,4 @@
-﻿import { setTimeout as sleep } from "node:timers/promises";
+import { setTimeout as sleep } from "node:timers/promises";
 import { apiFetch } from "../api.mjs";
 import { emit } from "../output.mjs";
 import { t } from "../i18n.mjs";

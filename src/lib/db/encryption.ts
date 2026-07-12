@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Field-Level Encryption — AES-256-GCM
  *
  * Encrypts/decrypts sensitive fields (API keys, tokens) stored in SQLite.

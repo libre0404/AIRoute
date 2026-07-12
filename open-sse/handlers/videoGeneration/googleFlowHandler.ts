@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Veo video generation via Google Flow (labs.google/flow) — request orchestration.
  *
  * Uses the Google account OAuth bearer + Cloud Code projectId that the Antigravity

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * System Prompt Injection — Phase 10.1
  *
  * Injects TWO global system prompts into all requests at proxy level:

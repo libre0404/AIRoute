@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Combo API error helper (T-22.b).
  *
  * Standardizes the 400/404/409 response shape for `/api/combos/*` routes.

@@ -1,4 +1,4 @@
-﻿import { getAllToolDefinitions } from "./catalog.ts";
+import { getAllToolDefinitions } from "./catalog.ts";
 import { searchTools } from "./search.ts";
 import { zodToTsSignature } from "./signature.ts";
 

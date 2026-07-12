@@ -1,4 +1,4 @@
-﻿{
+{
   "common": {
     "error": "خطا: {message}",
     "serverOffline": "سرور AIRoute آفلاین است. با این دستور راه‌اندازی کنید: AIRoute serve",

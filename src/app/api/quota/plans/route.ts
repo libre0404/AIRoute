@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GET /api/quota/plans — list all resolved provider plans
  *
  * Returns plans from two sources merged into one list:

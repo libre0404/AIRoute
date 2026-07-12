@@ -1,4 +1,4 @@
-﻿import { describe, it, expect } from "vitest";
+import { describe, it, expect } from "vitest";
 import { syncPricingInput, syncPricingTool, MCP_TOOLS, MCP_TOOL_MAP } from "../schemas/tools.ts";
 
 describe("AIRoute_sync_pricing MCP tool schema", () => {

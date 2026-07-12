@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 
 export const SECURE_NODE_LINES = Object.freeze([
   Object.freeze({ major: 22, minor: 22, patch: 2 }),

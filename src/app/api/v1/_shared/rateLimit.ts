@@ -1,4 +1,4 @@
-﻿import { HTTP_STATUS } from "@AIRoute/open-sse/config/constants.ts";
+import { HTTP_STATUS } from "@AIRoute/open-sse/config/constants.ts";
 import { unavailableResponse } from "@AIRoute/open-sse/utils/error.ts";
 
 export type RateLimitedCredentials = {

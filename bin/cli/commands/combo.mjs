@@ -1,4 +1,4 @@
-﻿import { Option } from "commander";
+import { Option } from "commander";
 import { printHeading } from "../io.mjs";
 import { withRuntime } from "../runtime.mjs";
 import { t } from "../i18n.mjs";

@@ -1,4 +1,4 @@
-﻿import http from "node:http";
+import http from "node:http";
 import net from "node:net";
 import { randomUUID } from "node:crypto";
 import { createResponsesWsProxy } from "./responses-ws-proxy.mjs";

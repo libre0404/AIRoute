@@ -1,4 +1,4 @@
-﻿import { FREE_MODEL_BUDGETS } from "@AIRoute/open-sse/config/freeModelCatalog";
+import { FREE_MODEL_BUDGETS } from "@AIRoute/open-sse/config/freeModelCatalog";
 import { resolveProviderId } from "@/shared/constants/providers";
 
 /**

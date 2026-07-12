@@ -1,4 +1,4 @@
-﻿/**
+/**
  * quotaFetchThrottle.ts — global min-interval throttle for upstream quota fetches (#6009).
  *
  * Problem: when many accounts on one IP fetch provider quota, firing all the

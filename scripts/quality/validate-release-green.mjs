@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 // scripts/quality/validate-release-green.mjs
 //
 // "Release-green" pre-flight validator (Solution C).

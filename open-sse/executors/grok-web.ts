@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GrokWebExecutor — Grok Web Session Provider
  *
  * Routes requests through Grok's internal NDJSON API using an X/Grok

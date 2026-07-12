@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Per-request Auto-Combo routing controls (#6023 / #6024 / #6025).
  *
  * These let a caller steer an `auto` combo on a single request via response-safe

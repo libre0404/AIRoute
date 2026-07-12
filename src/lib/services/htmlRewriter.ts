@@ -1,4 +1,4 @@
-﻿/**
+/**
  * HTML rewriter for the embedded-service reverse proxy.
  *
  * Rewrites an HTML document so that absolute-path URLs point through the

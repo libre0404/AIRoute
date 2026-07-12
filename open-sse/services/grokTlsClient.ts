@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Browser-TLS-impersonating HTTP client for grok.com.
  *
  * Why this exists: Grok sits behind Cloudflare Enterprise which pins

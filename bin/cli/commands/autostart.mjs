@@ -1,4 +1,4 @@
-﻿import { t } from "../i18n.mjs";
+import { t } from "../i18n.mjs";
 import { emit } from "../output.mjs";
 
 export function registerAutostart(program) {

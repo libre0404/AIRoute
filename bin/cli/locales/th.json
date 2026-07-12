@@ -1,4 +1,4 @@
-﻿{
+{
   "common": {
     "error": "ข้อผิดพลาด: {message}",
     "serverOffline": "เซิร์ฟเวอร์ AIRoute ออฟไลน์ เริ่มด้วย: AIRoute serve",

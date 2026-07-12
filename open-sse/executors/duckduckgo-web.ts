@@ -1,4 +1,4 @@
-﻿import { generateKeyPairSync, randomUUID } from "node:crypto";
+import { generateKeyPairSync, randomUUID } from "node:crypto";
 import vm from "node:vm";
 import { solveDuckDuckGoChallenge, makeDuckDuckGoFeSignals } from "./duckduckgo-web/challenge.ts";
 import { BaseExecutor, type ExecuteInput } from "./base.ts";

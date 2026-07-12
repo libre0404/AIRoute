@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import {
   SEARCH_PROVIDERS,
   SEARCH_CREDENTIAL_FALLBACKS,

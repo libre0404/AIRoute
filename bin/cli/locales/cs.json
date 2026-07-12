@@ -1,4 +1,4 @@
-﻿{
+{
   "common": {
     "error": "Chyba: {message}",
     "serverOffline": "Server AIRoute je offline. Spusťte: AIRoute serve",

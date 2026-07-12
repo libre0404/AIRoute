@@ -1,4 +1,4 @@
-﻿import { translateResponse, initState } from "../translator/index.ts";
+import { translateResponse, initState } from "../translator/index.ts";
 import { FORMATS } from "../translator/formats.ts";
 import { trackPendingRequest, appendRequestLog } from "@/lib/usageDb";
 import {

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GET  /api/tools/agent-bridge/config — export portable AgentBridge config
  * POST /api/tools/agent-bridge/config — import portable AgentBridge config
  *

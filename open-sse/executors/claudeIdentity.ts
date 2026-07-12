@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Claude Code identity helpers used by the native `claude` provider when
  * authenticating with an OAuth token. Anthropic's user:sessions:claude_code
  * scope expects request shape that matches a real claude-cli session;

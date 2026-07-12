@@ -1,4 +1,4 @@
-﻿/**
+/**
  * IP Filter Middleware — Phase 6
  *
  * IP-based access control with blacklist, whitelist, priority modes, and temporary bans.

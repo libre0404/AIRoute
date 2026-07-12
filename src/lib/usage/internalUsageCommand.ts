@@ -1,4 +1,4 @@
-﻿import type { ProviderLimitsCacheEntry } from "@/lib/db/providerLimits";
+import type { ProviderLimitsCacheEntry } from "@/lib/db/providerLimits";
 import {
   buildApiKeyUsageLimitPercentText,
   type ApiKeyUsageLimitStatus,

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * OpenAI Codex CLI — MITM target descriptor.
  */
 import type { MitmTarget } from "../types";

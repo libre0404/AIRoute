@@ -1,4 +1,4 @@
-﻿import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { CORS_HEADERS, handleCorsOptions } from "@/shared/utils/cors";
 import { type LeaderboardScope, getTopN } from "@/lib/gamification/leaderboard";
 import { getConnectedServerByKeyHash } from "@/lib/db/gamification";

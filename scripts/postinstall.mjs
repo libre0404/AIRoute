@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 /**
  * Post-install warm-up for AIRoute native runtimes.
  *

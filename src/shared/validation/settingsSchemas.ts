@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Settings-specific Zod schemas.
  *
  * Extracted from schemas.ts to work around the webpack barrel-file

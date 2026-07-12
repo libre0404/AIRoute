@@ -1,4 +1,4 @@
-﻿/**
+/**
  * A2A Skill: Quota Management
  *
  * Handles natural-language queries about provider quotas and

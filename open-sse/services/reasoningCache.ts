@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Reasoning Replay Cache — In-memory + DB hybrid service.
  *
  * Captures reasoning_content from thinking-mode model responses (DeepSeek V4,

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Proxy Egress IP visibility.
  *
  * The proxy logs already capture the INBOUND client IP (x-forwarded-for), but

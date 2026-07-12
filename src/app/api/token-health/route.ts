@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Token Health API Route — Batch G
  *
  * Exposes aggregate health status of OAuth tokens.

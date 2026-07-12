@@ -1,4 +1,4 @@
-﻿/**
+/**
  * qodercli command resolution (#6263).
  *
  * Extracted from `qoderCli.ts` (frozen at the file-size baseline) so the

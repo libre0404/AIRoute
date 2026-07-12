@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Per-API-Key Token Limits — CRUD Route
  *
  * Management-class endpoint for listing, creating/updating, and deleting

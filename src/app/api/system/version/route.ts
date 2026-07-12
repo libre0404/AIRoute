@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GET  /api/system/version  — Returns current version and latest available on npm
  * POST /api/system/version  — Triggers a deployment-aware background update
  *

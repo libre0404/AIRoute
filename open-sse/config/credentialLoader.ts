@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Credential Loader — Reads provider credentials from an external JSON file.
  *
  * Loads `provider-credentials.json` from the data directory and merges it

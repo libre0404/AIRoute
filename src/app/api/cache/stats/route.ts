@@ -1,4 +1,4 @@
-﻿import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { getPromptCache } from "@/lib/cacheLayer";
 import { isAuthenticated } from "@/shared/utils/apiAuth";
 import { sanitizeErrorMessage } from "@AIRoute/open-sse/utils/error.ts";

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * POST /api/tools/traffic-inspector/capture-modes/http-proxy
  *
  * Start or stop the HTTP_PROXY listener (default port 8080).

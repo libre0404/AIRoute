@@ -1,4 +1,4 @@
-﻿import {
+import {
   getProviderConnections,
   createProviderConnection,
   updateProviderConnection,

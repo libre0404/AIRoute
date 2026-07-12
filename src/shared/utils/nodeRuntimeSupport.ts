@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Shared Node.js runtime support policy for AIRoute.
  *
  * This module is intentionally plain ESM JavaScript so it can be reused by:

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Plugin manifest validator — Zod schema for plugin.json files.
  *
  * @module plugins/manifest

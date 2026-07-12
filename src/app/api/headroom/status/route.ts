@@ -1,4 +1,4 @@
-﻿import { getSettings } from "@/lib/db/settings";
+import { getSettings } from "@/lib/db/settings";
 import { DEFAULT_HEADROOM_URL, getHeadroomStatus } from "@/lib/headroom/detect";
 import { getManagedPid } from "@/lib/headroom/process";
 import { createErrorResponse } from "@/lib/api/errorResponse";

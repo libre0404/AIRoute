@@ -1,4 +1,4 @@
-﻿import type { RegistryEntry } from "../../shared.ts";
+import type { RegistryEntry } from "../../shared.ts";
 
 // Factory AI ("Factory Droids") — the hosted subscription gateway behind the
 // local `droid` CLI. AIRoute already integrates Droid as a CLI tool at

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * quota/quotaCombos.ts — Auto-mint / prune `quotaShared-*` virtual combo models
  * when a quota pool gains or loses allocations (Phase B2).
  *

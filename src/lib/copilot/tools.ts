@@ -1,4 +1,4 @@
-﻿/**
+/**
  * AIRoute Copilot — Tool definitions
  *
  * Tools the copilot can execute to configure AIRoute on behalf of the user,

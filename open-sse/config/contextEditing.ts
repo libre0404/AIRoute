@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Anthropic Context Editing — delegated, server-side compression for Claude.
  *
  * Unlike AIRoute's local compression engines (which rewrite the request body

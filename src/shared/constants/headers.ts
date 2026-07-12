@@ -1,4 +1,4 @@
-﻿export const AIRoute_RESPONSE_HEADERS = {
+export const AIRoute_RESPONSE_HEADERS = {
   cache: "X-AIRoute-Cache",
   cacheHit: "X-AIRoute-Cache-Hit",
   compression: "X-AIRoute-Compression",

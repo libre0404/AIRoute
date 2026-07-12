@@ -1,4 +1,4 @@
-﻿// Re-export from open-sse with local logger
+// Re-export from open-sse with local logger
 import * as log from "../utils/logger";
 import {
   updateProviderConnection,

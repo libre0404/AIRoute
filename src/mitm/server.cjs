@@ -1,4 +1,4 @@
-﻿const https = require("https");
+const https = require("https");
 const net = require("net");
 const fs = require("fs");
 const path = require("path");

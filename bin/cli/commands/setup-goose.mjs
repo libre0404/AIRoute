@@ -1,4 +1,4 @@
-﻿/**
+/**
  * AIRoute setup-goose — configure Goose (block/goose) for AIRoute.
  *
  * Goose is a terminal AI agent with a file-based config at

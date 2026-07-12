@@ -1,4 +1,4 @@
-﻿/**
+/**
  * WindsurfExecutor — routes requests to Windsurf (Devin CLI / Codeium) backend.
  *
  * Wire protocol: gRPC-web over HTTPS (Content-Type: application/grpc-web+proto).

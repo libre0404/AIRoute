@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Credential Health Check Scheduler
  *
  * Background scheduler that periodically tests provider credential health.

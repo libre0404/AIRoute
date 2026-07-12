@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Cryptographically-secure RNG helpers for load-balancing / routing selection.
  *
  * AIRoute's combo target selection (weighted / random / power-of-two-choices), the

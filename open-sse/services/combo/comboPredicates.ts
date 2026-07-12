@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Pure combo predicates + tuning constants extracted from combo.ts.
  *
  * Side-effect-free helpers and the combo-loop tuning constants moved out of the

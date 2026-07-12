@@ -1,4 +1,4 @@
-﻿/**
+/**
  * CLI Fingerprint Definitions
  *
  * Defines per-provider "fingerprints" that control the exact ordering of HTTP headers

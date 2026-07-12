@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Pure helpers for the Codex CLI tool card Apply/Reset button disabled state.
  *
  * Extracted so the disabled-state logic is unit-testable without rendering the

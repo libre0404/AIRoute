@@ -1,4 +1,4 @@
-﻿/**
+/**
  * AIRoute MCP Server — barrel export.
  */
 export { createMcpServer, startMcpStdio } from "./server.ts";

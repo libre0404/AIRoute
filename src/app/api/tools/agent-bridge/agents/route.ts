@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GET /api/tools/agent-bridge/agents
  * Returns the full list of registered MITM targets mapped to a stable UI shape.
  * LOCAL_ONLY: registered in routeGuard.ts

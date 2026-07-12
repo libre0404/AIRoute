@@ -8,7 +8,7 @@
  * LOCAL_ONLY enforced by routeGuard.
  */
 
-import { buildErrorBody, sanitizeErrorMessage } from "@omniroute/open-sse/utils/error.ts";
+import { buildErrorBody, sanitizeErrorMessage } from "@AIRoute/open-sse/utils/error.ts";
 import { globalTrafficBuffer } from "@/mitm/inspector/buffer";
 
 interface Params {

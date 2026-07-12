@@ -4,7 +4,7 @@
  */
 
 import { NextResponse } from "next/server";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
+import { sanitizeErrorMessage } from "@AIRoute/open-sse/utils/error";
 import { getWebhook, getDeliveries } from "@/lib/localDb";
 import { requireManagementAuth } from "@/lib/api/requireManagementAuth";
 

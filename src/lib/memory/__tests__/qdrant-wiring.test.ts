@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Tests for the Qdrant wiring contract used by createMemory.
  *
  * createMemory in store.ts performs a best-effort fire-and-forget call to

@@ -1,4 +1,4 @@
-﻿import { getEmbeddingProvider } from "@AIRoute/open-sse/config/embeddingRegistry.ts";
+import { getEmbeddingProvider } from "@AIRoute/open-sse/config/embeddingRegistry.ts";
 import { getRerankProvider } from "@AIRoute/open-sse/config/rerankRegistry.ts";
 import { getImageProvider } from "@AIRoute/open-sse/config/imageRegistry.ts";
 import { getVideoProvider } from "@AIRoute/open-sse/config/videoRegistry.ts";

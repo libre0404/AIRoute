@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Compression response header echo (#6422).
  *
  * When a request carries `x-AIRoute-compression`, docs promise the response echoes

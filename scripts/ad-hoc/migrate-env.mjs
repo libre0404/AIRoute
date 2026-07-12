@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 
 /**
  * AIRoute v3.3 -> v3.4 Environment Migration Script

@@ -1,4 +1,4 @@
-﻿import { createHash } from "node:crypto";
+import { createHash } from "node:crypto";
 import { BaseExecutor, type ExecuteInput } from "./base.ts";
 import { prepareToolMessages, buildToolAwareResult } from "../translator/webTools.ts";
 import { sanitizeErrorMessage } from "../utils/error.ts";

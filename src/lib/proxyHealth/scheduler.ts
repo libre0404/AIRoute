@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Proxy Health Check Scheduler
  *
  * Periodically tests all proxy registry entries and automatically

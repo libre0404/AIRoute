@@ -1,4 +1,4 @@
-﻿/**
+/**
  * browserPool.ts — Shared stealth browser pool for web-cookie providers.
  *
  * The DuckDuckGo VQD challenge and Claude web's Cloudflare Turnstile both

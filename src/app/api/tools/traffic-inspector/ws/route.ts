@@ -1,4 +1,4 @@
-﻿/**
+/**
  * WebSocket endpoint for the Traffic Inspector live stream.
  *
  * Clients connect here to receive real-time `WsEvent` frames

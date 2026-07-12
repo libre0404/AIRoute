@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Progress Tracker — Phase 9.3
  *
  * Emits SSE `event: progress` events during long streaming responses.

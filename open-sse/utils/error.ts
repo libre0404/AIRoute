@@ -1,4 +1,4 @@
-﻿import { CORS_HEADERS } from "./cors.ts";
+import { CORS_HEADERS } from "./cors.ts";
 import { unwrapClinepassEnvelope } from "./clinepassEnvelope.ts";
 import { getDefaultErrorMessage, getErrorInfo } from "../config/errorConfig.ts";
 import { normalizePayloadForLog } from "@/lib/logPayloads";

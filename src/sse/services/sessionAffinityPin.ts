@@ -1,4 +1,4 @@
-﻿/**
+/**
  * #5903 — session-affinity-pin resolution + TTL, extracted from auth.ts as a
  * pure leaf so the frozen god-file `auth.ts` does not grow.
  *

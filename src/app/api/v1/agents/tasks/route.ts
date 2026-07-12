@@ -1,4 +1,4 @@
-﻿import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { getAgent } from "@/lib/cloudAgent/registry";
 import type { CloudAgentTaskRow } from "@/lib/cloudAgent/db";
 import {

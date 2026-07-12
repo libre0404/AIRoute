@@ -8,7 +8,7 @@
  * 404 if skill not found in catalog.
  * 502 if upstream GitHub fetch fails.
  */
-import { buildErrorBody } from "@omniroute/open-sse/utils/error.ts";
+import { buildErrorBody } from "@AIRoute/open-sse/utils/error.ts";
 import { getSkillById, fetchSkillMarkdown } from "@/lib/agentSkills/catalog";
 
 export const dynamic = "force-dynamic";

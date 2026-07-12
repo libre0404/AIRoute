@@ -1,4 +1,4 @@
-﻿import { z } from "zod";
+import { z } from "zod";
 import { createObsidianClient, createSyncServerClient, getSyncToken } from "../../../src/lib/obsidian/api.ts";
 import {
   getObsidianToken,

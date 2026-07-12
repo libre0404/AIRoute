@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GET  /api/tools/traffic-inspector/hosts — list custom host capture entries
  * POST /api/tools/traffic-inspector/hosts — add a host (DB record + DNS propagation)
  *

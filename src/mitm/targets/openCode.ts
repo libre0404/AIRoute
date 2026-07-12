@@ -1,4 +1,4 @@
-﻿/**
+/**
  * OpenCode — MITM target descriptor.
  *
  * Hosts: `opencode.ai`.

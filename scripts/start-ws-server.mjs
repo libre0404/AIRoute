@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Live Dashboard WebSocket Server — Startup Script
  *
  * This script starts the live dashboard WebSocket server as a separate

@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { requireManagementAuth } from "@/lib/api/requireManagementAuth";
 import { extractClaudeAuthZip } from "@/lib/oauth/utils/claudeAuthZipExtract";
 import { sanitizeErrorMessage } from "@AIRoute/open-sse/utils/error";

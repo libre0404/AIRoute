@@ -1,4 +1,4 @@
-﻿type JsonRecord = Record<string, unknown>;
+type JsonRecord = Record<string, unknown>;
 
 // Models that reject `thinking.type:"adaptive"` and `output_config.effort` —
 // today, all Claude Haiku-tier models (4.5 / 3.5 / dated and aliased). Adaptive

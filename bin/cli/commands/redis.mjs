@@ -1,4 +1,4 @@
-﻿import { spawn } from "node:child_process";
+import { spawn } from "node:child_process";
 import { promisify } from "node:util";
 import { execFile as execFileCb } from "node:child_process";
 

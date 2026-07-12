@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GET /api/v1/search/analytics
  *
  * Returns search request statistics from call_logs (request_type = 'search').

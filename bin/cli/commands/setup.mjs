@@ -1,4 +1,4 @@
-﻿import { fileURLToPath } from "node:url";
+import { fileURLToPath } from "node:url";
 import { dirname, resolve } from "node:path";
 import { createPrompt, printHeading, printInfo, printSuccess } from "../io.mjs";
 import { openAIRouteDb } from "../sqlite.mjs";

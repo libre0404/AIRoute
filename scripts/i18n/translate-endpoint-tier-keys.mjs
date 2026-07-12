@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 /**
  * One-shot script: translates the 10 new `endpoint.*` tier/badge keys
  * to every non-English locale in src/i18n/messages/.

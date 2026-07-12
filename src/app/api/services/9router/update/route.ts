@@ -1,4 +1,4 @@
-﻿import { getSupervisor } from "@/lib/services/registry";
+import { getSupervisor } from "@/lib/services/registry";
 import { getOrInitSupervisor } from "../_lib";
 import {
   getInstalledVersion,

@@ -1,4 +1,4 @@
-﻿import { handleAudioSpeech } from "@AIRoute/open-sse/handlers/audioSpeech.ts";
+import { handleAudioSpeech } from "@AIRoute/open-sse/handlers/audioSpeech.ts";
 import { withInjectionGuard } from "@/middleware/promptInjectionGuard";
 import { getProviderCredentials, clearRecoveredProviderState } from "@/sse/services/auth";
 import {

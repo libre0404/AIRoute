@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GET /api/docs — Rendered API reference (Redoc UI).
  *
  * Serves an HTML page that loads Redoc from a CDN and points it at

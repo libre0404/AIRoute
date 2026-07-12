@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 // scripts/check/check-error-helper.mjs
 // Gate Hard Rule #12 (error sanitization): error responses/results built in
 // open-sse/executors/ and open-sse/handlers/ MUST route through the helpers in

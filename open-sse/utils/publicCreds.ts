@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Public credentials decoder.
  *
  * Some upstream providers (Gemini, Antigravity, Windsurf/Devin CLI) ship

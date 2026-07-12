@@ -1,4 +1,4 @@
-﻿import { handleChat } from "@/sse/handlers/chat";
+import { handleChat } from "@/sse/handlers/chat";
 import { withEarlyStreamKeepalive } from "@AIRoute/open-sse/utils/earlyStreamKeepalive";
 import { withInjectionGuard } from "@/middleware/promptInjectionGuard";
 import { resolveResponsesApiModel } from "@/app/api/internal/codex-responses-ws/modelResolution";

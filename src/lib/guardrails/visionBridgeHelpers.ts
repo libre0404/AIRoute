@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Vision Bridge helper functions for image processing.
  */
 import { fetchRemoteImage } from "@/shared/network/remoteImageFetch";

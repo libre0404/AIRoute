@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Community server federation — connect, sync, and manage servers.
  *
  * @module lib/gamification/servers

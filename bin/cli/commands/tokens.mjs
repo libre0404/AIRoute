@@ -1,4 +1,4 @@
-﻿import { apiFetch } from "../api.mjs";
+import { apiFetch } from "../api.mjs";
 import { emit } from "../output.mjs";
 import { printSuccess, printError, printInfo } from "../io.mjs";
 import { t } from "../i18n.mjs";

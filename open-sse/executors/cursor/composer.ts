@@ -1,4 +1,4 @@
-﻿// Composer thinking-as-content decoding for the Cursor executor (verbatim, no host imports).
+// Composer thinking-as-content decoding for the Cursor executor (verbatim, no host imports).
 
 // ─── Composer thinking-as-content decoding ─────────────────────────────────
 //

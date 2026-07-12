@@ -1,4 +1,4 @@
-﻿import fs from "fs/promises";
+import fs from "fs/promises";
 import path from "path";
 import { getProviderConnectionById } from "@/lib/localDb";
 import { createBackup } from "@/shared/services/backupService";

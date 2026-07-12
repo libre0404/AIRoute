@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Static CORS headers for route handlers.
  *
  * `Access-Control-Allow-Origin` is intentionally NOT set here. The middleware

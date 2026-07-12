@@ -1,4 +1,4 @@
-﻿import {
+import {
   getCustomModels,
   getModelIsHidden,
   getSyncedAvailableModelsForConnection,

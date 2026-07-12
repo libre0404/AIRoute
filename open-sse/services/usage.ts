@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Usage Fetcher - Get usage data from provider APIs
  */
 

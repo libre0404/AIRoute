@@ -1,4 +1,4 @@
-﻿/**
+/**
  * AIRoute Electron Desktop App - Main Process
  *
  * This is the entry point for the Electron desktop application.

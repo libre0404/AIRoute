@@ -1,4 +1,4 @@
-﻿/**
+/**
  * OpenAI Codex CLI handler.
  *
  * Host: `chatgpt.com` (Codex paths).

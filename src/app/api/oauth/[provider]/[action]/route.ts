@@ -24,7 +24,7 @@ import {
 import { getConsistentMachineId } from "@/shared/utils/machineId";
 import { syncToCloud } from "@/lib/cloudSync";
 import { startLocalServer } from "@/lib/oauth/utils/server";
-import { runWithProxyContextOrDirect } from "@omniroute/open-sse/utils/proxyFetch.ts";
+import { runWithProxyContextOrDirect } from "@AIRoute/open-sse/utils/proxyFetch.ts";
 import {
   jsonObjectSchema,
   oauthDeviceCompleteSchema,
@@ -34,7 +34,7 @@ import {
 } from "@/shared/validation/schemas";
 import { isValidationFailure, validateBody } from "@/shared/validation/helpers";
 import { isAuthRequired, isAuthenticated } from "@/shared/utils/apiAuth";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
+import { sanitizeErrorMessage } from "@AIRoute/open-sse/utils/error";
 import { keychainImportOnlyGuard } from "./keychainImportOnly";
 
 // Use globalThis to persist callback server state across Next.js HMR reloads

@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import type { EngineConfigField } from "@AIRoute/open-sse/services/compression/engines/types";
 
 export interface EngineConfigFormProps {

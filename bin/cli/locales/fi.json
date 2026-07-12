@@ -1,4 +1,4 @@
-﻿{
+{
   "common": {
     "error": "Virhe: {message}",
     "serverOffline": "AIRoute-palvelin on offline. Käynnistä komennolla: AIRoute serve",

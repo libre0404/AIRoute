@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Cline (cline.bot) auth-shape helpers.
  *
  * Cline's API expects the bearer token to be prefixed with `workos:` (the

@@ -1,4 +1,4 @@
-﻿import { setTimeout as sleep } from "node:timers/promises";
+import { setTimeout as sleep } from "node:timers/promises";
 import { getCliToken, CLI_TOKEN_HEADER } from "./utils/cliToken.mjs";
 import { resolveActiveContext } from "./contexts.mjs";
 

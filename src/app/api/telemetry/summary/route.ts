@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { buildTelemetryPayload } from "@/lib/monitoring/observability";
 import { getTelemetrySummary } from "@/shared/utils/requestTelemetry";
 import { sanitizeErrorMessage } from "@AIRoute/open-sse/utils/error";

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * API: OpenAPI Spec
  * GET — returns the parsed openapi.yaml as structured JSON catalog
  */

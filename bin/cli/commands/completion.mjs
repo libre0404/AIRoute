@@ -1,4 +1,4 @@
-﻿import { existsSync, writeFileSync, readFileSync, mkdirSync } from "node:fs";
+import { existsSync, writeFileSync, readFileSync, mkdirSync } from "node:fs";
 import { join, dirname } from "node:path";
 import { homedir } from "node:os";
 import { t } from "../i18n.mjs";

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * zodToTsSignature — converts a Zod v4 object schema into a compact one-line
  * TypeScript function signature string. Never throws.
  *

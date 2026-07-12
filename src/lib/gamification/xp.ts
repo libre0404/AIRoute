@@ -1,4 +1,4 @@
-﻿/**
+/**
  * XP/Level Engine for AIRoute Gamification
  *
  * Pure functions for XP calculations, level progression, and reward definitions.

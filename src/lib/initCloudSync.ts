@@ -1,4 +1,4 @@
-﻿import initializeCloudSync from "@/shared/services/initializeCloudSync";
+import initializeCloudSync from "@/shared/services/initializeCloudSync";
 import { startBudgetResetJob } from "@/lib/jobs/budgetResetJob";
 import { startModelSyncScheduler } from "@/shared/services/modelSyncScheduler";
 

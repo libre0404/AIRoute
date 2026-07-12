@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GET /api/tools/agent-bridge/diagnose
  *
  * Capture-pipeline self-test (Gap 12). Runs the independent checks that

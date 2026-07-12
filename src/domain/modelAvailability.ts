@@ -1,4 +1,4 @@
-﻿import {
+import {
   getAllModelLockouts,
   clearModelLock,
   type ModelLockoutInfo,

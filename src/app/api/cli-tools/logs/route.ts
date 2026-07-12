@@ -1,4 +1,4 @@
-﻿/**
+/**
  * CLI Log Stream API — GET /api/cli-tools/logs
  *
  * Reads the application log file and returns matching entries.

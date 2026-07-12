@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Plugin SDK — typed API for plugin developers.
  *
  * Provides `definePlugin()` factory and re-exports all types needed

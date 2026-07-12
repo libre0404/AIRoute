@@ -1,4 +1,4 @@
-﻿import { getImageProvider } from "@AIRoute/open-sse/config/imageRegistry";
+import { getImageProvider } from "@AIRoute/open-sse/config/imageRegistry";
 
 import { getProviderOutboundGuard } from "@/shared/network/outboundUrlGuard";
 import {

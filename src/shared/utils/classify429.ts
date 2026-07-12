@@ -1,4 +1,4 @@
-﻿/**
+/**
  * 429 response classifier — distinguish rate-limit from quota-exhausted.
  *
  * Most LLM providers return HTTP 429 for two semantically different reasons:

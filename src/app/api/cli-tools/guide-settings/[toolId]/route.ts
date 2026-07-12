@@ -10,7 +10,7 @@ import { mergeOpenCodeConfigText } from "@/shared/services/opencodeConfig";
 import { guideSettingsSaveSchema } from "@/shared/validation/schemas";
 import { isValidationFailure, validateBody } from "@/shared/validation/helpers";
 import { resolveApiKey, getOrCreateApiKey } from "@/shared/services/apiKeyResolver";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
+import { sanitizeErrorMessage } from "@AIRoute/open-sse/utils/error";
 
 /**
  * POST /api/cli-tools/guide-settings/:toolId

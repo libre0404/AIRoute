@@ -1,4 +1,4 @@
-﻿import { printHeading, printInfo, printSuccess, printError } from "../io.mjs";
+import { printHeading, printInfo, printSuccess, printError } from "../io.mjs";
 import { homedir } from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";

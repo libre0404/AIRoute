@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Quota Cache — Domain Layer
  *
  * In-memory cache of provider quota data per connectionId.

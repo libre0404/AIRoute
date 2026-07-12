@@ -1,4 +1,4 @@
-﻿/**
+/**
  * QwenWebExecutor — Alibaba Tongyi Qwen Chat via chat.qwen.ai (v2 API)
  *
  * Routes requests through Qwen's consumer chat API. The legacy v1 endpoint

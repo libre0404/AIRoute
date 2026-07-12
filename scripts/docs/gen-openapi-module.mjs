@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 /**
  * gen-openapi-module.mjs — build helper that reads docs/openapi.yaml,
  * flattens the path/method matrix, and emits

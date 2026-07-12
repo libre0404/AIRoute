@@ -1,4 +1,4 @@
-﻿/**
+/**
  * generator.ts — idempotent SKILL.md generator for all 42 agent skills.
  *
  * Usage (library):

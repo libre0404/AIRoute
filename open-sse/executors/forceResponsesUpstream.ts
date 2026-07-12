@@ -1,4 +1,4 @@
-﻿import { getOpenAICompatibleType } from "../services/provider.ts";
+import { getOpenAICompatibleType } from "../services/provider.ts";
 
 /**
  * Force OpenAI-compatible upstreams onto the native `/responses` endpoint.

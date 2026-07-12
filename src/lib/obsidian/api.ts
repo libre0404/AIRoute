@@ -1,4 +1,4 @@
-﻿import { getDbInstance } from "@/lib/db/core";
+import { getDbInstance } from "@/lib/db/core";
 
 const DEFAULT_OBSIDIAN_BASE_URL = "http://127.0.0.1:27123";
 const MAX_RETRIES = 2;

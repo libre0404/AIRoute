@@ -5,7 +5,7 @@ import { parsePastedCredentials } from "@/lib/oauth/pasteCredentials";
 import { oauthPasteCredentialsSchema } from "@/shared/validation/schemas";
 import { isValidationFailure, validateBody } from "@/shared/validation/helpers";
 import { isAuthRequired, isAuthenticated } from "@/shared/utils/apiAuth";
-import { sanitizeErrorMessage } from "@omniroute/open-sse/utils/error";
+import { sanitizeErrorMessage } from "@AIRoute/open-sse/utils/error";
 
 /**
  * POST /api/oauth/[provider]/paste-credentials

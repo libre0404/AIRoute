@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Extract a human-readable message from an API error response body.
  *
  * AIRoute's structured error envelope is `{ error: { code, message,

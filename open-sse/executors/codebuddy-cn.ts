@@ -1,4 +1,4 @@
-﻿import { DefaultExecutor } from "./default.ts";
+import { DefaultExecutor } from "./default.ts";
 import type { ProviderCredentials } from "./base.ts";
 
 /**

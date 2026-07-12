@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Pre-request Hook Registry
  *
  * Singleton registry for pre-request middleware hooks.

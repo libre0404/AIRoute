@@ -1,4 +1,4 @@
-﻿/**
+/**
  * A2A (Agent-to-Agent) Schemas — Contracts for AIRoute A2A Server.
  *
  * Defines the Agent Card structure, Task lifecycle, Message format,

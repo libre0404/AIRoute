@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Core type definitions for AIRoute.
  *
  * These types describe the main data structures flowing through the proxy

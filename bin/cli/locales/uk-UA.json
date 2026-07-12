@@ -1,4 +1,4 @@
-﻿{
+{
   "common": {
     "error": "Помилка: {message}",
     "serverOffline": "Сервер AIRoute відключено. Запустіть: AIRoute serve",

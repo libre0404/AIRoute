@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GET  /api/tools/agent-bridge/cert   — cert status
  * POST /api/tools/agent-bridge/cert   — trust (install) the cert
  * LOCAL_ONLY: registered in routeGuard.ts

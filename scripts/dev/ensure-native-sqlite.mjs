@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env node
+#!/usr/bin/env node
 
 /**
  * AIRoute — Dev-startup native SQLite ABI guard.

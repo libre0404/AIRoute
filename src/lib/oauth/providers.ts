@@ -1,4 +1,4 @@
-﻿/**
+/**
  * OAuth Provider Configurations and Handlers
  *
  * This file re-exports from the modular providers/ directory.

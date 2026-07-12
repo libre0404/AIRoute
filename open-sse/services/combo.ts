@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Shared combo (model combo) handling with fallback support
  * Supports: priority, weighted, round-robin, random, least-used, cost-optimized,
  * reset-aware, reset-window, strict-random, auto, fill-first, p2c, lkgp,

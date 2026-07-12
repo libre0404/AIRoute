@@ -1,4 +1,4 @@
-﻿/**
+/**
  * AIRoute setup-continue — configure Continue (continue.dev) for AIRoute.
  *
  * Continue uses a file-based, mergeable ~/.continue/config.yaml shared by the VS

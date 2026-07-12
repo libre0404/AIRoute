@@ -1,4 +1,4 @@
-﻿import { getProviderConnections } from "@/lib/db/providers";
+import { getProviderConnections } from "@/lib/db/providers";
 import { ALL_TARGETS } from "@/mitm/targets/index";
 import AgentBridgePageClient from "./AgentBridgePageClient";
 import type { AgentBridgePageData } from "./AgentBridgePageClient";

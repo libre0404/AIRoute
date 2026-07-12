@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Sensitive word obfuscation for Antigravity requests.
  *
  * Obfuscates client tool names (OpenCode, Cursor, Claude Code, etc.) using

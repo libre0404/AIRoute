@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Regression tests for the proxy-leak fix in chatgptTlsClient.
  *
  * Bug context (#2022): tlsFetchChatGpt() built its native tls-client-node

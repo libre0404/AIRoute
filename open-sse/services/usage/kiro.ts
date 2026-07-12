@@ -1,4 +1,4 @@
-﻿/**
+/**
  * usage/kiro.ts — Kiro / Amazon Q (AWS CodeWhisperer) usage fetcher + quota helpers.
  *
  * Extracted from services/usage.ts (god-file decomposition): the Kiro family — overage

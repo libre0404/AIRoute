@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Antigravity IDE handler.
  *
  * Antigravity (the Gemini-based IDE) sends requests in native Gemini

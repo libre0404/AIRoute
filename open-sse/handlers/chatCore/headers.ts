@@ -1,4 +1,4 @@
-﻿export function getHeaderValueCaseInsensitive(
+export function getHeaderValueCaseInsensitive(
   headers: Record<string, unknown> | Headers | null | undefined,
   targetName: string
 ) {

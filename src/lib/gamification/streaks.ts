@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Streak Tracker for AIRoute Gamification
  *
  * Tracks consecutive daily active usage per API key.

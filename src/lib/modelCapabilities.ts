@@ -1,4 +1,4 @@
-﻿import {
+import {
   PROVIDER_ID_TO_ALIAS,
   PROVIDER_MODELS,
 } from "@AIRoute/open-sse/config/providerModels.ts";

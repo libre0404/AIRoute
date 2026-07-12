@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Codex (OpenAI) browser-driven device authorization flow.
  *
  * Runs ENTIRELY in the user's browser. `auth.openai.com` blocks datacenter IPs

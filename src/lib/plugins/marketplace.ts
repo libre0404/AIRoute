@@ -1,4 +1,4 @@
-﻿import { getSettings } from "../db/settings";
+import { getSettings } from "../db/settings";
 import dns from "node:dns/promises";
 import { isPrivateHost } from "@/shared/network/outboundUrlGuard";
 import { safeOutboundFetch } from "@/shared/network/safeOutboundFetch";

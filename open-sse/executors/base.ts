@@ -1,4 +1,4 @@
-﻿import { HTTP_STATUS, FETCH_TIMEOUT_MS } from "../config/constants.ts";
+import { HTTP_STATUS, FETCH_TIMEOUT_MS } from "../config/constants.ts";
 import {
   mergeClientAnthropicBeta,
   normalizeAnthropicHeaderVariants,

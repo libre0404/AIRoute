@@ -1,4 +1,4 @@
-﻿{
+{
   "common": {
     "error": "Hiba: {message}",
     "serverOffline": "Az AIRoute szerver offline. Indítsa el: AIRoute serve",

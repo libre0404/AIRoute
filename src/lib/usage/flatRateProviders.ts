@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Flat-rate (subscription / cookie-web) provider classification — issue #5552.
  *
  * Some providers are billed at a flat rate (a subscription or a coding plan),

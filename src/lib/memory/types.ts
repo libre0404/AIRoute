@@ -1,4 +1,4 @@
-﻿// Memory system type definitions for AIRoute
+// Memory system type definitions for AIRoute
 // These types support the memory management system for AI agents
 
 /**

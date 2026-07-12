@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GET /api/guardrails — list the registered runtime guardrails and their status
  * (name / enabled / priority). Guardrails run on every request; per-call opt-out
  * is done via the `x-AIRoute-disabled-guardrails` header, so there is no

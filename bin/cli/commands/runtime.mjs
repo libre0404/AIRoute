@@ -1,4 +1,4 @@
-﻿import { rmSync } from "node:fs";
+import { rmSync } from "node:fs";
 import { t } from "../i18n.mjs";
 import { emit } from "../output.mjs";
 import { withSpinner } from "../spinner.mjs";

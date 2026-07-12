@@ -1,4 +1,4 @@
-﻿/**
+/**
  * AIRoute setup-roo — configure Roo Code (RooVeterinaryInc.roo-cline) for AIRoute.
  *
  * Roo is a VS Code extension (Cline fork). Its live settings live in opaque VS

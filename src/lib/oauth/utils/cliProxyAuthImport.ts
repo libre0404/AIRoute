@@ -1,4 +1,4 @@
-﻿/**
+/**
  * #1934: import OAuth credentials saved by CLIProxyAPI (router-for-me/CLIProxyAPI)
  * from its config dir (`~/.cli-proxy-api/`) so users don't have to re-login every
  * account individually.

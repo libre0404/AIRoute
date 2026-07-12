@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Batch model-test endpoint.
  *
  * Loops sequentially over `modelIds` so the `withRateLimit` Bottleneck can

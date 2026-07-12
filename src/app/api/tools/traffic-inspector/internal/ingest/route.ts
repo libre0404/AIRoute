@@ -1,4 +1,4 @@
-﻿/**
+/**
  * POST /api/tools/traffic-inspector/internal/ingest
  *
  * Internal endpoint consumed by `server.cjs` (D4 fallback) to push

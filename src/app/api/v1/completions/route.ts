@@ -1,4 +1,4 @@
-﻿import { CORS_HEADERS } from "@/shared/utils/cors";
+import { CORS_HEADERS } from "@/shared/utils/cors";
 import { buildClientRawRequest, handleChat } from "@/sse/handlers/chat";
 import { initTranslators } from "@AIRoute/open-sse/translator/index.ts";
 import { createInjectionGuard } from "@/middleware/promptInjectionGuard";

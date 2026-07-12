@@ -1,4 +1,4 @@
-﻿{
+{
   "common": {
     "error": "Kesalahan: {message}",
     "serverOffline": "Server AIRoute sedang offline. Mulai dengan: AIRoute serve",

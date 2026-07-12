@@ -1,4 +1,4 @@
-﻿import { parseModel } from "@AIRoute/open-sse/services/model";
+import { parseModel } from "@AIRoute/open-sse/services/model";
 import {
   getCanonicalModelMetadata,
   type CanonicalModelMetadata,

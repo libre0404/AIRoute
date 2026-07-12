@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Headroom proxy detection helpers.
  *
  * Ported from upstream 9router (decolua/9router @ b55cf36d + 50ed79fe).

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * A/B benchmark for compression engines (F2.4 / L2).
  *
  * Runs the deterministic compression engines through the C1 harness and applies

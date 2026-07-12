@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Fetch Timeout — T-25
  *
  * Wraps fetch() with an AbortController-based timeout.

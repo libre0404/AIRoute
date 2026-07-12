@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { countAuditLog, getAuditLog } from "@/lib/compliance/index";
 import { requireManagementAuth } from "@/lib/api/requireManagementAuth";
 import { AuditLogQuerySchema } from "@/shared/schemas/quota";

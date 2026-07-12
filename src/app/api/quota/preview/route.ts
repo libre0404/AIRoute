@@ -1,4 +1,4 @@
-﻿/**
+/**
  * GET /api/quota/preview — dry-run quota enforcement check
  *
  * Resolves the pool/connection for the given apiKeyId + poolId, then calls

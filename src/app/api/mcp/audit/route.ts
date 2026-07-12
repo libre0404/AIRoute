@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { queryAuditEntries } from "@AIRoute/open-sse/mcp-server/audit";
 import { requireManagementAuth } from "@/lib/api/requireManagementAuth";
 

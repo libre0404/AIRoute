@@ -1,4 +1,4 @@
-﻿import { spawn } from "node:child_process";
+import { spawn } from "node:child_process";
 import { t } from "../i18n.mjs";
 import { resolveActiveContext } from "../contexts.mjs";
 

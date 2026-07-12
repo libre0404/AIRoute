@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Claude Code (Anthropic CLI) — MITM target descriptor.
  *
  * Hosts: `api.anthropic.com`.

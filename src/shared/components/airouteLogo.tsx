@@ -1,4 +1,4 @@
-﻿/**
+/**
  * AIRoute logo SVG — network hub icon with connected nodes.
  * Matches the favicon and app icon design.
  */

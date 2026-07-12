@@ -1,4 +1,4 @@
-﻿import { logToolCall } from "../audit.ts";
+import { logToolCall } from "../audit.ts";
 import { getMcpHttpAuthHeadersForInternalFetch } from "../httpAuthContext.ts";
 import { normalizeQuotaResponse } from "../../../src/shared/contracts/quota.ts";
 import { resolveAIRouteBaseUrl } from "../../../src/shared/utils/resolveAIRouteBaseUrl.ts";

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Emergency Fallback — Budget Exhaustion Redirect
  *
  * When a request fails due to budget exhaustion (HTTP 402 or budget keywords

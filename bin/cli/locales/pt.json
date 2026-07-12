@@ -1,4 +1,4 @@
-﻿{
+{
   "common": {
     "error": "Erro: {message}",
     "serverOffline": "O servidor AIRoute está offline. Inicie com: AIRoute serve",

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Cloudflare Turnstile Solver for Claude Web
  *
  * When cf_clearance expires, this service:

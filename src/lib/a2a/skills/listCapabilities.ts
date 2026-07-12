@@ -1,4 +1,4 @@
-﻿/**
+/**
  * A2A Skill: List Capabilities
  *
  * Returns the full catalog of AIRoute agent skills (22 API + 20 CLI + config)

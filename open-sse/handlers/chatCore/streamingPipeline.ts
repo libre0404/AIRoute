@@ -1,4 +1,4 @@
-﻿/**
+/**
  * chatCore streaming response pipeline assembly (Quality Gate v2 / Fase 9 — chatCore god-file
  * decomposition, #3501).
  *

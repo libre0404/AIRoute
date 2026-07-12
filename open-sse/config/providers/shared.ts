@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Provider Registry — Single source of truth for all provider configuration.
  *
  * Adding a new provider? Just add an entry here. Everything else

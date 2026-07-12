@@ -1,4 +1,4 @@
-﻿import { spawn } from "node:child_process";
+import { spawn } from "node:child_process";
 
 export function parsePort(value, fallback) {
   const parsed = Number.parseInt(String(value), 10);

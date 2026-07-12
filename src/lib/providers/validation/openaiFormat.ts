@@ -1,4 +1,4 @@
-﻿// OpenAI/Gemini-format + Bedrock provider key validators (bedrock, openai-like, command-code, gemini-like, openai-compatible).
+// OpenAI/Gemini-format + Bedrock provider key validators (bedrock, openai-like, command-code, gemini-like, openai-compatible).
 // Extracted from validation.ts (god-file decomposition) — top-level functions; behavior is
 // byte-identical to the original inline defs.
 import { randomUUID } from "node:crypto";

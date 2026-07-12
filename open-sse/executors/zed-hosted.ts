@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ZedHostedExecutor — routes requests to Zed's hosted LLM aggregator
  * (cloud.zed.dev/completions), a multi-format proxy that fronts
  * Anthropic/OpenAI/Google/xAI depending on the requested model.

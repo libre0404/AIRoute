@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import pino from "pino";
 
 import { buildErrorBody } from "@AIRoute/open-sse/utils/error.ts";

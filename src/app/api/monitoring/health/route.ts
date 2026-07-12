@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { getProviderConnections, getSettings } from "@/lib/localDb";
 import { buildHealthPayload } from "@/lib/monitoring/observability";
 import { APP_CONFIG } from "@/shared/constants/config";

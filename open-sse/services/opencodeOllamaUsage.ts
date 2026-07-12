@@ -1,4 +1,4 @@
-﻿import { sanitizeErrorMessage } from "../utils/error.ts";
+import { sanitizeErrorMessage } from "../utils/error.ts";
 
 type JsonRecord = Record<string, unknown>;
 type UsageQuota = {

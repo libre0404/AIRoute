@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Claude Code auto-mode classifier compat mode (opt-in, default "off").
  *
  * Claude Code's `--permission-mode auto` sends an internal `/v1/messages`

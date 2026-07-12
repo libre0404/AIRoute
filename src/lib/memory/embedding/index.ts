@@ -1,4 +1,4 @@
-﻿import {
+import {
   EMBEDDING_PROVIDERS,
   buildDynamicEmbeddingProvider,
   type EmbeddingProviderNodeRow,

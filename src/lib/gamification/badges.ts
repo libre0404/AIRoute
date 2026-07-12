@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Badge Definitions & Evaluation Engine for AIRoute Gamification
  *
  * Defines 20+ built-in badges across 5 categories and evaluates unlock

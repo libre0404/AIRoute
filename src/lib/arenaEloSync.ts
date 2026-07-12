@@ -1,4 +1,4 @@
-﻿/**
+/**
  * arenaEloSync.ts — Arena AI leaderboard ELO sync engine.
  *
  * Fetches model intelligence data from the Arena AI leaderboard API

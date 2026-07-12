@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { deriveDefaultPlan } from "@AIRoute/open-sse/services/compression/deriveDefaultPlan";
 import { getCompressionSettings } from "@/lib/db/compression";
 import { requireManagementAuth } from "@/lib/api/requireManagementAuth";

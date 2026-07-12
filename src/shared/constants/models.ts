@@ -1,4 +1,4 @@
-﻿// Import directly from file to avoid pulling in server-side dependencies via index.js
+// Import directly from file to avoid pulling in server-side dependencies via index.js
 export {
   PROVIDER_MODELS,
   getProviderModels,

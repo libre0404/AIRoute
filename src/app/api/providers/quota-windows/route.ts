@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { getAllProviderQuotaWindows } from "@AIRoute/open-sse/services/quotaPreflight.ts";
 import { getCachedSettings } from "@/lib/localDb";
 import { resolveResilienceSettings } from "@/lib/resilience/settings";

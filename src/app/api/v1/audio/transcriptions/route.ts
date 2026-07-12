@@ -1,4 +1,4 @@
-﻿// Allow large audio/video file uploads — 5min for processing large files (up to 2GB)
+// Allow large audio/video file uploads — 5min for processing large files (up to 2GB)
 export const maxDuration = 300;
 import { handleAudioTranscription } from "@AIRoute/open-sse/handlers/audioTranscription.ts";
 import { getProviderCredentials, clearRecoveredProviderState } from "@/sse/services/auth";

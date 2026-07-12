@@ -1,4 +1,4 @@
-﻿import type { RegistryEntry } from "../../shared.ts";
+import type { RegistryEntry } from "../../shared.ts";
 
 // Augment / Auggie CLI — local no-auth provider. The executor spawns the
 // user's local `auggie` binary (auth handled entirely by `auggie login`);

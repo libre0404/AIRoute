@@ -1,4 +1,4 @@
-﻿import { execFile, spawn } from "child_process";
+import { execFile, spawn } from "child_process";
 import fs from "fs";
 import fsPromises from "fs/promises";
 import os from "os";

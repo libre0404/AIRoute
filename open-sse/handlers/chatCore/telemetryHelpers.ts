@@ -1,4 +1,4 @@
-﻿import { fetchLiveProviderLimits } from "@/lib/usage/providerLimits";
+import { fetchLiveProviderLimits } from "@/lib/usage/providerLimits";
 import { isClaudeExtraUsageBlockEnabled } from "@/lib/providers/claudeExtraUsage";
 
 // #4604 — Lazy backoff for the best-effort live-WS sidecar bridge. In single-port

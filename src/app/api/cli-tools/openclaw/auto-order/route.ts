@@ -1,4 +1,4 @@
-﻿/**
+/**
  * OpenClaw Integration — Dynamic provider.order based on Auto-Combo scores.
  *
  * GET /api/cli-tools/openclaw/auto-order

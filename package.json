@@ -1,4 +1,4 @@
-﻿{
+{
   "name": "AIRoute",
   "version": "3.8.46",
   "description": "Unified AI router with 160+ providers, RTK+Caveman compression, auto fallback, MCP/A2A, desktop, PWA, and OpenAI-compatible APIs.",
@@ -264,6 +264,7 @@
     "open": "^11.0.0",
     "ora": "^9.4.1",
     "parse5": "^8.0.1",
+    "pg": "^8.22.0",
     "pino": "^10.3.1",
     "pino-abstract-transport": "^3.0.0",
     "pino-pretty": "^13.1.3",

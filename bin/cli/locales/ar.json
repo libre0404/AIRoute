@@ -1,4 +1,4 @@
-﻿{
+{
   "common": {
     "error": "خطأ: {message}",
     "serverOffline": "خادم AIRoute غير متصل. ابدأ بالأمر: AIRoute serve",

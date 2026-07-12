@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { Card, CardSkeleton, Badge, Button, CollapsibleSection } from "@/shared/components";

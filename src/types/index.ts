@@ -1,4 +1,4 @@
-﻿/**
+/**
  * AIRoute Core Types
  *
  * Central re-export for all domain types.

@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Shared policy for AIRoute npm publish artifact hygiene.
  *
  * The package publishes the standalone runtime under dist/ (Layer 1: renamed from app/).

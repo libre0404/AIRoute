@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Custom hook registry — event-driven plugin hook system.
  *
  * Plugins can register handlers for any AIRoute event. Built-in events

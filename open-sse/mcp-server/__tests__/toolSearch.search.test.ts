@@ -1,4 +1,4 @@
-﻿import { describe, it, expect } from "vitest";
+import { describe, it, expect } from "vitest";
 import { searchTools } from "../toolSearch/search.ts";
 
 const E = [

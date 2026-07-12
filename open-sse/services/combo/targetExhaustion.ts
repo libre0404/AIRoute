@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Shared upstream-error → exhaustion-set classification for the combo dispatchers
  * (Quality Gate v2 / Fase 9 — combo god-file decomposition, dispatcher de-dup fase 2b).
  *

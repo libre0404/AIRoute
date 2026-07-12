@@ -1,4 +1,4 @@
-﻿import { handleVideoGeneration } from "@AIRoute/open-sse/handlers/videoGeneration.ts";
+import { handleVideoGeneration } from "@AIRoute/open-sse/handlers/videoGeneration.ts";
 import { resolveVideoCredentialProvider } from "@AIRoute/open-sse/handlers/videoGeneration/googleFlow.ts";
 import { withInjectionGuard } from "@/middleware/promptInjectionGuard";
 import { getProviderCredentials, clearRecoveredProviderState } from "@/sse/services/auth";

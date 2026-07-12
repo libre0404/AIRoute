@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Zed Hosted Models — auth + model-catalog helpers.
  *
  * Zed's cloud aggregator (cloud.zed.dev) authenticates native apps with a

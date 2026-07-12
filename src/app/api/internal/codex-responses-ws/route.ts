@@ -1,4 +1,4 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { createHash, timingSafeEqual } from "node:crypto";
 import { z } from "zod";
 import { CodexExecutor } from "@AIRoute/open-sse/executors/codex.ts";

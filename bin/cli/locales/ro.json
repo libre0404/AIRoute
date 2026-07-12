@@ -1,4 +1,4 @@
-﻿{
+{
   "common": {
     "error": "Eroare: {message}",
     "serverOffline": "Serverul AIRoute este offline. Porniți cu: AIRoute serve",

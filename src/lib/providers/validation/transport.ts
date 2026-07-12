@@ -1,4 +1,4 @@
-﻿// Outbound fetch wrappers for provider validation: proxy-fallback, SSRF-aware proxy targeting, and
+// Outbound fetch wrappers for provider validation: proxy-fallback, SSRF-aware proxy targeting, and
 // error→result mapping. Extracted from validation.ts (god-file decomposition). Behavior is
 // byte-identical to the original inline defs.
 import {

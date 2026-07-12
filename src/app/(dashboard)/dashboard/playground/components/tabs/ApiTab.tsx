@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 // src/app/(dashboard)/dashboard/playground/components/tabs/ApiTab.tsx
 // D14: Preserves 100% of the original page.tsx Monaco multi-endpoint editor.

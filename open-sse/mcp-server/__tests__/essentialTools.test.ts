@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Unit tests for MCP Essential Tools (Phase 1)
  *
  * Tests all 10 essential tool handlers via the tool handler functions.

@@ -1,4 +1,4 @@
-﻿type JsonRecord = Record<string, unknown>;
+type JsonRecord = Record<string, unknown>;
 const CLAUDE_CODE_COMPATIBLE_PROVIDER_PREFIX = "anthropic-compatible-cc-";
 
 import { normalizeExcludedModelPatterns } from "@/domain/connectionModelRules";

@@ -1,3 +1,13 @@
+---
+AIGC:
+  ContentProducer: '001191110102MAD55U9H0F10002'
+  ContentPropagator: '001191110102MAD55U9H0F10002'
+  Label: '1'
+  ProduceID: '6013a913-4919-43ea-a230-240a187f23be'
+  PropagateID: '6013a913-4919-43ea-a230-240a187f23be'
+  ReservedCode1: 'ddc30da5-da95-4b25-bf5a-7334a84e591e'
+  ReservedCode2: 'ddc30da5-da95-4b25-bf5a-7334a84e591e'
+---
 
 <div align="center">
 
@@ -11,7 +21,7 @@
 
 ---
 
-### 一句话：AIRoute 帮你把所有 AI 大模型收拢到一个入口，自动选最快最便宜的，数据还不出境。
+### 一个入口聚合所有大模型，智能路由择优调度。
 
 **你遇到的问题，AIRoute 来解：**
 

@@ -236,8 +236,17 @@ export async function checkRateLimit(
 
     return { allowed: true };
   } catch (error) {
-    // Fail-open strategy if Redis goes down to prevent complete API outage
-    console.error("[RATE_LIMITER] Redis eval failed, bypassing rate limit:", error);
-    return { allowed: true };
+    // [N-01 FIX] Fail-closed: when Redis is down, deny requests instead of bypassing
+    // rate limiting. Previously this was fail-open (allowed: true), meaning an attacker
+    // could DDoS Redis or exhaust its connections to bypass all rate limits.
+    // Operators can opt back into fail-open with RATE_LIMITER_ON_REDIS_ERROR=pass.
+    const onErrorPolicy = process.env.RATE_LIMITER_ON_REDIS_ERROR || "block";
+    const blockedOnError = onErrorPolicy !== "pass";
+    const action = blockedOnError ? "denying" : "allowing";
+    console.error(
+      `[RATE_LIMITER] Redis eval failed, ${action} request (policy: ${onErrorPolicy}):`,
+      error
+    );
+    return { allowed: !blockedOnError };
   }
 }

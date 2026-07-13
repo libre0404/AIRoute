@@ -105,7 +105,12 @@ function getJwtSecret(): Uint8Array | null {
 }
 
 function shouldUseSecureCookie(request: NextRequest): boolean {
+  // [N-03 FIX] Default to secure cookies. Previously AUTH_COOKIE_SECURE defaulted
+  // to false (only true when explicitly set), allowing session cookies over HTTP.
+  // Now defaults to true unless AUTH_COOKIE_SECURE=false is explicitly set.
+  if (process.env.AUTH_COOKIE_SECURE === "false") return false;
   if (process.env.AUTH_COOKIE_SECURE === "true") return true;
+  // Auto-detect from request protocol when not explicitly configured
   const forwardedProto = (request.headers.get("x-forwarded-proto") || "")
     .split(",")[0]
     .trim()

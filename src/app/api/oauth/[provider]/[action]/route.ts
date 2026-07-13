@@ -46,6 +46,39 @@ if (!globalThis.__windsurfCallbackState) {
   globalThis.__windsurfCallbackState = null;
 }
 
+// [N-05 FIX] Server-side OAuth state store for CSRF protection.
+// Previously, the state parameter was generated and sent to the IdP but never
+// validated on callback — an attacker could reuse a stolen authorization code
+// with a different state. Now we store issued states and verify on exchange.
+if (!globalThis.__oauthIssuedStates) {
+  globalThis.__oauthIssuedStates = new Map<string, { createdAt: number; provider: string }>();
+}
+
+/** Store an issued OAuth state. Auto-expires after 10 minutes. */
+function storeOAuthState(state: string, provider: string): void {
+  if (!state) return;
+  const store = globalThis.__oauthIssuedStates as Map<string, { createdAt: number; provider: string }>;
+  store.set(state, { createdAt: Date.now(), provider });
+  // Evict entries older than 10 minutes
+  const cutoff = Date.now() - 10 * 60 * 1000;
+  for (const [key, val] of store) {
+    if (val.createdAt < cutoff) store.delete(key);
+  }
+}
+
+/** Validate and consume an OAuth state. Returns true if valid, false otherwise. */
+function validateAndConsumeOAuthState(state: string | undefined, provider: string): boolean {
+  if (!state) return false;
+  const store = globalThis.__oauthIssuedStates as Map<string, { createdAt: number; provider: string }>;
+  const entry = store.get(state);
+  if (!entry) return false;
+  // Consume (one-time use)
+  store.delete(state);
+  // State must be for the same provider and not expired (10 min)
+  const isExpired = Date.now() - entry.createdAt > 10 * 60 * 1000;
+  return entry.provider === provider && !isExpired;
+}
+
 /** Providers that use the PKCE browser callback flow (like Codex). */
 const PKCE_CALLBACK_PROVIDERS = new Set(["codex"]);
 
@@ -157,6 +190,10 @@ export async function GET(
         searchParams.get("redirect_uri") || "http://localhost:8080/callback";
       const redirectUri = resolveBrowserOAuthRedirectUri(provider, requestedRedirectUri);
       const authData = generateAuthData(provider, redirectUri);
+      // [N-05 FIX] Store the issued state for server-side validation on callback
+      if (authData.state) {
+        storeOAuthState(authData.state, provider);
+      }
       if (provider === "qoder" && !authData.authUrl) {
         return NextResponse.json({
           ...authData,
@@ -445,6 +482,22 @@ export async function POST(
     if (action === "exchange") {
       const { code, redirectUri, connectionId, codeVerifier, state } = body;
       const normalizedState = typeof state === "string" && state.length > 0 ? state : undefined;
+
+      // [N-05 FIX] Validate OAuth state to prevent CSRF / code-replay attacks.
+      // The state was stored when the authorize URL was generated; on exchange
+      // it must match and be consumed (one-time use).
+      if (normalizedState && !validateAndConsumeOAuthState(normalizedState, provider)) {
+        return NextResponse.json(
+          {
+            error: {
+              message: "Invalid or expired OAuth state parameter. Restart the OAuth flow.",
+              details: [{ field: "state", message: "CSRF state validation failed" }],
+            },
+          },
+          { status: 403 }
+        );
+      }
+
       const providerData = getProvider(provider);
 
       if (providerData.flowType === "authorization_code_pkce" && !codeVerifier) {

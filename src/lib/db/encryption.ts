@@ -105,37 +105,38 @@ export function isEncryptionEnabled(): boolean {
 /**
  * Enforce that STORAGE_ENCRYPTION_KEY is set when encryption is required.
  *
- * When AIRROUTE_REGION=cn, encryption is MANDATORY per:
+ * [S-03 FIX] Encryption is now mandatory by default in ALL regions.
+ * Previously, only AIRROUTE_REGION=cn threw; other regions merely warned and
+ * stored credentials in plaintext. An operator can explicitly opt out with
+ * ENCRYPTION_OPT_OUT=true, but the safe default is encrypted-at-rest.
+ *
+ * Regulatory references (cn region):
  * - 《个人信息保护法》PIPL §51 — security measures for sensitive personal info
  * - 《数据安全法》DSL §27 — data security protection obligations
  * - GB/T 35273-2020 — personal information security specification
  *
- * In cn region, the server will REFUSE to start if no encryption key is configured,
- * because passthrough mode stores API keys in plaintext — a legal violation.
- *
- * Outside cn region, a warning is printed but startup continues (backward compat).
- *
- * @throws {Error} If AIRROUTE_REGION=cn and STORAGE_ENCRYPTION_KEY is not set.
+ * @throws {Error} If STORAGE_ENCRYPTION_KEY is not set and ENCRYPTION_OPT_OUT is not true.
  */
 export function enforceEncryptionPolicy(): void {
   if (isEncryptionEnabled()) return;
 
-  const isCn = process.env.AIRROUTE_REGION === "cn";
+  const optOut = process.env.ENCRYPTION_OPT_OUT === "true";
 
-  if (isCn) {
-    throw new Error(
-      "[SECURITY] STORAGE_ENCRYPTION_KEY is not set, but AIRROUTE_REGION=cn requires " +
-        "mandatory credential encryption (个人信息保护法 PIPL §51, 数据安全法 DSL §27). " +
+  if (optOut) {
+    console.warn(
+      "[SECURITY] ENCRYPTION_OPT_OUT=true — credentials stored in plaintext (passthrough mode).\n" +
+        "This is NOT compliant with PIPL/DSL for Chinese deployments and is NOT recommended for production.\n" +
         "Generate a key with: openssl rand -base64 32\n" +
         "Then set STORAGE_ENCRYPTION_KEY in your environment or .env file."
     );
+    return;
   }
 
-  console.warn(
-    "[SECURITY] STORAGE_ENCRYPTION_KEY is not set. Credentials stored in plaintext (passthrough mode).\n" +
-      "This is NOT compliant with PIPL/DSL for Chinese deployments. " +
-      "Set STORAGE_ENCRYPTION_KEY and AIRROUTE_REGION=cn for production use.\n" +
-      "Generate a key with: openssl rand -base64 32"
+  throw new Error(
+    "[SECURITY] STORAGE_ENCRYPTION_KEY is not set. Credential encryption is now mandatory " +
+      "(credentials stored in plaintext is unsafe). Generate a key with: openssl rand -base64 32\n" +
+      "Then set STORAGE_ENCRYPTION_KEY in your environment or .env file.\n" +
+      "To explicitly disable encryption (NOT recommended), set ENCRYPTION_OPT_OUT=true."
   );
 }
 
@@ -151,7 +152,11 @@ export function looksEncrypted(value: unknown): boolean {
 
 /**
  * Encrypt a plaintext string using the STATIC salt key.
- * If encryption is not configured, returns plaintext unchanged.
+ *
+ * [S-03 FIX] When no encryption key is configured, behavior depends on opt-out:
+ * - If ENCRYPTION_OPT_OUT=true: returns plaintext (passthrough, for development only).
+ * - Otherwise: returns plaintext but logs a critical error.
+ * The enforceEncryptionPolicy() function should block startup before this path is reached.
  */
 export function encrypt(plaintext: string | null | undefined): string | null | undefined {
   if (!plaintext || typeof plaintext !== "string") return plaintext;
@@ -159,9 +164,15 @@ export function encrypt(plaintext: string | null | undefined): string | null | u
   const key = getStaticKey();
   if (!key) {
     // Passthrough mode — plaintext storage.
-    // WARN: This violates PIPL §51 when AIRROUTE_REGION=cn.
-    // The enforceEncryptionPolicy() function blocks startup in cn region,
-    // so this path should only occur for non-cn development setups.
+    // enforceEncryptionPolicy() should have blocked startup, but if we reach here
+    // (e.g. runtime key rotation removed the key), log a critical warning.
+    const optOut = process.env.ENCRYPTION_OPT_OUT === "true";
+    if (!optOut) {
+      console.error(
+        "[Encryption] CRITICAL: No STORAGE_ENCRYPTION_KEY configured. " +
+          "Credential stored in PLAINTEXT. Set STORAGE_ENCRYPTION_KEY immediately."
+      );
+    }
     return plaintext; // passthrough mode
   }
 
@@ -178,12 +189,15 @@ export function encrypt(plaintext: string | null | undefined): string | null | u
 
     return `${PREFIX}${iv.toString("hex")}:${encrypted}:${authTag}`;
   } catch (err: unknown) {
+    // [S-03 FIX] Encryption failure should not silently fall back to plaintext.
+    // Throw so the caller knows encryption failed and can handle it properly,
+    // rather than silently persisting a plaintext credential.
     const message = err instanceof Error ? err.message : String(err);
     console.error(
       `[Encryption] Encryption failed: ${message}. ` +
         `Check your STORAGE_ENCRYPTION_KEY — generate one with: openssl rand -base64 32`
     );
-    return plaintext; // fallback to plaintext rather than crashing
+    throw new Error(`Encryption failed: ${message}`);
   }
 }
 

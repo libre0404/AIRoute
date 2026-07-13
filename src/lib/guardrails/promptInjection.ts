@@ -148,7 +148,7 @@ function getMode(options: PromptInjectionGuardrailOptions) {
     dbOverride ||
     process.env.INJECTION_GUARD_MODE ||
     process.env.INPUT_SANITIZER_MODE ||
-    "warn") as "block" | "warn" | "log";
+    "block") as "block" | "warn" | "log";
 }
 
 function getThreshold(options: PromptInjectionGuardrailOptions) {

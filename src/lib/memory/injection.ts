@@ -8,10 +8,18 @@
  *      first user message prefixed with the memory context label.
  *
  * Format: "Memory context: <content>"
+ *
+ * [A-02 FIX] Memory content is sanitized for injection patterns before injection.
+ * Previously, stored memories could contain injection payloads (from compromised
+ * memory writes) that were injected verbatim into the prompt, effectively
+ * bypassing the pre-call injection guard. Now we run a quick injection scan
+ * on the formatted memory context and skip injection if it matches known
+ * injection patterns.
  */
 
 import { Memory } from "./types";
 import { logger } from "../../../open-sse/utils/logger.ts";
+import { detectInjection } from "@/shared/utils/inputSanitizer";
 
 const log = logger("MEMORY_INJECTION");
 
@@ -169,6 +177,19 @@ export function injectMemory(
   const memoryText = formatMemoryContext(memories);
   if (!memoryText) {
     log.info("memory.injection.skipped", { reason: "empty_context", model: request.model });
+    return request;
+  }
+
+  // [A-02 FIX] Scan memory context for injection patterns before injecting.
+  // If the memory content contains known injection patterns (e.g. from a compromised
+  // memory store), skip injection to prevent the payload from reaching the LLM.
+  const injectionDetections = detectInjection(memoryText);
+  if (injectionDetections.length > 0) {
+    log.warn("memory.injection.blocked", {
+      reason: "injection_pattern_detected",
+      patterns: injectionDetections.map((d) => d.pattern),
+      model: request.model,
+    });
     return request;
   }
 

@@ -74,12 +74,18 @@ export async function ensurePersistentManagementPasswordHash(
     getInitialPasswordValue(options.initialPassword ?? process.env.INITIAL_PASSWORD);
 
   if (bootstrapPassword && INSECURE_DEFAULT_PASSWORDS.has(bootstrapPassword)) {
-    const warn = options.logger?.warn?.bind(options.logger) ?? console.warn;
-    warn(
+    // [S-05 FIX] Refuse to run with well-known default passwords.
+    // Previously this only warned — an attacker who discovers INITIAL_PASSWORD=CHANGEME
+    // in the public .env.example could log in to the dashboard unchecked.
+    // Now we throw, blocking startup until the operator sets a real password.
+    const message =
       '[AUTH][SECURITY] Management password is set to the well-known default "CHANGEME" ' +
-        "(INITIAL_PASSWORD in .env.example). Anyone can sign in to the dashboard with it — " +
-        "change it immediately via the dashboard or a strong INITIAL_PASSWORD."
-    );
+      "(INITIAL_PASSWORD in .env.example). This is a critical security risk — anyone can " +
+      "sign in to the dashboard with it. Change INITIAL_PASSWORD to a strong, unique value " +
+      "before starting the server.";
+    const warn = options.logger?.warn?.bind(options.logger) ?? console.warn;
+    warn(message);
+    throw new Error(message);
   }
 
   if (!bootstrapPassword) {

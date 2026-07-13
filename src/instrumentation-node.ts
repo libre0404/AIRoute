@@ -283,6 +283,112 @@ export async function registerNodejs(): Promise<void> {
     process.exit(1);
   }
 
+  // [S-06 FIX] Validate JWT_SECRET strength at startup.
+  // A short or missing JWT_SECRET enables brute-force or trivial forgery of
+  // dashboard session tokens. Refuse to start unless the secret meets a
+  // minimum entropy threshold.
+  try {
+    const jwtSecret = process.env.JWT_SECRET?.trim() || "";
+    if (!jwtSecret) {
+      throw new Error(
+        "JWT_SECRET is not set. Dashboard sessions cannot be authenticated securely. " +
+          "Generate a strong secret with: openssl rand -base64 48"
+      );
+    }
+    if (jwtSecret.length < 32) {
+      throw new Error(
+        `JWT_SECRET is too short (${jwtSecret.length} chars). Minimum 32 characters required for ` +
+          `HS256 brute-force resistance. Generate a strong secret with: openssl rand -base64 48`
+      );
+    }
+    // Also reject well-known placeholder values
+    const insecureDefaults = new Set(["changeme", "secret", "jwt_secret", "your-secret"]);
+    if (insecureDefaults.has(jwtSecret.toLowerCase())) {
+      throw new Error(
+        'JWT_SECRET is set to a well-known placeholder. Use a cryptographically random secret. ' +
+          'Generate one with: openssl rand -base64 48'
+      );
+    }
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error("[STARTUP] JWT_SECRET validation failed — refusing to start:", msg);
+    process.exit(1);
+  }
+
+  // [N-08 FIX] Startup insecure defaults detection.
+  // Scan for commonly misconfigured environment variables that weaken security.
+  // These are non-fatal warnings (the server still starts) because some may be
+  // intentional in dev/staging, but operators should be aware of the risk.
+  try {
+    const warnings: string[] = [];
+
+    // Encryption opt-out
+    if (process.env.ENCRYPTION_OPT_OUT === "true") {
+      warnings.push(
+        "ENCRYPTION_OPT_OUT=true: Credential encryption is DISABLED. " +
+          "All stored API keys and tokens are saved in plaintext. " +
+          "Remove this flag for production deployments."
+      );
+    }
+
+    // Guardrail error mode should default to block
+    const guardrailOnError = (process.env.GUARDRAIL_ON_ERROR || "block").toLowerCase();
+    if (guardrailOnError !== "block") {
+      warnings.push(
+        `GUARDRAIL_ON_ERROR=${guardrailOnError}: On guardrail errors, requests will be ` +
+          `ALLOWED through instead of blocked. Set GUARDRAIL_ON_ERROR=block (the default) for production.`
+      );
+    }
+
+    // Rate limiter error mode should default to block
+    const rateLimiterOnError = (process.env.RATE_LIMITER_ON_REDIS_ERROR || "block").toLowerCase();
+    if (rateLimiterOnError !== "block") {
+      warnings.push(
+        `RATE_LIMITER_ON_REDIS_ERROR=${rateLimiterOnError}: On Redis errors, all requests ` +
+          `will be ALLOWED (unlimited) instead of blocked. Set RATE_LIMITER_ON_REDIS_ERROR=block ` +
+          `(the default) for production.`
+      );
+    }
+
+    // Auth cookie secure flag
+    if (process.env.AUTH_COOKIE_SECURE === "false") {
+      warnings.push(
+        "AUTH_COOKIE_SECURE=false: Session cookies will be sent over plain HTTP, " +
+          "making them vulnerable to network sniffing. Only use this in local development."
+      );
+    }
+
+    // Input sanitizer mode should be block in production
+    const sanitizerMode = (process.env.INPUT_SANITIZER_MODE || "").toLowerCase();
+    if (sanitizerMode === "warn" || sanitizerMode === "") {
+      warnings.push(
+        `INPUT_SANITIZER_MODE=${sanitizerMode || "(unset, defaults to block)"}: ` +
+          `Prompt injection detection will only LOG warnings without blocking. ` +
+          `Set INPUT_SANITIZER_MODE=block for production to actually reject malicious prompts.`
+      );
+    }
+
+    // REDIS_URL without authentication when Redis is exposed
+    const redisUrl = process.env.REDIS_URL || "";
+    if (redisUrl.startsWith("redis://") && !redisUrl.includes("@") && !redisUrl.includes("localhost") && !redisUrl.includes("127.0.0.1")) {
+      warnings.push(
+        "REDIS_URL has no authentication: The Redis connection string does not include a password. " +
+          "If Redis is network-accessible (e.g. Docker), use redis://:PASSWORD@host:port format."
+      );
+    }
+
+    if (warnings.length > 0) {
+      console.warn(
+        `\n[STARTUP] ⚠ Insecure configuration detected (${warnings.length} warning(s)):\n` +
+          warnings.map((w, i) => `  ${i + 1}. ${w}`).join("\n") +
+          "\n"
+      );
+    }
+  } catch (err: unknown) {
+    const msg = err instanceof Error ? err.message : String(err);
+    console.warn("[STARTUP] Insecure defaults check failed (non-fatal):", msg);
+  }
+
   // Storage-configured scheduled VACUUM (#4437): registers the timer from
   // Settings > System & Storage and persists lastVacuumAt for the UI.
   try {

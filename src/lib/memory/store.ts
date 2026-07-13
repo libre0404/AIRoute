@@ -11,6 +11,7 @@ import { resolveEmbeddingSource, embed } from "./embedding";
 import { getVectorStore } from "./vectorStore";
 import { getMemorySettings } from "./settings";
 import { markMemoryNeedsReindex } from "@/lib/localDb";
+import { processPII } from "@/shared/utils/inputSanitizer";
 
 const log = logger("MEMORY_STORE");
 
@@ -157,6 +158,23 @@ function scheduleVectorUpsert(id: string, content: string): void {
 }
 
 /**
+ * [A-04 FIX] Redact PII from memory content before storage/embedding.
+ * Returns the redacted content, or the original if redaction fails or is disabled.
+ */
+function redactPIIFromContent(content: string): string {
+  if (!content || typeof content !== "string") return content;
+  try {
+    // PII redaction replaces detected PII patterns (emails, phone numbers, ID cards, etc.)
+    // with placeholders like [EMAIL_REDACTED] before persisting to SQLite / vectors.
+    const { text } = processPII(content, true);
+    return text;
+  } catch {
+    // Non-blocking: if PII redaction fails, store original content
+    return content;
+  }
+}
+
+/**
  * Create a new memory entry (UPSERT: updates existing if same apiKeyId + key)
  */
 export async function createMemory(
@@ -168,6 +186,9 @@ export async function createMemory(
   // Check for existing memory with same apiKeyId + key (UPSERT logic)
   const existing = memory.key ? findExistingMemory(db, memory.apiKeyId, memory.key) : undefined;
 
+  // [A-04 FIX] Redact PII from content before storage/embedding
+  const sanitizedContent = redactPIIFromContent(memory.content);
+
   if (existing) {
     // UPDATE existing record
     const updatedMetadata = { ...parseJSON(existing.metadata), ...memory.metadata };
@@ -175,7 +196,7 @@ export async function createMemory(
       "UPDATE memories SET content = ?, metadata = ?, updated_at = ?, session_id = ?, type = ?, expires_at = ? WHERE id = ?"
     );
     stmt.run(
-      memory.content,
+      sanitizedContent,
       JSON.stringify(updatedMetadata),
       now,
       memory.sessionId,
@@ -190,7 +211,7 @@ export async function createMemory(
       sessionId: memory.sessionId,
       type: memory.type,
       key: memory.key,
-      content: memory.content,
+      content: sanitizedContent,
       metadata: updatedMetadata,
       createdAt: new Date(String(existing.created_at)),
       updatedAt: new Date(now),
@@ -215,7 +236,7 @@ export async function createMemory(
     });
 
     // Best-effort vector upsert (fire-and-forget — content changed so regenerate)
-    scheduleVectorUpsert(String(existing.id), memory.content);
+    scheduleVectorUpsert(String(existing.id), sanitizedContent);
 
     // Best-effort re-sync to Qdrant after update
     upsertSemanticMemoryPoint({
@@ -223,7 +244,7 @@ export async function createMemory(
       apiKeyId: memory.apiKeyId || "",
       sessionId: memory.sessionId || "",
       key: memory.key || "",
-      content: memory.content,
+      content: sanitizedContent,
       metadata: updatedMetadata || {},
       createdAt: String(existing.created_at),
       expiresAt: memory.expiresAt ? memory.expiresAt.toISOString() : null,
@@ -251,7 +272,7 @@ export async function createMemory(
     memory.sessionId,
     memory.type,
     memory.key,
-    memory.content,
+    sanitizedContent,
     JSON.stringify(memory.metadata ?? {}),
     now,
     now,
@@ -264,7 +285,7 @@ export async function createMemory(
     sessionId: memory.sessionId,
     type: memory.type,
     key: memory.key,
-    content: memory.content,
+    content: sanitizedContent,
     metadata: memory.metadata,
     createdAt: new Date(now),
     updatedAt: new Date(now),
@@ -281,7 +302,7 @@ export async function createMemory(
   log.info("memory.stored", { apiKeyId: memory.apiKeyId, type: memory.type, id });
 
   // Best-effort vector upsert (fire-and-forget)
-  scheduleVectorUpsert(id, memory.content);
+  scheduleVectorUpsert(id, sanitizedContent);
 
   // Best-effort sync to semantic memory store (Qdrant). Failures do not block the SQLite write.
   upsertSemanticMemoryPoint({
@@ -289,7 +310,7 @@ export async function createMemory(
     apiKeyId: memory.apiKeyId || "",
     sessionId: memory.sessionId || "",
     key: memory.key || "",
-    content: memory.content,
+    content: sanitizedContent,
     metadata: memory.metadata || {},
     createdAt: now,
     expiresAt: memory.expiresAt ? memory.expiresAt.toISOString() : null,
@@ -367,7 +388,7 @@ export async function updateMemory(
   }
   if (updates.content !== undefined) {
     fields.push("content = ?");
-    values.push(updates.content);
+    values.push(redactPIIFromContent(updates.content));
   }
   if (updates.metadata !== undefined) {
     fields.push("metadata = ?");
@@ -401,7 +422,9 @@ export async function updateMemory(
   const keyChanged = updates.key !== undefined && updates.key !== currentRow?.key;
 
   if (contentChanged || keyChanged) {
-    const newContent = updates.content ?? currentRow?.content ?? "";
+    const newContent = updates.content !== undefined
+      ? redactPIIFromContent(updates.content)
+      : currentRow?.content ?? "";
     scheduleVectorUpsert(id, newContent);
   }
 

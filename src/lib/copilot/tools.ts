@@ -363,6 +363,47 @@ export const COPILOT_TOOLS: CopilotTool[] = [
     },
   },
 
+// ── CLI Execution Tool ──
+
+/**
+ * [A-03 FIX] Allowlist of safe AIRoute CLI subcommands.
+ * Previously, the copilot could execute ANY AIRoute CLI command (including
+ * reset-password, db-reset, etc.), giving write-path destructive power to
+ * an LLM agent. Now only read-only and safe operational commands are allowed.
+ * Operators can extend via COPILOT_CLI_ALLOWLIST env var (comma-separated).
+ */
+const DEFAULT_CLI_ALLOWLIST = new Set([
+  "list-keys",
+  "list-combos",
+  "health",
+  "db-health",
+  "mcp",           // starts MCP server (read-only negotiation)
+  "version",
+  "status",
+  "info",
+  "whoami",
+  "show-key",
+  "show-combo",
+  "show-budget",
+]);
+
+function isAllowedCliCommand(argv: string[]): boolean {
+  if (!argv || argv.length === 0) return false;
+  const subcommand = argv[0].toLowerCase().trim();
+
+  // Check built-in allowlist
+  if (DEFAULT_CLI_ALLOWLIST.has(subcommand)) return true;
+
+  // Check env-var extensions
+  const extra = process.env.COPILOT_CLI_ALLOWLIST;
+  if (extra) {
+    const extras = extra.split(",").map((s) => s.trim().toLowerCase()).filter(Boolean);
+    if (extras.includes(subcommand)) return true;
+  }
+
+  return false;
+}
+
   // ── CLI Execution Tool ──
   {
     name: "runAIRouteCli",
@@ -390,6 +431,11 @@ export const COPILOT_TOOLS: CopilotTool[] = [
         const argv = (trimmedCmd.match(/(?:[^\s"']+|"[^"]*"|'[^']*')+/g) || []).map((arg) =>
           arg.replace(/^["']|["']$/g, "")
         );
+        // [A-03 FIX] Enforce CLI command allowlist
+        if (!isAllowedCliCommand(argv)) {
+          const allowed = [...DEFAULT_CLI_ALLOWLIST].join(", ");
+          return `Error: Command "${argv[0] || trimmedCmd}" is not allowed. Permitted commands: ${allowed}. Extend via COPILOT_CLI_ALLOWLIST env var.`;
+        }
         const { stdout } = await execFileAsync(cliPath, argv, {
           encoding: "utf-8",
           timeout: 30000,

@@ -58,24 +58,18 @@ export function resolveDisabledGuardrails({
   body?: unknown;
   headers?: HeadersLike;
 }): string[] {
-  const bodyRecord = body && typeof body === "object" ? (body as Record<string, unknown>) : null;
-  const metadata =
-    bodyRecord?.metadata && typeof bodyRecord.metadata === "object"
-      ? (bodyRecord.metadata as Record<string, unknown>)
-      : null;
+  // [S-02 FIX] Only allow server-side (apiKeyInfo) guardrail disabling.
+  // Previously, clients could disable guardrails via request body, metadata,
+  // or HTTP headers — enabling attackers to bypass all security checks.
+  // The apiKeyInfo.disabledGuardrails field is admin-controlled and safe.
   const apiKeyDisabled =
     apiKeyInfo && typeof apiKeyInfo === "object"
       ? (apiKeyInfo as Record<string, unknown>).disabledGuardrails
       : undefined;
-  const headerDisabled =
-    getHeaderValue(headers, "x-AIRoute-disabled-guardrails") ||
-    getHeaderValue(headers, "x-disabled-guardrails");
 
-  return [...coerceDisabledGuardrails(apiKeyDisabled)]
-    .concat(coerceDisabledGuardrails(bodyRecord?.disabledGuardrails))
-    .concat(coerceDisabledGuardrails(metadata?.disabledGuardrails))
-    .concat(coerceDisabledGuardrails(headerDisabled))
-    .filter((value, index, list) => list.indexOf(value) === index);
+  return [...coerceDisabledGuardrails(apiKeyDisabled)].filter(
+    (value, index, list) => list.indexOf(value) === index
+  );
 }
 
 export class GuardrailRegistry {
@@ -163,15 +157,35 @@ export class GuardrailRegistry {
         }
       } catch (error) {
         const message = error instanceof Error ? error.message : String(error);
+        // [S-01 FIX] Fail-closed: block the request when a guardrail throws an exception.
+        // Previously this was blocked:false (fail-open), allowing malicious requests to
+        // bypass all security when a guardrail crashed. The guardrailOnError env var lets
+        // operators opt back into fail-open if availability trumps security, but defaults
+        // to "block" (fail-closed) for safety.
+        const onErrorPolicy = process.env.GUARDRAIL_ON_ERROR || "block";
+        const blockedOnError = onErrorPolicy !== "pass";
         results.push({
-          blocked: false,
+          blocked: blockedOnError,
           error: message,
           guardrail: guardrail.name,
           modified: false,
           skipped: false,
           stage: "pre",
         });
-        logger.warn?.("GUARDRAIL", `${guardrail.name} pre-call failed open`, { error: message });
+        logger.error?.(
+          "GUARDRAIL",
+          `${guardrail.name} pre-call ${blockedOnError ? "failed closed (blocked)" : "failed open (passed)"}`,
+          { error: message, policy: onErrorPolicy }
+        );
+        if (blockedOnError) {
+          return {
+            blocked: true,
+            guardrail: guardrail.name,
+            message: `Security check failed: ${guardrail.name} encountered an error`,
+            payload: currentPayload,
+            results,
+          };
+        }
       }
     }
 
@@ -236,15 +250,33 @@ export class GuardrailRegistry {
         }
       } catch (error) {
         const message = error instanceof Error ? error.message : String(error);
+        // [S-01 FIX] Fail-closed: block the response when a post-call guardrail throws.
+        // Mirrors the pre-call hook fix — previously failed open, now defaults to
+        // blocking on error. Controlled by GUARDRAIL_ON_ERROR env var (same as pre-call).
+        const onErrorPolicy = process.env.GUARDRAIL_ON_ERROR || "block";
+        const blockedOnError = onErrorPolicy !== "pass";
         results.push({
-          blocked: false,
+          blocked: blockedOnError,
           error: message,
           guardrail: guardrail.name,
           modified: false,
           skipped: false,
           stage: "post",
         });
-        logger.warn?.("GUARDRAIL", `${guardrail.name} post-call failed open`, { error: message });
+        logger.error?.(
+          "GUARDRAIL",
+          `${guardrail.name} post-call ${blockedOnError ? "failed closed (blocked)" : "failed open (passed)"}`,
+          { error: message, policy: onErrorPolicy }
+        );
+        if (blockedOnError) {
+          return {
+            blocked: true,
+            guardrail: guardrail.name,
+            message: `Security check failed: ${guardrail.name} encountered an error`,
+            response: currentResponse,
+            results,
+          };
+        }
       }
     }
 

@@ -125,7 +125,8 @@ export async function POST(request) {
     const isValid = await verifyManagementPassword(password, storedHash);
 
     if (isValid) {
-      const forceSecureCookie = process.env.AUTH_COOKIE_SECURE === "true";
+      // [N-03 FIX] Default to secure cookies — same policy as pipeline.ts
+      const forceSecureCookie = process.env.AUTH_COOKIE_SECURE !== "false";
       const forwardedProtoHeader = request.headers.get("x-forwarded-proto") || "";
       const forwardedProto = forwardedProtoHeader.split(",")[0].trim().toLowerCase();
       const isHttpsRequest = forwardedProto === "https" || request.nextUrl?.protocol === "https:";
@@ -147,6 +148,11 @@ export async function POST(request) {
         maxAge: 60 * 60 * 24 * 30,
       });
 
+      // [S-05 FIX] Signal that the password must be changed if it was bootstrapped
+      // from INITIAL_PASSWORD (env source) rather than set by the user via settings.
+      // The frontend dashboard should show a mandatory change-password dialog.
+      const mustChangePassword = passwordState.source === "env";
+
       logAuditEvent({
         action: "auth.login.success",
         actor: "admin",
@@ -159,11 +165,12 @@ export async function POST(request) {
           hasStoredPassword: Boolean(storedHash),
           passwordMigrated: passwordState.migrated,
           secureCookie: useSecureCookie,
+          mustChangePassword,
         },
       });
 
       clearLoginAttempts(clientIp);
-      return NextResponse.json({ success: true });
+      return NextResponse.json({ success: true, mustChangePassword });
     }
 
     const failureDecision = recordLoginFailure(clientIp, { enabled: bruteForceEnabled });

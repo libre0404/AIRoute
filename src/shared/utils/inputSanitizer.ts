@@ -51,6 +51,40 @@ const INJECTION_PATTERNS = [
       /\b(base64\s+decode|rot13|hex\s+decode|unicode\s+escape)\b.*\b(instruction|prompt|command)\b/i,
     severity: "medium",
   },
+  // ── Chinese injection patterns (A-01 FIX) ──
+  // Attackers targeting Chinese-language LLM endpoints use translated equivalents
+  // of the English injection patterns above. GB/T 35273-2020 / 个人信息保护法
+  // also mandates PII controls for Chinese content.
+  {
+    name: "cn_system_override",
+    pattern:
+      /(忽略|无视|忘记|不要管|不用管)(所有|全部)?(之前的|先前的|上面的|前面的)(指令|提示|规则|上下文|设定)/,
+    severity: "high",
+  },
+  {
+    name: "cn_role_hijack",
+    pattern:
+      /(你现在是|从现在起你是|假装你是|请扮演|你是.+模式|开启.+模式|进入.+模式)/,
+    severity: "high",
+  },
+  {
+    name: "cn_system_prompt_leak",
+    pattern:
+      /(输出|显示|打印|展示|重复|泄露|透露)(你的|系统的)?(系统|初始|隐藏|原始|内部|核心)(提示|指令|设定|规则|prompt)/,
+    severity: "high",
+  },
+  {
+    name: "cn_jailbreak",
+    pattern:
+      /(越狱|解锁|开发者模式|管理员模式|超级用户|绕过|突破限制|不受限制)/,
+    severity: "medium",
+  },
+  {
+    name: "cn_instruction_injection",
+    pattern:
+      /(新指令|以下指令优先|覆盖之前的指令|这是你的新角色|请执行以下|安全限制已解除|不再需要遵守)/,
+    severity: "high",
+  },
 ];
 
 /**
@@ -61,11 +95,13 @@ const INJECTION_PATTERNS = [
  * hot path — at high concurrency with 300 KB bodies it is a self-inflicted
  * latency/GC source. Injection directives sit near the top of a prompt, so
  * scanning hundreds of KB of pasted code / RAG context buys only CPU. We bound
- * the scan to the first 16 KB (generous: real directives are far shorter) before
- * the regex loop. The body-size caps that protect ingestion live elsewhere;
- * this constant only bounds the regex scan. Refs #3932 / #4041.
+ * the scan to the first 32 KB (generous: real directives are far shorter, but
+ * Chinese text is denser and injection payloads may be deeper in multi-turn
+ * conversations) before the regex loop. The body-size caps that protect
+ * ingestion live elsewhere; this constant only bounds the regex scan.
+ * Refs #3932 / #4041 / A-01.
  */
-export const MAX_INJECTION_SCAN_BYTES = 16 * 1024;
+export const MAX_INJECTION_SCAN_BYTES = 32 * 1024;
 
 // ─── PII Patterns ────────────────────────────────────────────────────
 
@@ -215,7 +251,7 @@ function extractMessageContents(body) {
  */
 function detectInjection(text) {
   const detections = [];
-  // Bound the regex scan to the first 16 KB — see MAX_INJECTION_SCAN_BYTES
+  // Bound the regex scan to MAX_INJECTION_SCAN_BYTES — see constant above
   // (hot-path perf, #3932 / #4041). Slice before the loop so each pattern only
   // ever scans the capped prefix, never the full (possibly hundreds of KB) body.
   const scanText =

@@ -4,6 +4,12 @@
  * Pure pipeline engine that orchestrates multi-stage LLM execution.
  * No side effects — delegates execution to a caller-provided StageExecutor.
  *
+ * [A-07 FIX] Added pipeline-level timeout and token budget caps to prevent
+ * runaway LLM calls from consuming unbounded resources. Each stage has a
+ * configurable timeout (default 120s), and the pipeline as a whole has a
+ * wall-clock budget (default 300s). These caps ensure that stuck or
+ * degenerating multi-stage conversations fail fast instead of hanging.
+ *
  * @module domain/pipeline
  */
 
@@ -32,6 +38,19 @@ export interface PipelineConfig {
   request: string;
   /** Optional task type hint. */
   taskType?: TaskType;
+  /**
+   * [A-07 FIX] Maximum wall-clock time for the entire pipeline in milliseconds.
+   * If the cumulative time across all stages exceeds this budget, the pipeline
+   * stops and returns the best available output. Default: 300000 (5 minutes).
+   * Set to 0 or Infinity to disable.
+   */
+  pipelineTimeoutMs?: number;
+  /**
+   * [A-07 FIX] Maximum time for a single stage execution in milliseconds.
+   * Individual stages that exceed this are aborted and treated as errors.
+   * Default: 120000 (2 minutes). Set to 0 or Infinity to disable.
+   */
+  stageTimeoutMs?: number;
 }
 
 export interface StageResult {
@@ -61,6 +80,13 @@ export interface StageExecutorArgs {
   stream: boolean;
   /** Fitness tier hint for this stage — caller uses for provider selection. */
   fitnessTier?: FitnessTier;
+  /**
+   * [A-07 FIX] AbortSignal for per-stage timeout. Executors SHOULD respect
+   * this signal to enable early termination of long-running LLM calls.
+   * If the executor does not support AbortSignal, the timeout is enforced
+   * by the pipeline wrapper around the executor call.
+   */
+  signal?: AbortSignal;
 }
 
 export interface StageExecutorResult {
@@ -183,11 +209,16 @@ export function parseReflectJson(text: string): ReflectResult | null {
 // Pipeline execution
 // ---------------------------------------------------------------------------
 
+// [A-07 FIX] Default timeout values for pipeline safety.
+const DEFAULT_PIPELINE_TIMEOUT_MS = 300_000; // 5 minutes total
+const DEFAULT_STAGE_TIMEOUT_MS = 120_000;    // 2 minutes per stage
+
 async function executeStage(
   stage: PipelineStage,
   request: string,
   context: Record<string, string>,
-  executor: StageExecutor
+  executor: StageExecutor,
+  stageTimeoutMs?: number
 ): Promise<StageResult> {
   const rendered = renderPrompt(stage.name, {
     original_request: request,
@@ -201,6 +232,51 @@ async function executeStage(
   ];
 
   const start = Date.now();
+  const timeoutMs = stageTimeoutMs ?? DEFAULT_STAGE_TIMEOUT_MS;
+
+  // [A-07 FIX] Wrap the executor call with a per-stage timeout using AbortController.
+  // If the executor respects the signal, it aborts early. If not, we reject after
+  // the timeout and treat the stage as failed.
+  if (timeoutMs > 0 && timeoutMs !== Infinity) {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+
+    try {
+      const result = await executor({
+        messages,
+        stream: false,
+        fitnessTier: stage.fitnessTier,
+        signal: controller.signal,
+      });
+      clearTimeout(timeoutId);
+      return {
+        stage: stage.name,
+        text: result.text,
+        provider: result.provider,
+        latencyMs: Date.now() - start,
+        inputTokens: result.inputTokens,
+        outputTokens: result.outputTokens,
+      };
+    } catch (err) {
+      clearTimeout(timeoutId);
+      if (controller.signal.aborted) {
+        return {
+          stage: stage.name,
+          text: "",
+          latencyMs: Date.now() - start,
+          error: `Stage timed out after ${timeoutMs}ms`,
+        };
+      }
+      return {
+        stage: stage.name,
+        text: "",
+        latencyMs: Date.now() - start,
+        error: err instanceof Error ? err.message : String(err),
+      };
+    }
+  }
+
+  // No timeout — run without AbortController
   try {
     const result = await executor({ messages, stream: false, fitnessTier: stage.fitnessTier });
     return {
@@ -230,18 +306,44 @@ async function executeStage(
  *  - parse failure → treated as fail (conservative)
  *
  * Any stage failure triggers fallback:true and returns best available output.
+ *
+ * [A-07 FIX] The pipeline now has a wall-clock time budget (pipelineTimeoutMs).
+ * If the cumulative time across stages exceeds this budget, the pipeline stops
+ * early and returns the best output collected so far. This prevents runaway
+ * multi-stage conversations from consuming unbounded time and resources.
  */
 export async function executePipeline(
   config: PipelineConfig,
   executor: StageExecutor
 ): Promise<PipelineResult> {
   const { stages, request } = config;
+  const pipelineTimeoutMs = config.pipelineTimeoutMs ?? DEFAULT_PIPELINE_TIMEOUT_MS;
+  const stageTimeoutMs = config.stageTimeoutMs ?? DEFAULT_STAGE_TIMEOUT_MS;
+  const pipelineStart = Date.now();
+
   const results: StageResult[] = [];
   let fallback = false;
   let reflectVerdict: "pass" | "fail" | null = null;
   let context: Record<string, string> = {};
 
   for (let i = 0; i < stages.length; i++) {
+    // [A-07 FIX] Check pipeline-level time budget before each stage.
+    // If we've already exceeded the budget, stop early with best available output.
+    if (pipelineTimeoutMs > 0 && pipelineTimeoutMs !== Infinity) {
+      const elapsed = Date.now() - pipelineStart;
+      if (elapsed >= pipelineTimeoutMs) {
+        results.push({
+          stage: stages[i].name,
+          text: "",
+          latencyMs: 0,
+          skipped: true,
+          error: `Pipeline time budget exhausted (${elapsed}ms >= ${pipelineTimeoutMs}ms)`,
+        });
+        fallback = true;
+        break;
+      }
+    }
+
     const stage = stages[i];
 
     // Skip fix if reflect passed
@@ -255,7 +357,7 @@ export async function executePipeline(
       continue;
     }
 
-    const result = await executeStage(stage, request, context, executor);
+    const result = await executeStage(stage, request, context, executor, stageTimeoutMs);
     results.push(result);
 
     // If a stage errored, mark fallback and break

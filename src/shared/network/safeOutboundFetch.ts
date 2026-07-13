@@ -10,6 +10,11 @@ import {
 
 const DEFAULT_IDEMPOTENT_METHODS = ["GET", "HEAD", "OPTIONS", "PUT", "DELETE"];
 
+// [N-04 FIX] Maximum number of manual redirect hops when allowRedirect is true.
+// Each hop re-validates the redirect target against the URL guard to prevent
+// SSRF via open redirect chains (e.g. public URL → 302 → internal metadata endpoint).
+const MAX_REDIRECT_HOPS = 5;
+
 export type SafeOutboundFetchGuard = OutboundUrlGuardMode;
 export type SafeOutboundFetchErrorCode =
   | "INVALID_URL"
@@ -283,7 +288,10 @@ export async function safeOutboundFetch(url: string | URL, options: SafeOutbound
   applyUrlGuard(targetUrl, guard, method);
 
   const retryConfig = getRetryConfig(retry, method);
-  const redirect = allowRedirect ? (fetchOptions.redirect ?? "follow") : "manual";
+  // [N-04 FIX] Always use manual redirect — when allowRedirect is true we
+  // follow redirects manually with per-hop URL guard validation to prevent
+  // SSRF via redirect chains. When false, 3xx responses throw REDIRECT_BLOCKED.
+  const redirect: RequestRedirect = "manual";
 
   for (let attempt = 1; attempt <= retryConfig.attempts; attempt++) {
     try {
@@ -298,27 +306,122 @@ export async function safeOutboundFetch(url: string | URL, options: SafeOutbound
           fetchFn: bypassProxyPatch ? getOriginalFetch() : undefined,
         });
 
-      const response = bypassProxyPatch
+      let response = bypassProxyPatch
         ? await executeFetch()
         : proxyConfig
           ? await runWithProxyContext(proxyConfig, executeFetch)
           : await executeFetch();
 
-      if (!allowRedirect && response.status >= 300 && response.status < 400) {
-        const location = response.headers.get("location");
-        await cancelResponseBody(response);
-        throw new SafeOutboundFetchError(
-          `Redirect blocked for ${method} ${targetUrl.toString()} (${response.status})`,
-          {
-            code: "REDIRECT_BLOCKED",
-            url: targetUrl.toString(),
-            method,
-            attempts: attempt,
-            status: response.status,
-            location,
-            isRetryable: false,
+      // [N-04 FIX] Manual redirect following with per-hop SSRF validation.
+      // When allowRedirect is true, follow each 3xx hop individually, re-applying
+      // the URL guard to each Location target. This prevents SSRF attacks where
+      // an attacker sets up a public URL that 302-redirects to internal endpoints
+      // (e.g. cloud metadata at 169.254.169.254).
+      if (allowRedirect) {
+        let hopCount = 0;
+        let currentUrl = targetUrl.toString();
+        while (response.status >= 300 && response.status < 400 && hopCount < MAX_REDIRECT_HOPS) {
+          const location = response.headers.get("location");
+          await cancelResponseBody(response);
+
+          if (!location) {
+            throw new SafeOutboundFetchError(
+              `Redirect without Location header for ${method} ${currentUrl} (${response.status})`,
+              {
+                code: "REDIRECT_BLOCKED",
+                url: currentUrl,
+                method,
+                attempts: attempt,
+                status: response.status,
+                location: null,
+                isRetryable: false,
+              }
+            );
           }
-        );
+
+          // Resolve the redirect URL against the current URL
+          let redirectUrl: URL;
+          try {
+            redirectUrl = new URL(location, currentUrl);
+          } catch {
+            throw new SafeOutboundFetchError(
+              `Invalid redirect Location: ${location}`,
+              {
+                code: "REDIRECT_BLOCKED",
+                url: currentUrl,
+                method,
+                attempts: attempt,
+                status: response.status,
+                location,
+                isRetryable: false,
+              }
+            );
+          }
+
+          // [N-04 FIX] Re-apply URL guard on each redirect hop.
+          // This is the critical mitigation — without it, an attacker can
+          // use an open redirect on a public host to bypass SSRF protection
+          // and reach internal services.
+          applyUrlGuard(redirectUrl, guard, method);
+
+          hopCount++;
+          currentUrl = redirectUrl.toString();
+
+          // Re-execute fetch to the new URL within the same attempt
+          const hopFetch = () =>
+            fetchWithTimeout(currentUrl, {
+              ...fetchOptions,
+              method: [301, 302, 303].includes(response.status) ? "GET" : method,
+              redirect: "manual",
+              signal,
+              timeoutMs,
+              fetchFn: bypassProxyPatch ? getOriginalFetch() : undefined,
+              // 303 redirects drop the body; 301/302 also convert to GET per HTTP spec
+              body: [301, 302, 303].includes(response.status) ? undefined : fetchOptions.body,
+            });
+
+          response = bypassProxyPatch
+            ? await hopFetch()
+            : proxyConfig
+              ? await runWithProxyContext(proxyConfig, hopFetch)
+              : await hopFetch();
+        }
+
+        // If we've exhausted redirect hops and still have a 3xx, block it
+        if (response.status >= 300 && response.status < 400) {
+          const location = response.headers.get("location");
+          await cancelResponseBody(response);
+          throw new SafeOutboundFetchError(
+            `Too many redirects (${MAX_REDIRECT_HOPS}) for ${method} ${targetUrl.toString()}`,
+            {
+              code: "REDIRECT_BLOCKED",
+              url: currentUrl,
+              method,
+              attempts: attempt,
+              status: response.status,
+              location,
+              isRetryable: false,
+            }
+          );
+        }
+      } else {
+        // No redirect following — block any 3xx immediately
+        if (response.status >= 300 && response.status < 400) {
+          const location = response.headers.get("location");
+          await cancelResponseBody(response);
+          throw new SafeOutboundFetchError(
+            `Redirect blocked for ${method} ${targetUrl.toString()} (${response.status})`,
+            {
+              code: "REDIRECT_BLOCKED",
+              url: targetUrl.toString(),
+              method,
+              attempts: attempt,
+              status: response.status,
+              location,
+              isRetryable: false,
+            }
+          );
+        }
       }
 
       if (

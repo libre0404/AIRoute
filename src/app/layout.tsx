@@ -9,6 +9,8 @@ import { getSettings } from "@/lib/db/settings";
 import type { Viewport } from "next";
 import { PwaRegister } from "@/shared/components/PwaRegister";
 import { LocaleAutoDetect } from "@/shared/components/LocaleAutoDetect";
+// [S-07 FIX] Read CSP nonce from middleware-injected header for inline scripts
+import { headers } from "next/headers";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -56,6 +58,9 @@ export default async function RootLayout({ children }) {
   const locale = await getLocale();
   const messages = normalizeComplianceEventTypes((await getMessages()) as Record<string, unknown>);
   const isRtl = RTL_LOCALES.includes(locale as (typeof RTL_LOCALES)[number]);
+  // [S-07 FIX] Read the per-request CSP nonce injected by the authz pipeline.
+  // This nonce is required for inline <script> and <style> tags to pass CSP.
+  const nonce = (await headers()).get("x-csp-nonce") || undefined;
 
   return (
     <html lang={locale} dir={isRtl ? "rtl" : "ltr"} suppressHydrationWarning>
@@ -63,7 +68,12 @@ export default async function RootLayout({ children }) {
         {/* Material Symbols icon font is self-hosted via globals.css
             (@import "material-symbols/outlined.css") so icons render even when
             the Google Fonts CDN is unreachable (#3695). */}
+        {/* [S-07 FIX] Inline script now uses CSP nonce instead of 'unsafe-inline'.
+            The nonce is generated per-request by the authz pipeline and injected
+            into the request headers. Without a valid nonce, this script would be
+            blocked by CSP — preventing XSS from injected scripts. */}
         <script
+          nonce={nonce}
           dangerouslySetInnerHTML={{
             __html: `
               if (typeof window !== 'undefined') {

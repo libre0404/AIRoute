@@ -7,10 +7,17 @@ import { mitmManagerAliasFor } from "./scripts/build/mitm-stub-flag.mjs";
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 const distDir = process.env.NEXT_DIST_DIR || ".build/next";
 const projectRoot = dirname(fileURLToPath(import.meta.url));
+// [S-07 FIX] CSP nonce: generate per-request nonce in authz pipeline and
+// substitute the placeholder before the response is sent. This eliminates
+// 'unsafe-inline' from script-src and style-src, blocking injected inline
+// scripts/styles from executing. The {{CSP_NONCE}} placeholder is replaced
+// at the middleware layer (pipeline.ts) before the response reaches the client.
+// Fallback: if no nonce is injected (e.g. API-only requests), the placeholder
+// is stripped, leaving a strict CSP that blocks all inline scripts.
 const scriptSrc =
   process.env.NODE_ENV === "development"
-    ? "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:"
-    : "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:";
+    ? "script-src 'self' 'nonce-{{CSP_NONCE}}' 'unsafe-eval' blob:"
+    : "script-src 'self' 'nonce-{{CSP_NONCE}}' 'unsafe-eval' blob:";
 const contentSecurityPolicy = [
   "default-src 'self'",
   "base-uri 'self'",
@@ -18,7 +25,7 @@ const contentSecurityPolicy = [
   "frame-ancestors 'none'",
   "form-action 'self'",
   scriptSrc,
-  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "style-src 'self' 'nonce-{{CSP_NONCE}}' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com data:",
   "img-src 'self' data: blob: https:",
   "media-src 'self' data: blob:",

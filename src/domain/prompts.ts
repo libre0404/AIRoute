@@ -71,8 +71,23 @@ export const STAGE_PROMPTS: Record<StageName, StagePrompt> = {
 };
 
 /**
+ * [A-06 FIX] Escape template delimiters in user-supplied values before
+ * interpolation. Without this, a user input like "{system_instruction}"
+ * or "{{admin_override}}" would be treated as a template variable and
+ * potentially replaced in a second interpolation pass, enabling template
+ * injection attacks.
+ */
+function escapeTemplateDelimiters(value: string): string {
+  return value.replace(/\{/g, "\\{").replace(/\}/g, "\\}");
+}
+
+/**
  * Interpolate template variables in a prompt string.
  * Variables use {variable_name} syntax.
+ *
+ * [A-06 FIX] User-supplied variable values are escaped before substitution
+ * to prevent template injection (a value containing `{foo}` would otherwise
+ * be treated as a template variable on subsequent passes).
  *
  * @param template - Template string with {variable} placeholders
  * @param variables - Key-value pairs to substitute
@@ -80,7 +95,10 @@ export const STAGE_PROMPTS: Record<StageName, StagePrompt> = {
  */
 export function interpolate(template: string, variables: Record<string, string>): string {
   return template.replace(/\{(\w+)\}/g, (match, key) => {
-    return key in variables ? variables[key] : match;
+    if (!(key in variables)) return match;
+    // Escape braces in the replacement value to prevent template injection
+    const escaped = variables[key].replace(/\{/g, "\\{").replace(/\}/g, "\\}");
+    return escaped;
   });
 }
 

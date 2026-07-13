@@ -28,6 +28,46 @@ import {
 import type { AuthSubject, RouteClass, RouteClassification } from "./types";
 import type { AuthOutcome, RoutePolicy } from "./context";
 
+// [S-07 FIX] CSP nonce header name — middleware injects the per-request nonce
+// into the request headers so downstream pages can embed it in <script nonce="…">
+// and <style nonce="…"> tags. The static CSP in next.config.mjs contains the
+// placeholder 'nonce-{{CSP_NONCE}}' which is replaced in rewriteCspNonce() below.
+const CSP_NONCE_HEADER = "x-csp-nonce";
+
+/**
+ * Generate a cryptographically random nonce for CSP.
+ * 16 bytes → 22-char base64url string (no padding).
+ */
+function generateCspNonce(): string {
+  const bytes = new Uint8Array(16);
+  globalThis.crypto.getRandomValues(bytes);
+  return btoa(String.fromCodePoint(...bytes))
+    .replace(/\+/g, "-")
+    .replace(/\//g, "_")
+    .replace(/=+$/, "");
+}
+
+/**
+ * [S-07 FIX] Replace the {{CSP_NONCE}} placeholder in the Content-Security-Policy
+ * header with the actual per-request nonce. If no nonce is provided (API-only
+ * requests don't need one), strip the 'nonce-{{CSP_NONCE}}' token entirely,
+ * leaving a strict CSP that blocks all inline scripts/styles.
+ */
+function rewriteCspNonce(response: NextResponse, nonce?: string): void {
+  const csp = response.headers.get("Content-Security-Policy");
+  if (!csp) return;
+
+  if (nonce) {
+    response.headers.set("Content-Security-Policy", csp.replace(/\{\{CSP_NONCE\}\}/g, nonce));
+  } else {
+    // No nonce for this request — strip the placeholder token and its preceding space
+    response.headers.set(
+      "Content-Security-Policy",
+      csp.replace(/\s*'nonce-\{\{CSP_NONCE\}\}'/g, "")
+    );
+  }
+}
+
 export interface AuthzPipelineOptions {
   enforce?: boolean;
 }
@@ -309,10 +349,13 @@ export async function runAuthzPipeline(
   }
 
   if (!options.enforce) {
+    const nonce = generateCspNonce();
+    requestHeaders.set(CSP_NONCE_HEADER, nonce);
     const response = NextResponse.next({ request: { headers: requestHeaders } });
     response.headers.set(AUTHZ_HEADER_REQUEST_ID, requestId);
     response.headers.set(AUTHZ_HEADER_ROUTE_CLASS, classification.routeClass);
     applyCorsHeaders(response, request, corsRelaxOrigin);
+    rewriteCspNonce(response, nonce);
     return response;
   }
 
@@ -364,10 +407,17 @@ export async function runAuthzPipeline(
 
   stampSubject(requestHeaders, outcome.subject);
 
+  // [S-07 FIX] Generate CSP nonce for all authenticated requests.
+  // Dashboard pages need it for inline scripts/styles; API requests
+  // will have the placeholder stripped (no inline content needed).
+  const cspNonce = generateCspNonce();
+  requestHeaders.set(CSP_NONCE_HEADER, cspNonce);
+
   const response = NextResponse.next({ request: { headers: requestHeaders } });
   response.headers.set(AUTHZ_HEADER_REQUEST_ID, requestId);
   response.headers.set(AUTHZ_HEADER_ROUTE_CLASS, classification.routeClass);
   applyCorsHeaders(response, request, corsRelaxOrigin);
+  rewriteCspNonce(response, cspNonce);
   if (managementDashboardRoute) {
     await refreshDashboardSessionIfNeeded(response, request);
   }

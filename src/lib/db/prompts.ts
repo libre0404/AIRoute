@@ -273,6 +273,11 @@ export function rollbackPrompt(slug: string, version: number): PromptTemplate | 
 
 /**
  * Render a prompt template by substituting variables.
+ *
+ * [A-06 FIX] Variable values are escaped before substitution to prevent
+ * template injection. Without this, a user input containing `{{admin_override}}`
+ * would be interpreted as a template variable in subsequent rendering passes,
+ * potentially allowing attackers to inject arbitrary prompt directives.
  */
 export function renderPrompt(slug: string, vars: Record<string, string> = {}): string | null {
   const prompt = getActivePrompt(slug);
@@ -280,7 +285,10 @@ export function renderPrompt(slug: string, vars: Record<string, string> = {}): s
 
   let content = prompt.content;
   for (const [key, value] of Object.entries(vars)) {
-    content = content.replace(new RegExp(`\\{\\{${key}\\}\\}`, "g"), value);
+    // [A-06 FIX] Escape braces in the substitution value to prevent template injection.
+    // Replace { with \\{ and } with \\} so the value cannot introduce new {{key}} patterns.
+    const escapedValue = value.replace(/\{/g, "\\{").replace(/\}/g, "\\}");
+    content = content.replace(new RegExp(`\\{\\{${key}\\}\\}`, "g"), escapedValue);
   }
   return content;
 }

@@ -425,7 +425,7 @@ curl http://localhost:20128/v1/models -H "Authorization: Bearer YOUR_KEY"
 
 <div align="center">
 
-AIRoute v3.8.46-cn · Node >=22.0.0 · MIT License
+AIRoute v0.1 · Node >=22.0.0 
 
 基于 [OmniRoute](https://github.com/diegosouzapw/AIRoute) 开源项目
 

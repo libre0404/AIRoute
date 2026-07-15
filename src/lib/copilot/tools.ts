@@ -76,6 +76,47 @@ function getAIRouteCliPath(): string | null {
 
 // ── Tool Definitions ─────────────────────────────────────────────────────────
 
+// ── CLI Execution Tool (A-03 allowlist) ──────────────────────────────────────
+
+/**
+ * [A-03 FIX] Allowlist of safe AIRoute CLI subcommands.
+ * Previously, the copilot could execute ANY AIRoute CLI command (including
+ * reset-password, db-reset, etc.), giving write-path destructive power to
+ * an LLM agent. Now only read-only and safe operational commands are allowed.
+ * Operators can extend via COPILOT_CLI_ALLOWLIST env var (comma-separated).
+ */
+const DEFAULT_CLI_ALLOWLIST = new Set([
+  "list-keys",
+  "list-combos",
+  "health",
+  "db-health",
+  "mcp",           // starts MCP server (read-only negotiation)
+  "version",
+  "status",
+  "info",
+  "whoami",
+  "show-key",
+  "show-combo",
+  "show-budget",
+]);
+
+function isAllowedCliCommand(argv: string[]): boolean {
+  if (!argv || argv.length === 0) return false;
+  const subcommand = argv[0].toLowerCase().trim();
+
+  // Check built-in allowlist
+  if (DEFAULT_CLI_ALLOWLIST.has(subcommand)) return true;
+
+  // Check env-var extensions
+  const extra = process.env.COPILOT_CLI_ALLOWLIST;
+  if (extra) {
+    const extras = extra.split(",").map((s) => s.trim().toLowerCase()).filter(Boolean);
+    if (extras.includes(subcommand)) return true;
+  }
+
+  return false;
+}
+
 export const COPILOT_TOOLS: CopilotTool[] = [
   // ── Provider Tools ──
   {
@@ -362,47 +403,6 @@ export const COPILOT_TOOLS: CopilotTool[] = [
       return formatCodeGraphResult(result);
     },
   },
-
-// ── CLI Execution Tool ──
-
-/**
- * [A-03 FIX] Allowlist of safe AIRoute CLI subcommands.
- * Previously, the copilot could execute ANY AIRoute CLI command (including
- * reset-password, db-reset, etc.), giving write-path destructive power to
- * an LLM agent. Now only read-only and safe operational commands are allowed.
- * Operators can extend via COPILOT_CLI_ALLOWLIST env var (comma-separated).
- */
-const DEFAULT_CLI_ALLOWLIST = new Set([
-  "list-keys",
-  "list-combos",
-  "health",
-  "db-health",
-  "mcp",           // starts MCP server (read-only negotiation)
-  "version",
-  "status",
-  "info",
-  "whoami",
-  "show-key",
-  "show-combo",
-  "show-budget",
-]);
-
-function isAllowedCliCommand(argv: string[]): boolean {
-  if (!argv || argv.length === 0) return false;
-  const subcommand = argv[0].toLowerCase().trim();
-
-  // Check built-in allowlist
-  if (DEFAULT_CLI_ALLOWLIST.has(subcommand)) return true;
-
-  // Check env-var extensions
-  const extra = process.env.COPILOT_CLI_ALLOWLIST;
-  if (extra) {
-    const extras = extra.split(",").map((s) => s.trim().toLowerCase()).filter(Boolean);
-    if (extras.includes(subcommand)) return true;
-  }
-
-  return false;
-}
 
   // ── CLI Execution Tool ──
   {

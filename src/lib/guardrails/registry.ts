@@ -1,4 +1,4 @@
-import { BaseGuardrail, type GuardrailContext, type GuardrailExecutionResult } from "./base";
+import { BaseGuardrail, type GuardrailContext, type GuardrailExecutionResult, type GuardrailResult } from "./base";
 import { PIIMaskerGuardrail } from "./piiMasker";
 import { PromptInjectionGuardrail } from "./promptInjection";
 import { VisionBridgeGuardrail } from "./visionBridge";
@@ -121,7 +121,9 @@ export class GuardrailRegistry {
       }
 
       try {
-        const result = await guardrail.preCall(currentPayload, context);
+        const rawResult = await guardrail.preCall(currentPayload, context);
+        // Narrow void | GuardrailResult<unknown> to GuardrailResult<unknown> | undefined
+        const result = rawResult as GuardrailResult<unknown> | undefined;
         const modified = result?.modifiedPayload !== undefined;
         const meta = result?.meta || null;
 
@@ -214,7 +216,9 @@ export class GuardrailRegistry {
       }
 
       try {
-        const result = await guardrail.postCall(currentResponse, context);
+        const rawResult = await guardrail.postCall(currentResponse, context);
+        // Narrow void | GuardrailResult<unknown> to GuardrailResult<unknown> | undefined
+        const result = rawResult as GuardrailResult<unknown> | undefined;
         const modified = result?.modifiedResponse !== undefined;
         const meta = result?.meta || null;
 

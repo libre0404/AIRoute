@@ -384,7 +384,7 @@ export async function runAuthzPipeline(
       return dashboardLoginRedirect(request, requestId);
     }
 
-    const rejection = rejectionResponse(outcome, classification, requestId);
+    const rejection = rejectionResponse(outcome as Extract<AuthOutcome, { allow: false }>, classification, requestId);
     applyCorsHeaders(rejection, request, corsRelaxOrigin);
     return rejection;
   }

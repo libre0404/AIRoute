@@ -16,7 +16,7 @@ const projectRoot = dirname(fileURLToPath(import.meta.url));
 // is stripped, leaving a strict CSP that blocks all inline scripts.
 const scriptSrc =
   process.env.NODE_ENV === "development"
-    ? "script-src 'self' 'nonce-{{CSP_NONCE}}' 'unsafe-eval' blob:"
+    ? "script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:"
     : "script-src 'self' 'nonce-{{CSP_NONCE}}' 'unsafe-eval' blob:";
 const contentSecurityPolicy = [
   "default-src 'self'",
@@ -25,7 +25,9 @@ const contentSecurityPolicy = [
   "frame-ancestors 'none'",
   "form-action 'self'",
   scriptSrc,
-  "style-src 'self' 'nonce-{{CSP_NONCE}}' https://fonts.googleapis.com",
+  process.env.NODE_ENV === "development"
+    ? "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com"
+    : "style-src 'self' 'nonce-{{CSP_NONCE}}' https://fonts.googleapis.com",
   "font-src 'self' https://fonts.gstatic.com data:",
   "img-src 'self' data: blob: https:",
   "media-src 'self' data: blob:",

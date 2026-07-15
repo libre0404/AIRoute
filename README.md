@@ -1,4 +1,5 @@
 
+
 <div align="center">
 
 # AIRoute
@@ -234,15 +235,29 @@ deploy/
 
 ### 环境变量速查
 
+#### 基础配置
+
 | 变量 | 默认值 | 说明 |
 |------|--------|------|
 | `AIRROUTE_REGION` | — | 设为 `cn` 激活全部中国区特性 |
-| `STORAGE_ENCRYPTION_KEY` | — | CN区强制要求，AES-256-GCM 密钥 |
+| `STORAGE_ENCRYPTION_KEY` | — | AES-256-GCM 密钥（CN 区强制要求；非 CN 区同样强制，除非 `ENCRYPTION_OPT_OUT=true`） |
 | `DB_TYPE` | `sqlite` | 可选 `sqlite` / `sqlcipher` / `postgresql` |
-| `DB_CONNECTION_STRING` | — | PostgreSQL 连接串（DB_TYPE=postgresql时必填） |
-| `SQLCIPHER_KEY` | — | SQLCipher 密钥（DB_TYPE=sqlcipher时必填） |
+| `DB_CONNECTION_STRING` | — | PostgreSQL 连接串（DB_TYPE=postgresql 时必填） |
+| `SQLCIPHER_KEY` | — | SQLCipher 密钥（DB_TYPE=sqlcipher 时必填） |
 | `PORT` | `20128` | API + 仪表盘端口 |
 | `DATA_DIR` | `~/.airoute/` | 数据目录 |
+
+#### 安全配置（v3.8.46 安全加固后新增）
+
+| 变量 | 默认值 | 说明 |
+|------|--------|------|
+| `JWT_SECRET` | — | **必填**，>=32 字符，启动时校验长度与占位符 |
+| `INITIAL_PASSWORD` | — | 管理员初始密码，**不可为 `CHANGEME`**，否则拒绝启动 |
+| `GUARDRAIL_ON_ERROR` | `block` | Guardrail 异常时的行为：`block`（拒绝请求）或 `warn`（放行并告警） |
+| `ENCRYPTION_OPT_OUT` | `false` | 设为 `true` 可跳过强制加密（仅限非生产环境调试用） |
+| `AUTH_COOKIE_SECURE` | `true` | 认证 Cookie Secure 标志，本地 HTTP 调试可设为 `false` |
+| `PIPELINE_TIMEOUT_MS` | `300000` | AI Pipeline 总超时（毫秒），默认 5 分钟 |
+| `STAGE_TIMEOUT_MS` | `120000` | AI Pipeline 单阶段超时（毫秒），默认 2 分钟 |
 
 ### 阿里云 ACK 部署
 
@@ -294,15 +309,39 @@ docker run -d --name airoute --restart unless-stopped \
 
 ### 本地源码运行
 
+> **Node.js 版本要求**：`>=22.0.0 <23 || >=24.0.0 <27`（推荐 Node 22.x LTS 或 24.x LTS）
+>
+> 低于 Node 22 会导致 `undici` 的 `webidl` 兼容性错误，项目无法启动。
+
 ```bash
+# 1. 确保 Node.js 版本正确
+node -v   # 应输出 v22.x 或 v24.x 或 v25.x
+
+# 2. 复制环境变量并修改
 cp .env.example .env
-# 编辑 .env，设置 AIRROUTE_REGION=cn 和 STORAGE_ENCRYPTION_KEY
+# 编辑 .env，必填项：
+#   AIRROUTE_REGION=cn
+#   STORAGE_ENCRYPTION_KEY=<openssl rand -hex 32>
+#   JWT_SECRET=<>=32字符的随机字符串>
+#   INITIAL_PASSWORD=<强密码，不可为 CHANGEME>
+
+# 3. 安装依赖
 npm install
+
+# 4. 如果切换过 Node 版本，需重编译原生模块
+npm rebuild better-sqlite3
+
+# 5. 启动开发服务器
 PORT=20128 npm run dev
 ```
 
 仪表盘：`http://localhost:20128`
-API端点：`http://localhost:20128/v1`
+API 端点：`http://localhost:20128/v1`
+
+> **Windows 注意**：系统中可能存在多个 Node.js 安装。请确保 PATH 中优先使用 `>=22` 的版本，或使用完整路径启动：
+> ```powershell
+> & "node.exe" --max-old-space-size=8192 scripts/dev/run-next.mjs dev
+> ```
 
 ---
 
@@ -312,7 +351,7 @@ API端点：`http://localhost:20128/v1`
 
 - [x] **P0-1** 华为云盘古 Provider（含中国区端点 `huawei-cn`）
 - [x] **P0-2** 国产 PII 脱敏（身份证/手机号/银联卡）+ 区域默认值翻转
-- [x] **P0-3** 凭证强制加密（CN区未配置密钥拒绝启动）
+- [x] **P0-3** 凭证强制加密（所有区域未配置密钥拒绝启动，CN 区同理）
 - [x] **P1-4** 百度搜索 / 必应中国搜索 Provider
 - [x] **P1-5** 数据出境管控（域名白名单 + 出境日志）
 - [x] **P1-6** 区域感知路由（评分权重自动调整）
@@ -320,17 +359,21 @@ API端点：`http://localhost:20128/v1`
 - [x] **P1-8** ACK/CCE K8s 部署模板
 - [x] **P2-9** SQLCipher / PostgreSQL 企业级存储层
 - [x] **P2-10** MITM 使用审计 + 作用域限制
-- [x] **P2-11** 国产模型版本自动同步（6 Provider, 6h间隔）
+- [x] **P2-11** 国产模型版本自动同步（6 Provider, 6h 间隔）
+- [x] **SEC-1** 安全审计 — 三视角审计（安全/网络/AI安全）完成，28 项发现，19 项已修复
+- [x] **SEC-2** Phase 1 紧急修复 — 15 项修复已落地（Guardrail fail-closed、加密强制、JWT 校验、OAuth state 验证、注入防护默认 block 等）
+- [x] **SEC-3** Phase 2 加固修复 — 4 项修复已落地（CSP nonce、SSRF 逐跳校验、模板注入防护、Pipeline 超时）
+- [x] **NODE-1** Node.js 升级至 v25.2.1 — 满足 `>=22.0.0` 要求，better-sqlite3 已重编译
 
 ### 进行中
 
 - [ ] **PG 覆盖迁移补全** — 为 025/075/096/103 号迁移文件编写 PostgreSQL 手工覆盖（涉及 JSON1 函数重写）
-- [ ] **Node 22+ 升级指南** — 项目要求 `>=22.0.0`，当前本地环境为 Node 20，需 nvm 切换
+- [ ] **SEC-4 Phase 3 持续验证** — 安全加固回归测试、定期重审、安全基线自动化扫描
 - [ ] **GitHub 远程仓库** — 初始化远程仓库并推送
 
 ### 规划中 (v3.9.x-cn)
 
-- [ ] **等保三级加固** — 审计日志持久化(PG)、操作留存90天、管理员双因素认证
+- [ ] **等保三级加固（续）** — 审计日志持久化(PG)、操作留存 90 天、管理员双因素认证（部分已在 SEC-1/2/3 完成：mandatory encryption、JWT 校验、Guardrail fail-closed）
 - [ ] **国密算法支持** — SM2/SM3/SM4 替代 AES-256/RSA/HMAC-SHA256 用于加密签名
 - [ ] **WAF 规则集** — 针对中国常见攻击模式的请求过滤规则
 - [ ] **Prometheus + Grafana 监控** — 国产化监控栈集成（华为 AOM / 阿里云 ARMS）
@@ -384,8 +427,45 @@ curl http://localhost:20128/v1/models -H "Authorization: Bearer YOUR_KEY"
 | A2A | JSON-RPC 2.0 + SSE，6 技能（含 Coze/Dify 委托） |
 | 韧性 | 三层独立：Provider 熔断器 → Key 冷却 → Model 锁定 |
 | 协议 | OpenAI / Claude / Gemini / Responses API 自动互译 |
-| 安全 | PII 脱敏 / 注入防护 / 视觉审查 / MITM 审计 |
+| 安全 | PII 脱敏 / 注入防护(block 默认) / 视觉审查 / MITM 审计 / CSP nonce / SSRF 逐跳校验 / Guardrail fail-closed / OAuth state 验证 / Pipeline 超时 |
 | 内存 | FTS5 全文搜索 + 向量检索（Qdrant/sqlite-vec） |
+
+### 安全加固（v3.8.46 审计修复）
+
+基于三视角（安全 / 网络 / AI 安全）审计，共发现 28 项安全问题，已修复 19 项：
+
+**Phase 1 — 紧急修复（15 项，已落地）**
+
+| 编号 | 修复内容 | 涉及文件 |
+|------|----------|----------|
+| S-01 | Guardrail 异常默认 fail-closed | `registry.ts` |
+| S-02 | 移除客户端可控的 Guardrail 开关 | `registry.ts` |
+| S-03 | 强制加密策略全局生效 | `encryption.ts` |
+| S-05 | 拒绝 CHANGEME 作为初始密码 | `managementPassword.ts` |
+| S-06 | JWT_SECRET 启动校验（长度 + 占位符） | `instrumentation-node.ts` |
+| N-01 | 限流器 Redis 故障时 fail-closed | `rateLimiter.ts` |
+| N-03 | 认证 Cookie 默认 Secure 标志 | `pipeline.ts`, `login/route.ts` |
+| N-05 | OAuth 2.0 state 服务端校验（10 分钟 TTL） | `oauth/[provider]/[action]/route.ts` |
+| N-07 | Docker Redis 加固（认证 + 禁用危险命令） | `docker-compose.yml` |
+| N-08 | 启动时不安全配置检测（6 项环境变量） | `instrumentation-node.ts` |
+| A-01 | 中文注入模式 + 扫描范围提升至 32KB | `inputSanitizer.ts` |
+| A-02 | Memory 注入上下文检测 | `injection.ts` |
+| A-03 | Copilot CLI 命令白名单 | `tools.ts` |
+| A-04 | Memory 存储 PII 脱敏 | `store.ts` |
+| A-05 | 注入防护默认策略从 `warn` 改为 `block` | `promptInjection.ts` |
+
+**Phase 2 — 加固修复（4 项，已落地）**
+
+| 编号 | 修复内容 | 涉及文件 |
+|------|----------|----------|
+| S-07 | CSP 按请求生成 nonce，移除 `unsafe-inline`（生产） | `next.config.mjs`, `layout.tsx`, `pipeline.ts` |
+| N-04 | SSRF 出站请求逐跳 URL 校验 | `safeOutboundFetch.ts` |
+| A-06 | 模板注入防护（转义 `{` `}`） | `prompts.ts`, `db/prompts.ts` |
+| A-07 | Pipeline 超时 + 单阶段超时 + AbortSignal | `pipeline.ts` |
+
+**Phase 3 — 持续验证（进行中）**
+
+回归测试、定期重审与安全基线自动化扫描。
 
 ---
 
@@ -425,7 +505,7 @@ curl http://localhost:20128/v1/models -H "Authorization: Bearer YOUR_KEY"
 
 <div align="center">
 
-AIRoute v0.1 · Node >=22.0.0 
+AIRoute v1.0 cn · Node >=22.0.0
 
 基于 [OmniRoute](https://github.com/diegosouzapw/AIRoute) 开源项目
 

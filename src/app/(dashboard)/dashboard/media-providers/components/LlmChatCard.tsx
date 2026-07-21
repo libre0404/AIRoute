@@ -169,6 +169,18 @@ export function LlmChatCard({
   // contain a slash but still need the provider prefix (#3050).
   const qualifiedModel = qualifyPlaygroundModel(effectiveModel, providerId);
 
+  // Auto-select the first available model when the model list loads and no model
+  // is currently selected. Without this, `model` (modelProp ?? internalModel)
+  // stays "" even though `effectiveModel` falls through to `firstModel` — the
+  // visual <select> shows the right value but `internalModel` remains empty,
+  // so if the user never touches the dropdown the qualification logic may break
+  // if models list is refreshed to empty (race condition on unmount/re-render).
+  useEffect(() => {
+    if (!modelProp && !internalModel && firstModel) {
+      setInternalModel(firstModel);
+    }
+  }, [firstModel, modelProp, internalModel]);
+
   // Autofocus textarea in embedded mode
   useEffect(() => {
     if (embedded) textareaRef.current?.focus();
@@ -190,6 +202,21 @@ export function LlmChatCard({
   const handleSend = useCallback(async () => {
     const trimmed = input.trim();
     if (!trimmed || streaming) return;
+
+    // Guard: refuse to send if no model is resolved (models still loading or
+    // provider has no available LLM models). Previously an empty model was sent
+    // to the backend, which returned a confusing "Missing model" 400 error.
+    if (!qualifiedModel) {
+      setMessages((prev) => [
+        ...prev,
+        { role: "user" as const, content: trimmed },
+        {
+          role: "assistant" as const,
+          content: "[Error: No model selected. Please select a model from the dropdown above.]",
+        },
+      ]);
+      return;
+    }
 
     const userMsg: Message = { role: "user", content: trimmed };
     const assistantMsg: Message = { role: "assistant", content: "", model: qualifiedModel };

@@ -1,5 +1,4 @@
 
-
 <div align="center">
 
 # AIRoute
@@ -296,15 +295,252 @@ kubectl apply -f deploy/postgres/postgresql.yaml
 # 详见 deploy/ack/airoute.yaml 中 DB_TYPE/DB_CONNECTION_STRING 配置
 ```
 
-### 本地 Docker
+### Docker 部署
+
+#### 前置要求
+
+| 工具 | 最低版本 | 说明 |
+|------|----------|------|
+| Docker | 24.0+ | 支持 BuildKit（`DOCKER_BUILDKIT=1`） |
+| Docker Compose | v2.20+ | `docker compose`（非 `docker-compose`） |
+
+> Windows 用户推荐 [Docker Desktop](https://www.docker.com/products/docker-desktop/)，安装后 `docker` 和 `docker compose` 均可用。
+
+#### 镜像说明
+
+Dockerfile 提供三个运行时目标（target），按需选择：
+
+| Target | 镜像标签 | 大小 | 适用场景 |
+|--------|----------|------|----------|
+| `runner-base` | `airoute:base` | ~500 MB | 绝大多数 Provider，推荐默认使用 |
+| `runner-web` | `airoute:web` | ~800 MB | 需要 Playwright/Chromium 的 Web-Cookie Provider（gemini-web、claude-web、claude-turnstile） |
+| `runner-cli` | `airoute:cli` | ~900 MB | 容器内安装 Codex/Claude Code/Droid/OpenClaw CLI |
+
+#### 方式一：Docker Compose（推荐）
+
+**1. 准备环境变量**
+
+```bash
+cp .env.example .env
+```
+
+编辑 `.env`，至少填写以下必填项：
+
+```bash
+AIRROUTE_REGION=cn
+STORAGE_ENCRYPTION_KEY=<openssl rand -hex 32>   # 加密密钥
+JWT_SECRET=<>=32字符的随机字符串>                  # JWT 签名密钥
+INITIAL_PASSWORD=<你的强密码>                     # 管理员密码，不可为 CHANGEME
+REDIS_PASSWORD=<Redis密码>                        # Redis 认证密码
+```
+
+> 生成密钥快捷命令：`openssl rand -hex 32`
+
+**2. 选择 Profile 启动**
+
+```bash
+# 最小化启动（推荐大多数用户）
+docker compose --profile base up -d
+
+# 需要 Web-Cookie Provider 时
+docker compose --profile web up -d
+
+# 需要容器内 CLI 工具时
+docker compose --profile cli up -d
+
+# 容器内 CLI + CLIProxyAPI 侧车
+docker compose --profile cli --profile cliproxyapi up -d
+
+# 添加 Qdrant 语义记忆侧车（百万级向量场景）
+docker compose --profile base --profile memory up -d
+
+# 添加 Bifrost Go LLM 路由侧车
+docker compose --profile base --profile bifrost up -d
+
+# Host 模式：挂载宿主机已安装的 CLI 二进制
+docker compose --profile host up -d
+```
+
+**3. 验证**
+
+```bash
+# 查看容器状态
+docker compose ps
+
+# 查看日志
+docker compose logs -f AIRoute
+
+# 健康检查
+curl http://localhost:20128/api/monitoring/health
+```
+
+**4. 访问服务**
+
+| 入口 | 地址 |
+|------|------|
+| 仪表盘 | `http://localhost:20128` |
+| API 端点 | `http://localhost:20128/v1` |
+| API（独立端口） | `http://localhost:20129`（需设置 `API_PORT=20129`） |
+
+#### 方式二：docker run
+
+**最小化启动**
 
 ```bash
 docker run -d --name airoute --restart unless-stopped \
   -p 20128:20128 \
   -e AIRROUTE_REGION=cn \
   -e STORAGE_ENCRYPTION_KEY=$(openssl rand -hex 32) \
+  -e JWT_SECRET=$(openssl rand -hex 32) \
+  -e INITIAL_PASSWORD=YourStrongPassword123! \
   -v airoute-data:/app/data \
-  airoute:latest
+  airoute:base
+```
+
+**带 Redis + 认证**
+
+```bash
+# 1. 启动 Redis
+docker run -d --name airoute-redis --restart unless-stopped \
+  redis:7-alpine \
+  redis-server --save 60 1 --loglevel warning --requirepass your_redis_password
+
+# 2. 启动 AIRoute
+docker run -d --name airoute --restart unless-stopped \
+  --link airoute-redis:redis \
+  -p 20128:20128 \
+  -e AIRROUTE_REGION=cn \
+  -e STORAGE_ENCRYPTION_KEY=$(openssl rand -hex 32) \
+  -e JWT_SECRET=$(openssl rand -hex 32) \
+  -e INITIAL_PASSWORD=YourStrongPassword123! \
+  -e REDIS_URL=redis://:your_redis_password@redis:6379 \
+  -v airoute-data:/app/data \
+  airoute:base
+```
+
+#### 方式三：生产环境 Compose
+
+```bash
+# 启动（端口 20130/20131，与开发环境隔离）
+docker compose -f docker-compose.prod.yml up -d --build
+
+# 查看日志
+docker compose -f docker-compose.prod.yml logs -f
+
+# 停止
+docker compose -f docker-compose.prod.yml down
+```
+
+生产环境默认使用 `runner-cli` target，端口映射 `20130→20128`（仪表盘）、`20131→20129`（API）。
+
+#### 构建自定义镜像
+
+```bash
+# 默认构建（runner-base）
+docker build -t airoute:base .
+
+# 指定 target
+docker build --target runner-web -t airoute:web .
+docker build --target runner-cli -t airoute:cli .
+
+# 调整构建内存（默认 4GB，大型项目可能需要更多）
+docker build --build-arg AIRoute_BUILD_MEMORY_MB=6144 -t airoute:base .
+
+# 多平台构建（ARM64 / AMD64）
+docker buildx build --platform linux/amd64,linux/arm64 -t airoute:base .
+```
+
+#### 数据卷管理
+
+| 路径 | 用途 | 建议 |
+|------|------|------|
+| `./data:/app/data` | 应用数据（SQLite/SQLCipher 数据库、日志、配置） | 必须挂载，否则容器重建后数据丢失 |
+| `airoute-data` | Docker 命名卷（替代 bind mount） | 生产环境推荐命名卷 |
+
+```bash
+# 备份数据
+docker run --rm -v airoute-data:/app/data -v $(pwd):/backup alpine \
+  tar czf /backup/airoute-backup-$(date +%Y%m%d).tar.gz -C /app data
+
+# 恢复数据
+docker run --rm -v airoute-data:/app/data -v $(pwd):/backup alpine \
+  tar xzf /backup/airoute-backup-20260803.tar.gz -C /app
+```
+
+#### 运行时内存调优
+
+| 环境变量 | 默认值 | 说明 |
+|----------|--------|------|
+| `AIRoute_MEMORY_MB` | `1024` | Node.js V8 堆上限（MB），容器运行时生效 |
+| `AIRoute_BUILD_MEMORY_MB` | `4096` | 构建阶段 V8 堆上限（MB），仅 `docker build` 时使用 |
+
+```bash
+# 低内存 VPS（1-2 GB RAM）
+docker compose --profile base up -d -e AIRoute_MEMORY_MB=512
+
+# 高并发生产环境
+docker compose --profile base up -d -e AIRoute_MEMORY_MB=2048
+```
+
+#### Docker Compose Profile 速查
+
+| Profile | 包含组件 | 用途 |
+|---------|----------|------|
+| `base` | AIRoute + Redis | 最小化部署，覆盖绝大多数场景 |
+| `web` | AIRoute(含Chromium) + Redis | Web-Cookie Provider（gemini-web/claude-web/claude-turnstile） |
+| `cli` | AIRoute(含CLI工具) + Redis | 容器内直接使用 Codex/Claude Code/Droid/OpenClaw |
+| `host` | AIRoute + Redis | 挂载宿主机 CLI 二进制（Linux 优先） |
+| `memory` | Qdrant 侧车 | 百万级向量语义记忆（需 `QDRANT_ENABLED=true`） |
+| `bifrost` | Bifrost Go 侧车 | Tier-1 LLM 路由（需 `BIFROST_ENABLED=true`） |
+| `cliproxyapi` | CLIProxyAPI 侧车 | CLI Proxy API 端口 8317 |
+
+#### 常见问题
+
+**Q: 容器启动后显示 `unhealthy`**
+
+健康检查脚本会依次探测 `127.0.0.1` → `localhost` → `::1` → 容器内网 IP。启动需要 10-15 秒，如果持续 unhealthy：
+
+```bash
+# 查看健康检查日志
+docker inspect --format='{{json .State.Health}}' airoute | python3 -m json.tool
+
+# 手动测试
+docker exec airoute node healthcheck.mjs
+```
+
+**Q: 数据卷权限错误（`WARNING: /app/data is not writable`）**
+
+```bash
+# Docker 环境
+sudo chown -R 1000:1000 ./data
+chmod -R u+rwX ./data
+
+# Podman 环境
+podman unshare chown -R $(id -u):$(id -g) ./data
+```
+
+**Q: 构建时 `JavaScript heap out of memory`**
+
+```bash
+# 增大构建内存
+docker build --build-arg AIRoute_BUILD_MEMORY_MB=6144 -t airoute:base .
+```
+
+**Q: 需要 Web-Cookie Provider 但用了 `base` 镜像**
+
+Web-Cookie Provider 依赖 Playwright/Chromium，`base` 镜像不包含。请切换到 `web` profile：
+
+```bash
+docker compose --profile web up -d
+```
+
+**Q: 如何查看完整环境变量列表**
+
+`.env.example` 文件包含 940+ 行环境变量文档，覆盖所有可配置项：
+
+```bash
+cp .env.example .env
+# 按 .env 中的注释说明逐项配置
 ```
 
 ### 本地源码运行

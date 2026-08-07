@@ -7,6 +7,7 @@ import { promisify } from "util";
 import { getSettings, updateSettings } from "@/lib/db/settings";
 import { resolveDataDir } from "@/lib/dataPaths";
 import { getRuntimePorts } from "@/lib/runtime/ports";
+import { assertTunnelAuthEnabled } from "@/lib/tunnelAuthGate";
 import { getCachedPassword, setCachedPassword } from "@/mitm/manager";
 import { execFileWithPassword } from "@/mitm/systemCommands";
 import { getConsistentMachineId } from "@/shared/utils/machineId";
@@ -863,6 +864,10 @@ export async function enableTailscaleTunnel({
   hostname?: string;
   port?: number;
 } = {}): Promise<TailscaleEnableResult> {
+  // Security gate: Funnel publishes the instance publicly — refuse when
+  // REQUIRE_API_KEY is disabled (throws; the API route surfaces the message).
+  assertTunnelAuthEnabled();
+
   const normalizedPassword = toNonEmptyString(sudoPassword) || getCachedPassword() || "";
   if (normalizedPassword) {
     setCachedPassword(normalizedPassword);

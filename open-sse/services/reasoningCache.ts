@@ -22,6 +22,52 @@ import {
   getReasoningCacheStats,
   setReasoningCache,
 } from "../../src/lib/db/reasoningCache.ts";
+import { AsyncLocalStorage } from "node:async_hooks";
+
+// ──────────────── Tenant Scoping ────────────────
+//
+// [AUDIT-2026-08 FIX] The cache used to be keyed by bare tool_call_id with a
+// global namespace: any caller that knew (or replayed) a tool_call_id from
+// somebody else's conversation could read that tenant's cached
+// reasoning_content. We now namespace every read/write by the request's API
+// key id, bound via AsyncLocalStorage so no translator/executor signature
+// changes are needed.
+//
+// Semantics:
+//  - Authenticated requests (apiKeyInfo.id present): keys are prefixed
+//    `tenant:<apiKeyId>::` — fully isolated per API key.
+//  - Anonymous requests (REQUIRE_API_KEY=false, no Bearer): scope is empty
+//    and keys stay bare, i.e. the legacy shared namespace (single trust
+//    domain by definition).
+//  - Legacy unscoped DB entries written before this fix simply miss for
+//    scoped lookups and expire via the normal TTL cleanup.
+//
+// NOTE: deleteReasoningCacheEntry() deliberately does NOT apply scoping —
+// the admin dashboard passes literal stored keys (which already carry the
+// tenant prefix) for deletion.
+
+const reasoningScopeStore = new AsyncLocalStorage<string>();
+
+/**
+ * Bind the current request's async context to a tenant scope for all
+ * reasoning cache reads/writes that follow. Call early in the request
+ * handler (chatCore) with the API key id, or null for anonymous requests.
+ */
+export function setReasoningScope(scope: string | null | undefined): void {
+  const normalized = scope && String(scope).trim() ? String(scope).trim() : "";
+  reasoningScopeStore.enterWith(normalized);
+}
+
+/** Current tenant scope for this async context ("" = anonymous/legacy). */
+export function getReasoningScope(): string {
+  return reasoningScopeStore.getStore() || "";
+}
+
+/** Namespace a raw cache key with the current tenant scope. */
+function buildScopedKey(key: string): string {
+  const scope = getReasoningScope();
+  return scope ? `tenant:${scope}::${key}` : key;
+}
 
 // ──────────────── Provider/Model Detection ────────────────
 
@@ -193,13 +239,16 @@ export function cacheReasoningByKey(
     reasoning = reasoning.slice(0, MAX_ENTRY_BYTES);
   }
 
+  // [AUDIT-2026-08 FIX] Namespace by tenant scope (all writes funnel here).
+  const scopedKey = buildScopedKey(key);
+
   const now = Date.now();
 
   // Memory write
   if (memoryCache.size >= MAX_MEMORY_ENTRIES) {
     evictOldest();
   }
-  memoryCache.set(key, {
+  memoryCache.set(scopedKey, {
     reasoning,
     provider,
     model,
@@ -208,7 +257,7 @@ export function cacheReasoningByKey(
   });
 
   try {
-    setReasoningCache(key, provider, model, reasoning, TTL_MS);
+    setReasoningCache(scopedKey, provider, model, reasoning, TTL_MS);
   } catch {
     // DB persistence failure is non-fatal; memory cache still serves the hot path.
   }
@@ -289,21 +338,25 @@ export function lookupReasoning(toolCallId: string): string | null {
     return null;
   }
 
+  // [AUDIT-2026-08 FIX] Lookups are namespaced by tenant scope so one API
+  // key can never read another tenant's cached reasoning_content.
+  const scopedKey = buildScopedKey(toolCallId);
+
   // 1. Check memory
-  const mem = memoryCache.get(toolCallId);
+  const mem = memoryCache.get(scopedKey);
   if (mem) {
     if (Date.now() < mem.expiresAt) {
       hits++;
       return mem.reasoning;
     }
     // Expired in memory — remove
-    memoryCache.delete(toolCallId);
+    memoryCache.delete(scopedKey);
   }
 
   // 2. Fallback to DB
   let dbResult: { reasoning: string; provider: string; model: string } | null = null;
   try {
-    dbResult = getReasoningCache(toolCallId);
+    dbResult = getReasoningCache(scopedKey);
   } catch {
     // DB lookup failure is non-fatal; treat it as a cache miss.
   }
@@ -314,7 +367,7 @@ export function lookupReasoning(toolCallId: string): string | null {
       promotedReasoning = promotedReasoning.slice(0, MAX_ENTRY_BYTES);
     }
     // Promote back to memory for fast subsequent lookups
-    memoryCache.set(toolCallId, {
+    memoryCache.set(scopedKey, {
       reasoning: promotedReasoning,
       provider: dbResult.provider,
       model: dbResult.model,

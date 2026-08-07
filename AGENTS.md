@@ -489,7 +489,7 @@ Request middleware including `promptInjectionGuard.ts`.
 
 ### Guardrails (`src/lib/guardrails/`)
 
-Hot-reloadable guardrails framework (3 built-in: pii-masker, prompt-injection, vision-bridge). Fail-open. The `pii-masker` guardrail is registered and runs on every request, but its data-mutating logic is **opt-in** and OFF by default — it only redacts when `PII_REDACTION_ENABLED` (request) / `PII_RESPONSE_SANITIZATION` (response + streaming) are enabled (both `defaultValue: "false"`); with them off, payloads pass through untouched. A request can additionally opt OUT of any guardrail via header (`x-AIRoute-disabled-guardrails`). Never make PII default-on (Hard Rule #20). See [`docs/security/GUARDRAILS.md`](docs/security/GUARDRAILS.md).
+Hot-reloadable guardrails framework (3 built-in: pii-masker, prompt-injection, vision-bridge). Fail-open. The `pii-masker` guardrail is registered and runs on every request, but its data-mutating logic is **opt-in** and OFF by default — it only redacts when `PII_REDACTION_ENABLED` (request) / `PII_RESPONSE_SANITIZATION` (response + streaming) are enabled (both `defaultValue: "false"`); with them off, payloads pass through untouched. Guardrails can only be opted out of via the admin-controlled `disabledGuardrails` field on an API key (`resolveDisabledGuardrails` in `registry.ts`); request body / metadata / header opt-outs were removed by the S-02 security fix. Never make PII default-on (Hard Rule #20). See [`docs/security/GUARDRAILS.md`](docs/security/GUARDRAILS.md).
 
 ### Cloud Agents (`src/lib/cloudAgent/`)
 

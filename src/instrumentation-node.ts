@@ -358,11 +358,13 @@ export async function registerNodejs(): Promise<void> {
       );
     }
 
-    // Input sanitizer mode should be block in production
+    // Input sanitizer mode should be block in production. Unset is fine —
+    // the default is "block" (see inputSanitizer getConfig); only an explicit
+    // downgrade to warn/log means injections are logged but not rejected.
     const sanitizerMode = (process.env.INPUT_SANITIZER_MODE || "").toLowerCase();
-    if (sanitizerMode === "warn" || sanitizerMode === "") {
+    if (sanitizerMode === "warn" || sanitizerMode === "log") {
       warnings.push(
-        `INPUT_SANITIZER_MODE=${sanitizerMode || "(unset, defaults to block)"}: ` +
+        `INPUT_SANITIZER_MODE=${sanitizerMode}: ` +
           `Prompt injection detection will only LOG warnings without blocking. ` +
           `Set INPUT_SANITIZER_MODE=block for production to actually reject malicious prompts.`
       );

@@ -240,7 +240,10 @@ import {
   resolveReportedServiceTier as resolveReportedServiceTierFor,
   type EffectiveServiceTier,
 } from "./chatCore/serviceTier.ts";
-import { cacheReasoningFromAssistantMessage } from "../services/reasoningCache.ts";
+import {
+  cacheReasoningFromAssistantMessage,
+  setReasoningScope,
+} from "../services/reasoningCache.ts";
 import { sanitizeOpenAITool } from "../services/toolSchemaSanitizer.ts";
 import {
   setDetectedToolLimit,
@@ -425,6 +428,11 @@ export async function handleChatCore({
     return credentialConnectionId || connectionId || null;
   };
   let tokensCompressed: number | null = null;
+  // [AUDIT-2026-08 FIX] Tenant-isolate the reasoning replay cache: bind this
+  // request's async context to the API key id BEFORE any cache read (replay
+  // injection during translateRequest) or write (response capture) runs.
+  // Anonymous requests pass null and keep the legacy shared namespace.
+  setReasoningScope(apiKeyInfo?.id != null ? String(apiKeyInfo.id) : null);
   body = injectSystemPrompt(body);
   // ── Per-endpoint custom system prompt (port of upstream #2063) ──
   // Reads from cachedSettings if available (passed in from combo/chat layer)

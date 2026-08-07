@@ -170,7 +170,11 @@ import { isFeatureFlagEnabled } from "@/shared/utils/featureFlags";
 function getConfig() {
   return {
     enabled: process.env.INPUT_SANITIZER_ENABLED !== "false",
-    mode: process.env.INPUT_SANITIZER_MODE || "warn", // "warn" | "block" | "redact"
+    // [A-02 FIX] Default to "block" (was "warn"). The guardrail wrapper already
+    // blocks high-severity detections by default; the internal default was a
+    // stale "warn" that made sanitizeRequest's own `blocked` flag dead weight.
+    // PII redaction is NOT affected — it stays opt-in via PII_REDACTION_ENABLED.
+    mode: process.env.INPUT_SANITIZER_MODE || "block", // "warn" | "block" | "redact"
     piiRedaction: isFeatureFlagEnabled("PII_REDACTION_ENABLED"),
   };
 }

@@ -50,6 +50,25 @@ const DEFAULT_GUARD_PATTERNS: PatternLike[] = [
     pattern: /```+\s*system\b/i,
     severity: "high",
   },
+  {
+    // Classic exfiltration phrasing ("repeat the text above / your first
+    // message") — rarely appears in legitimate coding-agent traffic.
+    name: "context_exfiltration",
+    pattern:
+      /\b(repeat|output|print|recite)\s+(all\s+|exactly\s+)?(the\s+)?(text|words|message|content)\s+(above|before|prior|of\s+your\s+(system|first|initial))\b/i,
+    severity: "high",
+  },
+  {
+    name: "safety_bypass_directive",
+    pattern:
+      /\b(ignore|bypass|disable|turn\s+off|lift)\s+(all\s+)?(safety|content\s+policy|ethical\s+(guidelines|rules)|moderation)\b/i,
+    severity: "high",
+  },
+  {
+    name: "fake_privilege_mode",
+    pattern: /\b(sudo\s+mode|god\s+mode|administrator\s+override|unrestricted\s+mode)\s*(is\s+)?(enabled|activated|on)\b/i,
+    severity: "high",
+  },
 ];
 
 const SEVERITY_SCORES = {

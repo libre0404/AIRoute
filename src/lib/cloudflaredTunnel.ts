@@ -7,6 +7,7 @@ import path from "path";
 import proxyFetch from "@AIRoute/open-sse/utils/proxyFetch.ts";
 import { resolveDataDir } from "@/lib/dataPaths";
 import { getRuntimePorts } from "@/lib/runtime/ports";
+import { assertTunnelAuthEnabled } from "@/lib/tunnelAuthGate";
 
 const execFileAsync = promisify(execFile);
 
@@ -781,6 +782,9 @@ export async function getCloudflaredTunnelStatus(): Promise<CloudflaredTunnelSta
 }
 
 export async function startCloudflaredTunnel(): Promise<CloudflaredTunnelStatus> {
+  // Security gate: refuse to publish an unauthenticated instance publicly.
+  assertTunnelAuthEnabled();
+
   const current = await getCloudflaredTunnelStatus();
   if (current.running) return current;
   if (startPromise) return startPromise;

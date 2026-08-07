@@ -1,4 +1,5 @@
 import { getRuntimePorts } from "@/lib/runtime/ports";
+import { assertTunnelAuthEnabled } from "@/lib/tunnelAuthGate";
 
 export type TunnelPhase =
   | "unsupported"
@@ -71,6 +72,9 @@ export async function startNgrokTunnel(inputAuthToken?: string): Promise<NgrokTu
 
   startPromise = (async () => {
     try {
+      // Security gate: refuse to publish an unauthenticated instance publicly.
+      assertTunnelAuthEnabled();
+
       const authToken =
         inputAuthToken && inputAuthToken.trim() !== ""
           ? inputAuthToken.trim()

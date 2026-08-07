@@ -75,6 +75,16 @@ CREATE TABLE IF NOT EXISTS reasoning_cache (
 
 Indexes: `expires_at`, `provider`, `model`, `created_at`. `expires_at` is stored as Unix epoch seconds; the SELECT layer normalizes legacy text values via `EXPIRES_AT_EPOCH_SQL`.
 
+## Tenant Isolation
+
+Every cache key is namespaced by the request's API key id before it reaches memory or DB (`buildScopedKey` in `open-sse/services/reasoningCache.ts`):
+
+- **Authenticated requests:** stored keys are `tenant:<apiKeyId>::<rawKey>`. One API key can never read or replay another key's cached reasoning, even if it knows (or replays) the raw `tool_call_id`.
+- **Anonymous requests** (no API key): keys stay bare — the legacy shared namespace. Anonymous access is a single trust domain by definition.
+- **Scope binding:** `setReasoningScope(apiKeyInfo?.id)` is called at the top of `handleChatCore()` and uses `AsyncLocalStorage.enterWith`, so all reads (replay injection in `translateRequest`) and writes (response capture) within the request's async context inherit the scope without translator/executor signature changes. Combo sub-requests inherit the parent scope.
+- **Legacy entries:** rows written before tenant scoping simply miss for scoped lookups and expire via normal TTL cleanup.
+- **Admin endpoints** operate on literal stored keys (the tenant prefix is part of the `toolCallId` value), so dashboard listing and targeted deletion keep working.
+
 ## Provider / Model Detection
 
 Replay is enabled when `requiresReasoningReplay(provider, model)` returns `true`. The function checks two lists in `open-sse/services/reasoningCache.ts`.

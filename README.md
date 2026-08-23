@@ -41,6 +41,7 @@
 - [架构概览](#架构概览)
 - [国内特性文件清单](#国内特性文件清单)
 - [部署指南](#部署指南)
+- [公网暴露（FreeDomain + Cloudflare Named Tunnel）](#公网暴露freedomain--cloudflare-named-tunnel)
 - [开发路线图](#开发路线图)
 - [快速开始](#快速开始)
 - [技术栈](#技术栈)
@@ -578,6 +579,61 @@ API 端点：`http://localhost:20128/v1`
 > ```powershell
 > & "node.exe" --max-old-space-size=8192 scripts/dev/run-next.mjs dev
 > ```
+
+---
+
+## 公网暴露（FreeDomain + Cloudflare Named Tunnel）
+
+AIRoute 内置的 Cloudflare Quick Tunnel 生成临时域名（`*.trycloudflare.com`），每次重启都会变。要获得稳定、免备案的公网固定入口，可用 [DigitalPlat FreeDomain](https://github.com/DigitalPlatDev/FreeDomain) 免费域名 + Cloudflare Named Tunnel 绑定。
+
+> 详细操作步骤见 [`FreeDomain_Cloudflare_Tunnel_AIRoute_绑定指南.docx`](FreeDomain_Cloudflare_Tunnel_AIRoute_绑定指南.docx)，Tunnel 通用文档见 [`docs/ops/TUNNELS_GUIDE.md`](docs/ops/TUNNELS_GUIDE.md)。
+
+**5 步快速配置：**
+
+```bash
+# 1. 注册 FreeDomain 免费域名，将 NS 指向 Cloudflare
+#    （在 FreeDomain 面板把 NS 改为 Cloudflare 给的两个 NS 地址）
+
+# 2. 安装 cloudflared CLI 并登录
+cloudflared tunnel login          # 浏览器授权，选你的域名
+
+# 3. 创建 Named Tunnel 并配 DNS 路由
+cloudflared tunnel create airoute-tunnel
+cloudflared tunnel route dns airoute-tunnel airoute.你的域名.js.cool
+
+# 4. 编写配置文件 ~/.cloudflared/config.yml
+#    tunnel: <Tunnel-ID>
+#    credentials-file: ~/.cloudflared/<Tunnel-ID>.json
+#    ingress:
+#      - hostname: airoute.你的域名.js.cool
+#        service: http://127.0.0.1:20128
+#      - service: http_status:404
+
+# 5. 启动 Tunnel（AIRoute 须已在 127.0.0.1:20128 运行）
+cloudflared tunnel run airoute-tunnel
+
+# 可选：设为系统服务自启动
+cloudflared service install       # Windows/Linux/macOS 均可
+```
+
+**如需 OAuth Provider（Claude/Cursor/Gemini 等），额外设置：**
+
+```bash
+# .env 中添加
+NEXT_PUBLIC_BASE_URL=https://airoute.你的域名.js.cool
+REQUIRE_API_KEY=true              # 公网暴露后必须开启认证
+```
+
+> **安全提醒**：公网暴露后必须启用 `REQUIRE_API_KEY`。Named Tunnel 不受 AIRoute 内置 Tunnel 安全门禁（`tunnelAuthGate.ts`）管控，需手动确保认证已开启。建议在 Cloudflare 侧启用 Access Policy 增加一层访问控制。**切勿用于政务或企业合规场景**，免费域名无 SLA 保证，也无法满足等保要求。
+
+**三种公网暴露方案对比：**
+
+| 方案 | 域名稳定性 | 适用场景 |
+|------|-----------|---------|
+| Cloudflare Quick Tunnel | 临时，重启变化 | 临时 Demo，不想配置 |
+| Cloudflare Named Tunnel + FreeDomain | 稳定，自定义域名 | 长期使用，需固定 URL |
+| ngrok Reserved Domain | 稳定（需付费） | 已有 ngrok 付费计划 |
+| Tailscale Funnel | 稳定（每节点固定） | 团队内部，已有 Tailscale |
 
 ---
 

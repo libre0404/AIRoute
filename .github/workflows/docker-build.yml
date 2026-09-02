@@ -31,7 +31,8 @@ jobs:
 
       - name: Patch Dockerfile for better-sqlite3 compilation
         run: |
-          sed -i 's/apt-get install -y --no-install-recommends python3 make g++/apt-get install -y --no-install-recommends python3 python3-dev make g++ pkg-config/' Dockerfile
+          sed -i 's/apt-get install -y --no-install-recommends python3 make g++/apt-get install -y --no-install-recommends python3 python3-dev make g++ pkg-config node-gyp/' Dockerfile
+          sed -i 's/npm rebuild better-sqlite3/npm rebuild better-sqlite3 --verbose --foreground-scripts/' Dockerfile
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3

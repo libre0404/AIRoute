@@ -29,10 +29,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Patch Dockerfile for better-sqlite3 compilation
+      - name: Patch Dockerfile for better-sqlite3
         run: |
-          sed -i 's/apt-get install -y --no-install-recommends python3 make g++/apt-get install -y --no-install-recommends python3 python3-dev make g++ pkg-config node-gyp/' Dockerfile
-          sed -i 's/npm rebuild better-sqlite3/npm rebuild better-sqlite3 --verbose --foreground-scripts/' Dockerfile
+          # Add python3-dev and pkg-config
+          sed -i 's/apt-get install -y --no-install-recommends python3 make g++/apt-get install -y --no-install-recommends python3 python3-dev make g++ pkg-config/' Dockerfile
+          
+          # Copy build script into Docker context
+          cp scripts/docker-build-better-sqlite3.sh ./docker-build-better-sqlite3.sh
+          
+          # Replace lines 58-61 in Dockerfile
+          sed -i '58,61d' Dockerfile
+          sed -i '57a\
+  COPY docker-build-better-sqlite3.sh /app/docker-build-better-sqlite3.sh\
+  RUN chmod +x /app/docker-build-better-sqlite3.sh && /app/docker-build-better-sqlite3.sh' Dockerfile
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3

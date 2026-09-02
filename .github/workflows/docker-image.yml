@@ -23,6 +23,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      # 强制使用 Node 22（避免 runner 默认 Node 24 带来的兼容问题）
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
       - name: Log in to Container Registry
         uses: docker/login-action@v3
         with:

@@ -61,7 +61,7 @@ jobs:
           context: .
           file: ./Dockerfile
           target: runner-base
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
           push: ${{ github.event_name != 'workflow_dispatch' || github.event.inputs.push_image == 'true' }}
           build-args: |
             AIRoute_BUILD_MEMORY_MB=4096
